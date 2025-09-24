@@ -30,7 +30,5 @@
     </section>
 
     <?php require_once("components/nav.php"); ?>
-    
-    <script src="public/js/user-view.js"></script>
 </body>
 </html>

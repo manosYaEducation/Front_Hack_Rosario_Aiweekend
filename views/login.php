@@ -36,8 +36,6 @@
 
     <?php require_once("components/nav.php"); ?>
     
-    <script src="public/js/user-view.js"></script>
-    <script src="public/js/config.js"></script>
     <script src="public/js/login.js"></script>
 </body>
 </html>

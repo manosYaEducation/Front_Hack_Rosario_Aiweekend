@@ -26,7 +26,5 @@
     </section>
 
     <?php require_once("components/nav.php"); ?>
-
-    <script src="public/css/user-view.js"></script>
 </body>
 </html>
