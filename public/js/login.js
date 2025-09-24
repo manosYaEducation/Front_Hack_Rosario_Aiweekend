@@ -74,7 +74,7 @@ loginF.addEventListener("submit", async (event) => {
   const mantenerSesion = document.querySelector("#mantenerSesion").checked;
 
   if (!username || !password) {
-    mostrarMensajeLogin("Por favor ingresa ambos campos: usuario y contraseña.");
+    alert("Por favor ingresa ambos campos: usuario y contraseña.");
     return;
   }
 
@@ -156,7 +156,7 @@ loginF.addEventListener("submit", async (event) => {
       window.location.href = "profile";
       
     } else {
-      mostrarMensajeLogin(result.error || "Usuario o contraseña incorrectos.");
+      alert("Usuario o contraseña incorrectos.");
 
       // Agrega intento fallido y si es igual o supera los intentos empieza el timer
       intentosFallidos++;
@@ -170,7 +170,7 @@ loginF.addEventListener("submit", async (event) => {
     }
   } catch (error) {
     console.error("Error completo:", error);
-    mostrarMensajeLogin("Hubo un error al procesar tu solicitud. Inténtalo nuevamente.");
+    alert("Hubo un error al procesar tu solicitud. Inténtalo nuevamente.");
   }
 });
 
