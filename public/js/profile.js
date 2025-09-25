@@ -1,3 +1,5 @@
+const API_BASE = 'http://localhost/Front_Hack_Rosario_Aiweekend/api/';
+
      // Verificar si el usuario está logueado
         window.addEventListener("load", function() {
             if (!window.isAuthenticated()) {
@@ -34,7 +36,9 @@
                 userProjectsList.innerHTML = '<p>Cargando proyectos...</p>';
                 
                 const memberships = JSON.parse(localStorage.getItem('userProjectMemberships') || '[]');
+                console.log('All memberships in localStorage:', memberships);
                 const userMemberships = memberships.filter(m => m.userEmail === userEmail);
+                console.log('User memberships for', userEmail, ':', userMemberships);
                 
                 if (userMemberships.length === 0) {
                     userProjectsList.innerHTML = '<p>No estás participando en ningún proyecto actualmente.</p>';

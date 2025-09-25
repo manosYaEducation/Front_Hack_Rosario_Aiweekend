@@ -231,8 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         if (action === 'join') {
                             window.updateProjectMembership(project.id, true);
+                            console.log('Membership added to localStorage for project:', project.id);
                         } else if (action === 'leave') {
                             window.updateProjectMembership(project.id, false);
+                            console.log('Membership removed from localStorage for project:', project.id);
                         }
                         
                         const nextLabel = action === 'join' ? 'Abandonar' : 'Unirse';
