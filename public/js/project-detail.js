@@ -42,22 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelector('.project-detail-title').textContent = project.title;
 
-        projectDetailContent.innerHTML = `
+projectDetailContent.innerHTML = `
             <p><strong>Descripción:</strong> ${project.description}</p>
             <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
-            <p><strong>Dashboard:</strong> ${project.dashboard_slug}</p>
-            <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString()}</p>
-            <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString()}</p>
+            <p><strong>Dashboard:</strong> ${project.dashboard_slug || 'No disponible'}</p>
+            <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+            <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
             <div id="joinSection" class="join-section">
                 <button class="submit-button" id="joinButton">Unirse</button>
                 <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
                 <span id="joinStatus" class="join-status" style="margin-left:10px"></span>
             </div>
-            <button class="submit-button" id="backButton">
-                Volver atrás
-            </button>
+            <button class="submit-button" id="backButton">Volver atrás</button>
+            <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar Proyecto</a>
         `;
-
         // Añadir funcionalidad al botón
         const backButton = document.getElementById('backButton');
         backButton.addEventListener('click', () => {
