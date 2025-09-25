@@ -11,6 +11,9 @@
       <section id="project-detail" class="form-section">
         <div class="form-container">
           <h2 class="form-title">Plataforma moderna para gestionar proyectos de desarrollo. Organiza tareas, colabora con tu equipo y visualiza el progreso en tiempo real.</h2>
+          <div style="display: flex; justify-content: center; margin: 24px 0 0 0;">
+              <a href="project-create" class="submit-button" style="text-align: center; text-decoration: none; display: inline-block;">Crear proyecto</a>
+          </div>
         </div>
       </section>
     <?php require_once("components/nav.php"); ?>

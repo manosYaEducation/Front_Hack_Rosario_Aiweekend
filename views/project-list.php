@@ -23,9 +23,6 @@
           <div class="pagination-controls" id="paginationControls">
             <!-- Pagination buttons will be loaded here via JavaScript -->
           </div>
-            <div style="display: flex; justify-content: center; margin: 40px 0 0 0;">
-              <a href="project-create" class="btn btn-primary" style="padding: 12px 32px; font-size: 18px; text-decoration: none; background: #007bff; color: #fff; border-radius: 6px;">Crear</a>
-            </div>
         </div>
       </section>
             

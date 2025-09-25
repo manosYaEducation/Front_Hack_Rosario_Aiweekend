@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer contraseña</title>
     <link rel="stylesheet" href="public/css/user-view.css">
+    <script src="public/js/recover-password.js"></script>
 </head>
 <body>
 
@@ -21,6 +22,11 @@
                     <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
                 </div>
                 <button type="submit" class="submit-button">Enviar formulario</button>
+                <div style="display: flex; justify-content: center; margin: 40px 0 0 0;">
+                <div style="display: flex; justify-content: center; margin: 24px 0 0 0;">
+              <a href="login" class="submit-button" style="text-align: center; text-decoration: none; display: inline-block;">Volver</a>
+          </div>
+            </div>
             </form>
         </div>
     </section>

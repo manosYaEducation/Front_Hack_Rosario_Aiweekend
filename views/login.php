@@ -25,6 +25,9 @@
                 <div class="form-group form-check">
                     <input type="checkbox" id="mantenerSesion" name="mantenerSesion">
                     <label class="form-check-label" for="mantenerSesion">Mantener sesión iniciada</label>
+                    <p class="form-link">
+                ¿Olvidaste tu contraseña? <a href="recover-password">Recupera tu contraseña aquí</a>
+            </p>
                 </div>
                 <button type="submit" class="submit-button">Iniciar Sesión</button>
             </form>
