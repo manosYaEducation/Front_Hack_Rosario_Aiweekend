@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Handle API routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^project/(.*)$ project-handler.php [QSA,L]
+RewriteRule ^dashboards$ project-handler.php [QSA,L]

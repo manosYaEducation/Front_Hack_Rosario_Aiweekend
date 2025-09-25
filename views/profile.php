@@ -35,6 +35,15 @@
                 <button class="submit-button">Cancelar</button>
                 <button class="submit-button">Guardar</button>
             </div>
+            
+            <!-- User Projects Section -->
+            <div class="user-projects-section">
+                <h3>Mis Proyectos</h3>
+                <div id="userProjectsList" class="user-projects-list">
+                    <!-- User projects will be loaded here -->
+                </div>
+            </div>
+            
             <div class="disconnect-section">
                 <button class="submit-button" id="logoutButton">Desconectar</button>
             </div>
@@ -43,6 +52,7 @@
         
     <?php require_once("components/nav.php"); ?>
     
+    <script src="public/js/session-check.js"></script>
     <script src="public/js/profile.js"></script>
 </body>
 </html>

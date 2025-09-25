@@ -9,7 +9,7 @@
             <div class="nav-icon">📋</div>
             <span>Proyectos</span>
         </a>
-        <a href="login" class="bottom-nav-item">
+        <a href="profile" class="bottom-nav-item">
             <div class="nav-icon">👤</div>
             <span>Cuenta</span>
         </a>

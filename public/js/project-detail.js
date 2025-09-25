@@ -1,6 +1,8 @@
-const API_BASE = 'http://localhost/Hackdash-aiweekend/backend/public/';
+const API_BASE = 'http://localhost/Front_Hack_Rosario_Aiweekend/api/';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // No verificar sesión - permitir ver detalles sin login
+
     const projectDetailContent = document.getElementById('projectDetailContent');
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('id');
@@ -69,29 +71,89 @@ document.addEventListener('DOMContentLoaded', () => {
         const leaveButton = document.getElementById('leaveButton');
         const joinStatus = document.getElementById('joinStatus');
 
-        async function checkMembershipAndSetState() {
-            const userEmail = localStorage.getItem('userEmail');
-            if (!userEmail || !joinButton) return;
-            try {
-                const resp = await fetch(`${API_BASE}project/members?id=${project.id}`);
-                if (!resp.ok) return;
-                const data = await resp.json();
-                if (data.success && Array.isArray(data.members)) {
-                    const already = data.members.some(m => m.email === userEmail);
-                    if (already) {
-                        joinButton.style.display = 'none';
-                        leaveButton.style.display = 'inline-block';
-                    } else {
-                        joinButton.style.display = 'inline-block';
-                        leaveButton.style.display = 'none';
-                    }
+        function checkMembershipAndSetState() {
+            const isLoggedIn = window.isAuthenticated();
+            const userData = window.getUserData();
+            const userEmail = userData.userEmail;
+            
+            if (!isLoggedIn) {
+                if (joinButton) {
+                    joinButton.style.display = 'inline-block';
+                    joinButton.textContent = 'Unirse';
+                    joinButton.style.background = '';
+                    joinButton.onclick = null; // Remove any existing onclick
                 }
-            } catch (_) {}
+                if (leaveButton) {
+                    leaveButton.style.display = 'none';
+                }
+                if (joinStatus) {
+                    joinStatus.textContent = '';
+                    joinStatus.style.color = '';
+                }
+                return;
+            }
+            
+            if (!userEmail || !joinButton) return;
+            
+            const isMember = window.isProjectMember(project.id);
+            
+            if (isMember) {
+                joinButton.style.display = 'none';
+                leaveButton.style.display = 'inline-block';
+            } else {
+                joinButton.style.display = 'inline-block';
+                leaveButton.style.display = 'none';
+            }
         }
 
         checkMembershipAndSetState();
 
-        // Utility function for fetch with timeout
+        function showLoginModal() {
+            const modalOverlay = document.createElement('div');
+            modalOverlay.className = 'modal-overlay';
+
+            const modalContent = document.createElement('div');
+            modalContent.className = 'modal-content';
+
+            modalContent.innerHTML = `
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 class="modal-title">Inicia Sesión</h3>
+                    <p class="modal-message">
+                        Para unirte a este proyecto necesitas iniciar sesión en tu cuenta.
+                    </p>
+                </div>
+                <div class="modal-buttons">
+                    <button id="modalCancelBtn" class="modal-cancel-btn">Cancelar</button>
+                    <button id="modalLoginBtn" class="modal-login-btn">Ir al Login</button>
+                </div>
+            `;
+
+            modalOverlay.appendChild(modalContent);
+            document.body.appendChild(modalOverlay);
+
+            document.getElementById('modalCancelBtn').addEventListener('click', () => {
+                document.body.removeChild(modalOverlay);
+            });
+
+            document.getElementById('modalLoginBtn').addEventListener('click', () => {
+                window.location.href = 'login';
+            });
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    document.body.removeChild(modalOverlay);
+                }
+            });
+
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(modalOverlay);
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+        }
+
         async function fetchWithTimeout(url, options, timeout = 10000) {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -104,27 +166,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Utility function to create FormData
         function createFormData(projectId, userData) {
             const form = new FormData();
             form.append('project_id', projectId);
             Object.entries(userData).forEach(([key, value]) => {
-                // Map 'user_name' to 'name' to match backend expectation
                 const mappedKey = key === 'user_name' ? 'name' : key;
                 form.append(mappedKey, value);
             });
             return form;
         }
 
-        // Utility function to get user credentials
         function getUserCredentials() {
+            const userData = window.getUserData();
             return {
-                userName: localStorage.getItem('userName') || localStorage.getItem('username') || '',
-                userEmail: localStorage.getItem('userEmail') || ''
+                userName: userData.userName || userData.username || '',
+                userEmail: userData.userEmail || ''
             };
         }
 
-        // Utility function to handle button states
         function updateButtonStates(activeButton, inactiveButton, activeText, isDisabled) {
             activeButton.disabled = isDisabled;
             activeButton.textContent = activeText;
@@ -132,39 +191,35 @@ document.addEventListener('DOMContentLoaded', () => {
             inactiveButton.style.display = 'none';
         }
 
-        // Main handler for joining/leaving projects
         function setupProjectButton(button, action, oppositeButton, apiEndpoint) {
             if (!button) return;
 
             button.addEventListener('click', async () => {
-                // Disable leave functionality due to missing backend support
-                if (action === 'leave') {
-                    joinStatus.textContent = 'La funcionalidad de abandonar proyecto no está soportada.';
+                // revisar si el usuario esta logyeado
+                if (!window.isAuthenticated()) {
+                    showLoginModal();
                     return;
                 }
 
                 const { userName, userEmail } = getUserCredentials();
 
-                // Validate credentials before sending
                 if (!userEmail || !userName) {
                     joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
                     return;
                 }
 
                 try {
-                    // Update UI to show loading state
                     button.disabled = true;
                     button.textContent = action === 'join' ? 'Uniéndose...' : 'Abandonando...';
                     joinStatus.textContent = '';
 
-                    // Prepare form data
                     const formData = createFormData(project.id, action === 'join'
-                        ? { user_name: userName, email: userEmail, role: 'member' }
+                        ? { name: userName, email: userEmail, role: 'member' }
                         : { email: userEmail }
                     );
 
-                    // Make API request
-                    const response = await fetchWithTimeout(`${API_BASE}project/${apiEndpoint}`, {
+                    const endpoint = action === 'join' ? 'createProjectMember' : 'removeProjectMember';
+                    const response = await fetchWithTimeout(`${API_BASE}project/${endpoint}`, {
                         method: 'POST',
                         body: formData
                     });
@@ -173,7 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (response.ok && result.success) {
                         joinStatus.textContent = action === 'join' ? 'Te uniste al proyecto.' : 'Has abandonado el proyecto.';
-                        // After joining, show "Abandonar"; after leaving, show "Unirse"
+                        
+                        if (action === 'join') {
+                            window.updateProjectMembership(project.id, true);
+                        } else if (action === 'leave') {
+                            window.updateProjectMembership(project.id, false);
+                        }
+                        
                         const nextLabel = action === 'join' ? 'Abandonar' : 'Unirse';
                         updateButtonStates(oppositeButton, button, nextLabel, false);
                     } else {
@@ -185,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? 'Tiempo de espera agotado.'
                         : error.message || 'Error de red.';
                 } finally {
-                    // Reset button if operation failed
                     if (button.style.display !== 'none') {
                         button.disabled = false;
                         button.textContent = action === 'join' ? 'Unirse' : 'Abandonar';
@@ -194,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Initialize buttons
         setupProjectButton(
             joinButton,
             'join',
@@ -206,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             leaveButton,
             'leave',
             joinButton,
-            'leave'
+            'removeProjectMember'
         );
     }
 });
