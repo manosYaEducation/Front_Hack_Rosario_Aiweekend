@@ -42,12 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelector('.project-detail-title').textContent = project.title;
 
-projectDetailContent.innerHTML = `
+ projectDetailContent.innerHTML = `
             <p><strong>Descripción:</strong> ${project.description}</p>
             <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
             <p><strong>Dashboard:</strong> ${project.dashboard_slug || 'No disponible'}</p>
             <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
             <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+            
+            <!-- Sección de Miembros -->
+            <div id="membersSection" class="members-section">
+                <h3>Miembros del Proyecto</h3>
+                <div id="membersList" class="members-list">
+                    <p>Cargando miembros...</p>
+                </div>
+            </div>
+            
             <div id="joinSection" class="join-section">
                 <button class="submit-button" id="joinButton">Unirse</button>
                 <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
@@ -88,6 +97,9 @@ projectDetailContent.innerHTML = `
         }
 
         checkMembershipAndSetState();
+        
+        // Cargar miembros del proyecto
+        loadProjectMembers(project.id);
 
         // Utility function for fetch with timeout
         async function fetchWithTimeout(url, options, timeout = 10000) {
@@ -159,7 +171,10 @@ projectDetailContent.innerHTML = `
                 ? 'Te uniste al proyecto.'
                 : 'Has abandonado el proyecto.';
 
-            updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+             updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+             
+             // Recargar la lista de miembros después de unirse/abandonar
+             loadProjectMembers(project.id);
         } catch (err) {
             console.error(err);
             joinStatus.textContent = err.name === 'AbortError'
@@ -177,5 +192,89 @@ projectDetailContent.innerHTML = `
 // Inicializar botones
 setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember');
 setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
+        }
+        
+        // Función para cargar miembros del proyecto
+        async function loadProjectMembers(projectId) {
+            const membersList = document.getElementById('membersList');
+            if (!membersList) return;
+            
+            try {
+                console.log('Cargando miembros del proyecto:', projectId);
+                const response = await fetch(`${API_BASE}project/members?id=${projectId}`);
+                
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log('Endpoint de miembros no encontrado - posiblemente no implementado en el backend');
+                        membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">La funcionalidad de miembros no está disponible en este momento.</p>';
+                        return;
+                    }
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Respuesta de la API de miembros:', data);
+                
+                if (data.success && Array.isArray(data.members)) {
+                    displayProjectMembers(data.members);
+                } else if (data.success && (!data.members || data.members.length === 0)) {
+                    // Caso específico: API responde correctamente pero no hay miembros
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">No hay miembros en este proyecto.</p>';
+                } else {
+                    console.warn('Respuesta inesperada de la API:', data);
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">No se pudieron cargar los miembros del proyecto.</p>';
+                }
+            } catch (error) {
+                console.error('Error cargando miembros:', error);
+                
+                // Distinguir entre diferentes tipos de errores
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    membersList.innerHTML = '<p style="color: #ef4444;">Error de conexión. Verifica tu conexión a internet.</p>';
+                } else if (error.message.includes('404')) {
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">La funcionalidad de miembros no está disponible.</p>';
+                } else {
+                    membersList.innerHTML = '<p style="color: #ef4444;">No hay miembros en el proyecto.</p>';
+                }
+            }
+        }
+        
+        // Función para mostrar los miembros del proyecto
+        function displayProjectMembers(members) {
+            const membersList = document.getElementById('membersList');
+            if (!membersList) return;
+            
+            if (members.length === 0) {
+                membersList.innerHTML = '<p>No hay miembros en este proyecto.</p>';
+                return;
+            }
+            
+            const membersHTML = members.map(member => {
+                const joinDate = member.joined_at ? new Date(member.joined_at).toLocaleDateString('es-ES', { 
+                    dateStyle: 'medium' 
+                }) : 'Fecha no disponible';
+                
+                return `
+                    <div class="member-card">
+                        <div class="member-info">
+                            <h4 class="member-name">${escapeHtml(member.name || member.user_name || 'Usuario')}</h4>
+                            <p class="member-email">${escapeHtml(member.email || '')}</p>
+                            <p class="member-role">Rol: ${escapeHtml(member.role || 'Miembro')}</p>
+                            <p class="member-joined">Se unió: ${joinDate}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            membersList.innerHTML = membersHTML;
+        }
+        
+        // Función para escapar HTML
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 });
