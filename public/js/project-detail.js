@@ -123,11 +123,26 @@ projectDetailContent.innerHTML = `
         function setupProjectButton(button, action, otherButton, apiEndpoint) {
             if (!button) return;
             button.addEventListener('click', async () => {
-            const { userName, userEmail, userId } = getUserCredentials();
-            if (!userEmail || !userName) {
-            joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
-            return;
-        }
+                // Verificar autenticación antes de proceder
+                console.log('=== BOTÓN UNIRSE CLICKEADO ===');
+                console.log('Verificando autenticación...');
+                
+                if (!window.isAuthenticated || !window.isAuthenticated()) {
+                    console.log('Usuario no autenticado, mostrando modal');
+                    if (typeof window.showLoginModal === 'function') {
+                        window.showLoginModal();
+                    } else {
+                        console.error('ERROR: window.showLoginModal no está disponible');
+                        alert('ERROR: Función showLoginModal no disponible');
+                    }
+                    return;
+                }
+
+                const { userName, userEmail, userId } = getUserCredentials();
+                if (!userEmail || !userName) {
+                    joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
+                    return;
+                }
 
         button.disabled = true;
         button.textContent = action === 'join' ? 'Uniéndose...' : 'Abandonando...';

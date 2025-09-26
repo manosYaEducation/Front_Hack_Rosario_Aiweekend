@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="dashboard-link">Dashboard: ${dashSlug ? `<a href="dashboard?slug=${encodeURIComponent(dashSlug)}">${escapeHtml(dashName)}</a>` : escapeHtml(dashName)}</span>
                 </div>
                 <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
+                ${window.isAuthenticated && window.isProjectMember && window.isProjectMember(project.id) ? '<span class="membership-badge">Ya eres miembro</span>' : ''}
             `;
             allProjectsGrid.appendChild(projectCard);
         });

@@ -111,4 +111,52 @@
         window.location.href = 'login';
     };
 
+    // Función global para el modal de login
+    window.showLoginModal = function() {
+        console.log('showLoginModal() llamada - creando modal');
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'modal-overlay';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+
+        modalContent.innerHTML = `
+            <div style="margin-bottom: 1.5rem;">
+                <h3 class="modal-title">Inicia Sesión</h3>
+                <p class="modal-message">
+                    Para unirte a este proyecto necesitas iniciar sesión en tu cuenta.
+                </p>
+            </div>
+            <div class="modal-buttons">
+                <button id="modalCancelBtn" class="modal-cancel-btn">Cancelar</button>
+                <button id="modalLoginBtn" class="modal-login-btn">Ir al Login</button>
+            </div>
+        `;
+
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+
+        document.getElementById('modalCancelBtn').addEventListener('click', () => {
+            document.body.removeChild(modalOverlay);
+        });
+
+        document.getElementById('modalLoginBtn').addEventListener('click', () => {
+            window.location.href = 'login';
+        });
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                document.body.removeChild(modalOverlay);
+            }
+        });
+
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                document.body.removeChild(modalOverlay);
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+    };
+
 })();
