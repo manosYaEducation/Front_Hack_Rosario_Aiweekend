@@ -1066,3 +1066,85 @@ body {
         justify-content: space-between;
     }
 }
+
+/* Members section styles */
+.members-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.members-section h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.members-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.member-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.member-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.member-name {
+    color: #1f2937;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.member-email {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.member-role {
+    color: #3b82f6;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0;
+    background: #eff6ff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.member-joined {
+    color: #6b7280;
+    font-size: 0.8rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsive design for members */
+@media (max-width: 768px) {
+    .members-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-card {
+        padding: 0.75rem;
+    }
+}
