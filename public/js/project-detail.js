@@ -104,27 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Utility function to create FormData
-        function createFormData(projectId, userData) {
-            const form = new FormData();
-            form.append('project_id', projectId);
-            Object.entries(userData).forEach(([key, value]) => {
-                // Map 'user_name' to 'name' to match backend expectation
-                const mappedKey = key === 'user_name' ? 'name' : key;
-                form.append(mappedKey, value);
-            });
-            return form;
-        }
-
-        // Utility function to get user credentials
-        function getUserCredentials() {
-            return {
-                userName: localStorage.getItem('userName') || localStorage.getItem('username') || '',
-                userEmail: localStorage.getItem('userEmail') || ''
-            };
-        }
-
-        // Utility function to handle button states
+                // Utility function to handle button states
         function updateButtonStates(activeButton, inactiveButton, activeText, isDisabled) {
             activeButton.disabled = isDisabled;
             activeButton.textContent = activeText;
@@ -132,81 +112,72 @@ document.addEventListener('DOMContentLoaded', () => {
             inactiveButton.style.display = 'none';
         }
 
-        // Main handler for joining/leaving projects
-        function setupProjectButton(button, action, oppositeButton, apiEndpoint) {
+
+        // Utility function to get user credentials
+        function getUserCredentials() {
+            return {
+                userName: localStorage.getItem('userName') || '',
+                userEmail: localStorage.getItem('userEmail') || '',
+                userId: localStorage.getItem('userId') || '',
+            };
+        }
+        
+        function setupProjectButton(button, action, otherButton, apiEndpoint) {
             if (!button) return;
-
             button.addEventListener('click', async () => {
-                // Disable leave functionality due to missing backend support
-                if (action === 'leave') {
-                    joinStatus.textContent = 'La funcionalidad de abandonar proyecto no está soportada.';
-                    return;
-                }
-
-                const { userName, userEmail } = getUserCredentials();
-
-                // Validate credentials before sending
-                if (!userEmail || !userName) {
-                    joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
-                    return;
-                }
-
-                try {
-                    // Update UI to show loading state
-                    button.disabled = true;
-                    button.textContent = action === 'join' ? 'Uniéndose...' : 'Abandonando...';
-                    joinStatus.textContent = '';
-
-                    // Prepare form data
-                    const formData = createFormData(project.id, action === 'join'
-                        ? { user_name: userName, email: userEmail, role: 'member' }
-                        : { email: userEmail }
-                    );
-
-                    // Make API request
-                    const response = await fetchWithTimeout(`${API_BASE}project/${apiEndpoint}`, {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok && result.success) {
-                        joinStatus.textContent = action === 'join' ? 'Te uniste al proyecto.' : 'Has abandonado el proyecto.';
-                        // After joining, show "Abandonar"; after leaving, show "Unirse"
-                        const nextLabel = action === 'join' ? 'Abandonar' : 'Unirse';
-                        updateButtonStates(oppositeButton, button, nextLabel, false);
-                    } else {
-                        throw new Error(result.message || (action === 'join' ? 'No se pudo unir.' : 'No se pudo abandonar.'));
-                    }
-                } catch (error) {
-                    console.error(`Error during ${action}:`, error);
-                    joinStatus.textContent = error.name === 'AbortError'
-                        ? 'Tiempo de espera agotado.'
-                        : error.message || 'Error de red.';
-                } finally {
-                    // Reset button if operation failed
-                    if (button.style.display !== 'none') {
-                        button.disabled = false;
-                        button.textContent = action === 'join' ? 'Unirse' : 'Abandonar';
-                    }
-                }
-            });
+            const { userName, userEmail, userId } = getUserCredentials();
+            if (!userEmail || !userName) {
+            joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
+            return;
         }
 
-        // Initialize buttons
-        setupProjectButton(
-            joinButton,
-            'join',
-            leaveButton,
-            'createProjectMember'
-        );
+        button.disabled = true;
+        button.textContent = action === 'join' ? 'Uniéndose...' : 'Abandonando...';
+        joinStatus.textContent = '';
 
-        setupProjectButton(
-            leaveButton,
-            'leave',
-            joinButton,
-            'leave'
-        );
-    }
+                const formData = new FormData();
+                if (action === 'join') {
+                    formData.append('project_id', project.id);
+                    formData.append('name', userName);
+                    formData.append('email', userEmail);
+                    formData.append('role', 'member');
+                } else {
+                    formData.append('project_id', project.id);
+                    formData.append('email', userEmail);
+                }
+
+        try {
+            const res = await fetchWithTimeout(`${API_BASE}${apiEndpoint}`, {
+                method: 'POST',
+
+                body: formData
+            });
+
+
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.message);
+
+            joinStatus.textContent = action === 'join'
+                ? 'Te uniste al proyecto.'
+                : 'Has abandonado el proyecto.';
+
+            updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+        } catch (err) {
+            console.error(err);
+            joinStatus.textContent = err.name === 'AbortError'
+                ? 'Tiempo de espera agotado.'
+                : err.message || 'Error de red.';
+        } finally {
+            if (button.style.display !== 'none') {
+                button.disabled = false;
+                button.textContent = action === 'join' ? 'Unirse' : 'Abandonar';
+            }
+        }
+    });
+}
+
+// Inicializar botones
+setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember');
+setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
+        }
 });
