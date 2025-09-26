@@ -10,4 +10,5 @@ return [
     'project-list' => __DIR__ . '/views/project-list.php',
     'project-detail' => __DIR__ . '/views/project-detail.php',
     'project-create' => __DIR__ . '/views/project-create.php',
+    'project-edit' => __DIR__ . '/views/project-edit.php',
 ];
