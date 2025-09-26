@@ -47,6 +47,6 @@ class Router
 
         // Handle 404 - Page not found
         http_response_code(404);
-        echo "<h1>404 - Página no encontrada</h1>";
+        require_once $this->routes["not-found"];
     }
 }
