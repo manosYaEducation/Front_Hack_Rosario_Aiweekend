@@ -19,6 +19,7 @@
 
     <?php require_once("components/nav.php"); ?>
 
+    <script src="public/js/session-check.js"></script>
     <script src="public/js/project-detail.js"></script>
 </body>
 </html>

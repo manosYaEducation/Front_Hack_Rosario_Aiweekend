@@ -43,6 +43,7 @@
         
     <?php require_once("components/nav.php"); ?>
     
+    <script src="public/js/session-check.js"></script>
     <script src="public/js/profile.js"></script>
 </body>
 </html>
