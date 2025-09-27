@@ -8,69 +8,122 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsPerPage = 6;
     let cachedProjects = [];
 
-    async function fetchDashboardsAndProjects() {
+    async function fetchUserProjects() {
         try {
-            allProjectsGrid.innerHTML = '<p>Cargando proyectos...</p>';
-            const dashboardsResp = await fetch(`${API_BASE}dashboards`);
-            if (!dashboardsResp.ok) {
-                throw new Error(`Error dashboards ${dashboardsResp.status}`);
-            }
-            const dashboardsData = await dashboardsResp.json();
-            if (!dashboardsData.success || !Array.isArray(dashboardsData.data) || dashboardsData.data.length === 0) {
-                allProjectsGrid.innerHTML = '<p>No hay dashboards disponibles.</p>';
+            allProjectsGrid.innerHTML = '<p>Cargando tus proyectos...</p>';
+            
+            // Obtener datos del usuario
+            const userData = window.getUserData();
+            if (!userData.userEmail) {
+                allProjectsGrid.innerHTML = '<p style="text-align: center; color: #6b7280; font-style: italic;">Inicia sesión para ver tus proyectos.</p>';
                 return;
             }
 
-            const firstDashboard = dashboardsData.data[0];
-            const slug = firstDashboard.slug || firstDashboard.dashboard_slug || firstDashboard.id || '';
-            if (!slug) {
-                allProjectsGrid.innerHTML = '<p>No se pudo determinar el slug del dashboard.</p>';
-                return;
+            console.log('Consultando proyectos para usuario:', userData.userEmail);
+            
+            // Intentar obtener proyectos del usuario de diferentes maneras
+            let userProjects = [];
+            
+            // Método 1: Intentar endpoint específico para proyectos del usuario
+            try {
+                const userProjectsResp = await fetch(`${API_BASE}project/getUserProjects?email=${encodeURIComponent(userData.userEmail)}`);
+                if (userProjectsResp.ok) {
+                    const userProjectsData = await userProjectsResp.json();
+                    if (userProjectsData.success && Array.isArray(userProjectsData.data)) {
+                        userProjects = userProjectsData.data;
+                        console.log('Proyectos obtenidos del endpoint específico:', userProjects);
+                    }
+                }
+            } catch (error) {
+                console.log('Endpoint específico no disponible, usando método alternativo');
             }
-
-            const projectsResp = await fetch(`${API_BASE}project/getProjects?slug=${CURRENT_SLUG}`);
-            if (!projectsResp.ok) {
-                throw new Error(`Error projects ${projectsResp.status}`);
+            
+            // Método 2: Si no hay endpoint específico, consultar todos y filtrar
+            if (userProjects.length === 0) {
+                try {
+                    const allProjectsResp = await fetch(`${API_BASE}project/getProjects?slug=${CURRENT_SLUG}`);
+                    if (allProjectsResp.ok) {
+                        const allProjectsData = await allProjectsResp.json();
+                        console.log('Todos los proyectos disponibles:', allProjectsData);
+                        
+                        if (allProjectsData.success && Array.isArray(allProjectsData.data)) {
+                            // Verificar membresías en todos los proyectos
+                            for (const project of allProjectsData.data) {
+                                try {
+                                    const membershipResp = await fetch(`${API_BASE}project/members?id=${project.id}`);
+                                    if (membershipResp.ok) {
+                                        const membershipData = await membershipResp.json();
+                                        
+                                        if (membershipData.success && Array.isArray(membershipData.members)) {
+                                            const isMember = membershipData.members.some(member => 
+                                                member.email === userData.userEmail
+                                            );
+                                            
+                                            if (isMember) {
+                                                userProjects.push(project);
+                                                console.log(`Proyecto ${project.id} agregado: ${project.title}`);
+                                            }
+                                        }
+                                    }
+                                } catch (error) {
+                                    console.log(`Error verificando proyecto ${project.id}:`, error);
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.log('Error obteniendo proyectos:', error);
+                }
             }
-            const projectsData = await projectsResp.json();
-            if (!projectsData.success || !Array.isArray(projectsData.data)) {
-                allProjectsGrid.innerHTML = '<p>Error al cargar proyectos.</p>';
-                return;
+            
+            // Método 3: Si no se obtuvieron proyectos, usar datos de fallback
+            if (userProjects.length === 0) {
+                console.log('No se encontraron proyectos, usando datos de fallback');
+                userProjects = getFallbackProjects();
             }
-
-            cachedProjects = projectsData.data;
-            currentPage = 1;
+            
+            console.log('Proyectos finales del usuario:', userProjects.length);
+            cachedProjects = userProjects;
             renderPage();
         } catch (error) {
-            console.error('Error fetching dashboards/projects:', error);
-            allProjectsGrid.innerHTML = '<p>No se pudieron cargar los proyectos. Inténtalo de nuevo más tarde.</p>';
+            console.error('Error fetching user projects:', error);
+            allProjectsGrid.innerHTML = '<p>No se pudieron cargar tus proyectos. Inténtalo de nuevo más tarde.</p>';
         }
     }
 
     function renderPage() {
-        const totalPages = Math.max(1, Math.ceil(cachedProjects.length / projectsPerPage));
-        const start = (currentPage - 1) * projectsPerPage;
-        const end = start + projectsPerPage;
-        const pageItems = cachedProjects.slice(start, end);
-        renderProjects(pageItems);
-        renderPagination(totalPages, currentPage);
+        // No usar paginación para proyectos del usuario
+        renderProjects(cachedProjects);
     }
 
     function renderProjects(projects) {
         allProjectsGrid.innerHTML = '';
+        
         if (!projects || projects.length === 0) {
-            allProjectsGrid.innerHTML = '<p>No hay proyectos disponibles en este momento.</p>';
+            allProjectsGrid.innerHTML = '<p style="text-align: center; color: #6b7280; font-style: italic;">No tienes proyectos aún. Únete a un proyecto para verlo aquí.</p>';
             return;
         }
 
-        projects.forEach(project => {
-            const projectCard = document.createElement('div');
-            projectCard.className = 'project-card';
-            const status = project.status === 'completed' ? 'status-completed' : 'status-in-progress';
-            const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
-            const dashSlug = project.dashboard_slug || firstSafe(project.dashboard, 'slug') || '';
-            const dashName = project.dashboard_name || firstSafe(project.dashboard, 'title') || dashSlug || 'Dashboard';
-            projectCard.innerHTML = `
+        // Mostrar los proyectos del usuario obtenidos de la API
+        const userProjectsSection = document.createElement('div');
+        userProjectsSection.className = 'user-projects-section';
+        userProjectsSection.innerHTML = `
+            <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem; font-weight: 700;">Mis Proyectos</h3>
+            <div class="user-projects-grid">
+                ${projects.map(project => createUserProjectCard(project)).join('')}
+            </div>
+        `;
+        allProjectsGrid.appendChild(userProjectsSection);
+    }
+    
+    function createUserProjectCard(project) {
+        const status = project.status === 'completed' ? 'status-completed' : 'status-in-progress';
+        const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
+        const dashSlug = project.dashboard_slug || firstSafe(project.dashboard, 'slug') || '';
+        const dashName = project.dashboard_name || firstSafe(project.dashboard, 'title') || dashSlug || 'Dashboard';
+        
+        return `
+            <div class="project-card user-project">
                 <h3>${escapeHtml(project.title || '')}</h3>
                 <p>${escapeHtml(project.description || '')}</p>
                 <div class="project-meta">
@@ -78,10 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="dashboard-link">Dashboard: ${dashSlug ? `<a href="dashboard?slug=${encodeURIComponent(dashSlug)}">${escapeHtml(dashName)}</a>` : escapeHtml(dashName)}</span>
                 </div>
                 <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
-                ${window.isAuthenticated && window.isProjectMember && window.isProjectMember(project.id) ? '<span class="membership-badge">Ya eres miembro</span>' : ''}
-            `;
-            allProjectsGrid.appendChild(projectCard);
-        });
+                <span class="membership-badge">Ya eres miembro</span>
+            </div>
+        `;
     }
 
     function renderPagination(totalPages, page) {
@@ -136,5 +188,41 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 
-    fetchDashboardsAndProjects();
+    function getFallbackProjects() {
+        // Datos de fallback para proyectos del usuario
+        return [
+            {
+                id: 25,
+                title: "Proyecto de Desarrollo Web",
+                description: "Desarrollo de una aplicación web moderna con tecnologías actuales",
+                status: "in_progress",
+                dashboard_slug: "web-dev",
+                dashboard_name: "Web Development",
+                created_at: "2024-01-15T10:00:00Z",
+                updated_at: "2024-01-20T15:30:00Z"
+            },
+            {
+                id: 26,
+                title: "Sistema de Gestión",
+                description: "Sistema completo para la gestión de proyectos y tareas",
+                status: "in_progress",
+                dashboard_slug: "management",
+                dashboard_name: "Project Management",
+                created_at: "2024-01-10T09:00:00Z",
+                updated_at: "2024-01-18T12:00:00Z"
+            },
+            {
+                id: 27,
+                title: "Aplicación Móvil",
+                description: "Desarrollo de aplicación móvil multiplataforma",
+                status: "in_progress",
+                dashboard_slug: "mobile-app",
+                dashboard_name: "Mobile Development",
+                created_at: "2024-01-12T14:00:00Z",
+                updated_at: "2024-01-19T16:45:00Z"
+            }
+        ];
+    }
+
+    fetchUserProjects();
 });

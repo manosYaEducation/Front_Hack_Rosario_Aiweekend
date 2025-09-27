@@ -75,7 +75,7 @@
         if (!userEmail) return false;
         
         const memberships = JSON.parse(localStorage.getItem('userProjectMemberships') || '[]');
-        return memberships.some(m => m.projectId === projectId && m.userEmail === userEmail);
+        return memberships.some(m => String(m.projectId) === String(projectId) && m.userEmail === userEmail);
     };
 
     window.updateProjectMembership = function(projectId, isMember) {
@@ -104,6 +104,7 @@
         
         localStorage.setItem('userProjectMemberships', JSON.stringify(memberships));
     };
+
 
     window.logout = function() {
         localStorage.clear();
