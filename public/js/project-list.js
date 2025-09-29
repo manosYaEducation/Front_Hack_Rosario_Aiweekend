@@ -124,8 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function createUserProjectCard(project) {
         const status = project.status === 'completed' ? 'status-completed' : 'status-in-progress';
         const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
-        const dashSlug = project.dashboard_slug || firstSafe(project.dashboard, 'slug') || '';
-        const dashName = project.dashboard_name || firstSafe(project.dashboard, 'title') || dashSlug || 'Dashboard';
         
         return `
             <div class="project-card user-project">
@@ -133,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${escapeHtml(project.description || '')}</p>
                 <div class="project-meta">
                     <span class="status ${status}">${statusText}</span>
-                    <span class="dashboard-link">Dashboard: ${dashSlug ? `<a href="dashboard?slug=${encodeURIComponent(dashSlug)}">${escapeHtml(dashName)}</a>` : escapeHtml(dashName)}</span>
                 </div>
                 <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
                 <span class="membership-badge">Ya eres miembro</span>
