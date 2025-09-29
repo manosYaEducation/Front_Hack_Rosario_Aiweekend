@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // Método 3: Si no se obtuvieron proyectos, usar datos de fallback
+            // No usar datos de fallback - solo mostrar proyectos reales del usuario
             if (userProjects.length === 0) {
-                console.log('No se encontraron proyectos, usando datos de fallback');
-                userProjects = getFallbackProjects();
+                console.log('Usuario no tiene proyectos reales');
+                userProjects = []; // Array vacío, no datos de fallback
             }
             
             console.log('Proyectos finales del usuario:', userProjects.length);
@@ -100,7 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
         allProjectsGrid.innerHTML = '';
         
         if (!projects || projects.length === 0) {
-            allProjectsGrid.innerHTML = '<p style="text-align: center; color: #6b7280; font-style: italic;">No tienes proyectos aún. Únete a un proyecto para verlo aquí.</p>';
+            allProjectsGrid.innerHTML = `
+                <div style="text-align: center; padding: 3rem 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #ffffff; margin-bottom: 1rem; font-size: 1.8rem; font-weight: 700;">Aún no eres parte de ningún proyecto</h2>
+                    <p style="color: #cccccc; margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.6;">Explora los proyectos disponibles y únete a uno para comenzar a colaborar.</p>
+                </div>
+            `;
             return;
         }
 
@@ -188,41 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 
-    function getFallbackProjects() {
-        // Datos de fallback para proyectos del usuario
-        return [
-            {
-                id: 25,
-                title: "Proyecto de Desarrollo Web",
-                description: "Desarrollo de una aplicación web moderna con tecnologías actuales",
-                status: "in_progress",
-                dashboard_slug: "web-dev",
-                dashboard_name: "Web Development",
-                created_at: "2024-01-15T10:00:00Z",
-                updated_at: "2024-01-20T15:30:00Z"
-            },
-            {
-                id: 26,
-                title: "Sistema de Gestión",
-                description: "Sistema completo para la gestión de proyectos y tareas",
-                status: "in_progress",
-                dashboard_slug: "management",
-                dashboard_name: "Project Management",
-                created_at: "2024-01-10T09:00:00Z",
-                updated_at: "2024-01-18T12:00:00Z"
-            },
-            {
-                id: 27,
-                title: "Aplicación Móvil",
-                description: "Desarrollo de aplicación móvil multiplataforma",
-                status: "in_progress",
-                dashboard_slug: "mobile-app",
-                dashboard_name: "Mobile Development",
-                created_at: "2024-01-12T14:00:00Z",
-                updated_at: "2024-01-19T16:45:00Z"
-            }
-        ];
-    }
 
     fetchUserProjects();
 });
