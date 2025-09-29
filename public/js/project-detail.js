@@ -180,73 +180,94 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
         
-        function setupProjectButton(button, action, otherButton, apiEndpoint) {
-            if (!button) return;
-            button.addEventListener('click', async () => {
-                // Verificar autenticación antes de proceder
-                console.log('=== BOTÓN UNIRSE CLICKEADO ===');
-                console.log('Verificando autenticación...');
-                
-                if (!window.isAuthenticated || !window.isAuthenticated()) {
-                    console.log('Usuario no autenticado, mostrando modal');
-                    if (typeof window.showLoginModal === 'function') {
-                        window.showLoginModal();
-                    } else {
-                        console.error('ERROR: window.showLoginModal no está disponible');
-                        alert('ERROR: Función showLoginModal no disponible');
-                    }
-                    return;
-                }
+function setupProjectButton(button, action, otherButton, apiEndpoint) {
+    if (!button) return;
 
-                const { userName, userEmail, userId } = getUserCredentials();
-                if (!userEmail || !userName) {
-                    joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
-                    return;
-                }
+    button.addEventListener('click', async () => {
 
-        button.disabled = true;
-        button.textContent = action === 'join' ? 'Uniéndose...' : 'Abandonando...';
+        // Verificar autenticación
+        if (!window.isAuthenticated || !window.isAuthenticated()) {
+            console.log('Usuario no autenticado, mostrando modal');
+            if (typeof window.showLoginModal === 'function') {
+                window.showLoginModal();
+            } else {
+                console.error('ERROR: window.showLoginModal no está disponible');
+                document.getElementById('joinStatus').textContent = 'Error: No se puede mostrar el modal de inicio de sesión.';
+            }
+            return;
+        }
+
+        const { userName, userEmail, userId } = getUserCredentials();
+        const joinStatus = document.getElementById('joinStatus');
+
+        // Validar credenciales del usuario
+        if (!userEmail || !userName) {
+            joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
+            joinStatus.style.color = '#ef4444';
+            return;
+        }
+
+        // Deshabilitar botón y mostrar estado de carga
+        updateButtonStates(button, otherButton, action === 'join' ? 'Uniéndose...' : 'Abandonando...', true);
         joinStatus.textContent = '';
+        joinStatus.style.color = ''; // Resetear color
 
-                const formData = new FormData();
-                if (action === 'join') {
-                    formData.append('project_id', project.id);
-                    formData.append('name', userName);
-                    formData.append('email', userEmail);
-                    formData.append('role', 'member');
-                } else {
-                    formData.append('project_id', project.id);
-                    formData.append('email', userEmail);
-                }
+        // Preparar datos para la solicitud
+        const formData = new FormData();
+        if (action === 'join') {
+            formData.append('project_id', project.id);
+            formData.append('name', userName);
+            formData.append('email', userEmail);
+            formData.append('role', 'member');
+        } else {
+            formData.append('project_id', project.id);
+            formData.append('email', userEmail);
+        }
 
         try {
             const res = await fetchWithTimeout(`${API_BASE}${apiEndpoint}`, {
                 method: 'POST',
-
                 body: formData
             });
 
-
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.message);
 
+            if (!res.ok) {
+                // Manejar errores HTTP
+                throw new Error(data.message || `Error HTTP: ${res.status}`);
+            }
+
+            if (!data.success) {
+                // Manejar errores específicos del backend
+                throw new Error(data.message || 'Error desconocido al procesar la solicitud.');
+            }
+
+            // Actualizar estado y botones
             joinStatus.textContent = action === 'join'
-                ? 'Te uniste al proyecto.'
-                : 'Has abandonado el proyecto.';
+                ? 'Te uniste al proyecto exitosamente.'
+                : 'Has abandonado el proyecto exitosamente.';
+            joinStatus.style.color = '#10b981'; // Verde para éxito
+            updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
 
-             updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
-             
-             // Recargar la lista de miembros después de unirse/abandonar
-             loadProjectMembers(project.id);
+            // Recargar lista de miembros
+            loadProjectMembers(project.id);
         } catch (err) {
-            console.error(err);
-            joinStatus.textContent = err.name === 'AbortError'
-                ? 'Tiempo de espera agotado.'
-                : err.message || 'Error de red.';
+            console.error(`Error al ${action === 'join' ? 'unirse' : 'abandonar'} el proyecto:`, err);
+
+            // Mostrar mensaje de error específico
+            let errorMessage = 'Error al procesar la solicitud. Inténtalo de nuevo.';
+            if (err.name === 'AbortError') {
+                errorMessage = 'Tiempo de espera agotado. Verifica tu conexión.';
+            } else if (err.message) {
+                errorMessage = err.message;
+            }
+
+            joinStatus.textContent = errorMessage;
+            joinStatus.style.color = '#ef4444';
         } finally {
+            // Restaurar estado del botón si sigue visible
             if (button.style.display !== 'none') {
-                button.disabled = false;
-                button.textContent = action === 'join' ? 'Unirse' : 'Abandonar';
+                updateButtonStates(button, otherButton, action === 'join' ? 'Unirse' : 'Abandonar', false);
             }
         }
     });
