@@ -75,14 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 membershipBadge = '<span class="membership-badge">Ya eres miembro</span>';
             }
             
+            // Obtener la primera letra del título en mayúscula
+            const firstLetter = (project.title || 'P').charAt(0).toUpperCase();
+            
             projectCard.innerHTML = `
-                <h3>${escapeHtml(project.title || '')}</h3>
-                <p>${escapeHtml(project.description || '')}</p>
-                <div class="project-meta">
-                    <span class="status ${status}">${statusText}</span>
+                <div class="project-icon">
+                    <div class="project-icon-letter">${firstLetter}</div>
                 </div>
-                <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
-                ${membershipBadge}
+                <div class="project-info">
+                    <h3>${escapeHtml(project.title || '')}</h3>
+                    <p>${escapeHtml(project.description || '')}</p>
+                    <div class="project-meta">
+                        <span class="status ${status}">${statusText}</span>
+                    </div>
+                    <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
+                    ${membershipBadge}
+                </div>
             `;
             allProjectsGrid.appendChild(projectCard);
         });
