@@ -43,11 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.project-detail-title').textContent = project.title;
 
  projectDetailContent.innerHTML = `
-            <p><strong>Descripción:</strong> ${project.description}</p>
-            <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
-            <p><strong>Dashboard:</strong> ${project.dashboard_slug || 'No disponible'}</p>
-            <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
-            <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+            <!-- Action Buttons Section -->
+            <div class="project-action-buttons">
+                <div class="project-controls">
+                    <button class="submit-button" id="joinButton">Unirse</button>
+                    <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
+                    <button class="submit-button" id="backButton">Volver atrás</button>
+                    <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar Proyecto</a>
+                    <button class="submit-button" id="deleteButton" style="background:#ef4444">Eliminar Proyecto</button>
+                </div>
+                <div id="joinStatus" class="join-status"></div>
+            </div>
+            
+            <!-- Project Details -->
+            <div class="project-details">
+                <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
+                <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+                <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+                <p><strong>Descripción:</strong> ${project.description}</p>
+            </div>
             
             <!-- Sección de Miembros -->
             <div id="membersSection" class="members-section">
@@ -56,15 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Cargando miembros...</p>
                 </div>
             </div>
-            
-            <div id="joinSection" class="join-section">
-                <button class="submit-button" id="joinButton">Unirse</button>
-                <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
-                <span id="joinStatus" class="join-status" style="margin-left:10px"></span>
-            </div>
-            <button class="submit-button" id="backButton">Volver atrás</button>
-            <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar Proyecto</a>
-            <button class="submit-button" id="deleteButton" style="background:#ef4444">Eliminar Proyecto</button>
         `;
 
         // Añadir funcionalidad al botón de volver

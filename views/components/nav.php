@@ -1,16 +1,15 @@
-
-        <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <a href="index" class="bottom-nav-item">
-            <div class="nav-icon">🏠</div>
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+        <a href="index" class="nav-item">
+            <div class="nav-icon"></div>
             <span>Inicio</span>
         </a>
-        <a href="project-list" class="bottom-nav-item active">
-            <div class="nav-icon">📋</div>
+        <a href="project-list" class="nav-item active">
+            <div class="nav-icon"></div>
             <span>Proyectos</span>
         </a>
-        <a href="profile" class="bottom-nav-item">
-            <div class="nav-icon">👤</div>
+        <a href="profile" class="nav-item">
+            <div class="nav-icon"></div>
             <span>Cuenta</span>
         </a>
     </nav>
