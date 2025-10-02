@@ -9,7 +9,25 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo">AIWKND</div>
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                    <span class="nav-text">Cuenta</span>
+                </a>
+            </nav>
         </header>
         
         <main class="main-content">
@@ -37,6 +55,11 @@
                 </section>
             </div>
         </main>
+        
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <div class="desktop-bottom-logo">AIWKND</div>
+        </nav>
         
         <?php require_once("components/nav.php"); ?>
     </div>

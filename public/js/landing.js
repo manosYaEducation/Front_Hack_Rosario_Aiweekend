@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allProjectsGrid = document.getElementById('allProjectsGrid');
     const paginationControls = document.getElementById('paginationControls');
     let currentPage = 1;
-    const projectsPerPage = 6;
+    const projectsPerPage = 8;
     let cachedProjects = [];
 
     async function fetchDashboardsAndProjects() {
@@ -78,20 +78,29 @@ document.addEventListener('DOMContentLoaded', () => {
             // Obtener la primera letra del título en mayúscula
             const firstLetter = (project.title || 'P').charAt(0).toUpperCase();
             
-            projectCard.innerHTML = `
-                <div class="project-icon">
-                    <div class="project-icon-letter">${firstLetter}</div>
-                </div>
-                <div class="project-info">
-                    <h3>${escapeHtml(project.title || '')}</h3>
-                    <p>${escapeHtml(project.description || '')}</p>
-                    <div class="project-meta">
-                        <span class="status ${status}">${statusText}</span>
-                    </div>
-                    <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
-                    ${membershipBadge}
-                </div>
-            `;
+             // Detectar si es móvil
+             const isMobile = window.innerWidth < 768;
+             
+             projectCard.innerHTML = `
+                 <div class="project-icon">
+                     <div class="project-icon-letter">${firstLetter}</div>
+                 </div>
+                 <div class="project-info">
+                     <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(project.title || '')}</h3>
+                     <p>${escapeHtml(project.description || '')}</p>
+                     ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
+                     ${membershipBadge}
+                 </div>
+             `;
+             
+             // Agregar evento click al título en móvil
+             if (isMobile) {
+                 const titleElement = projectCard.querySelector('.clickable-title');
+                 titleElement.style.cursor = 'pointer';
+                 titleElement.addEventListener('click', () => {
+                     window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
+                 });
+             }
             allProjectsGrid.appendChild(projectCard);
         });
     }
@@ -148,5 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 
-    fetchDashboardsAndProjects();
-});
+     // Función para re-renderizar cuando cambie el tamaño de ventana
+     function handleResize() {
+         if (cachedProjects.length > 0) {
+             renderPage();
+         }
+     }
+     
+     // Escuchar cambios de tamaño de ventana
+     window.addEventListener('resize', handleResize);
+     
+     fetchDashboardsAndProjects();
+ });
