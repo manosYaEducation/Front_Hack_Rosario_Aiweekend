@@ -9,20 +9,30 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo">AIWKND</div>
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                    <span class="nav-text">Cuenta</span>
+                </a>
+            </nav>
         </header>
-        
-        <div class="subheader">
-            <button class="back-btn" onclick="history.back()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="m15 18-6-6 6-6"/>
-                </svg>
-            </button>
-            <h1 class="page-title">Acceder</h1>
-        </div>
         
         <main class="main-content">
             <form class="login-form" id="loginForm">
+                <h1 class="page-title">Acceder</h1>
                 <div class="form-group">
                     <input type="email" id="username" name="username" class="form-input" placeholder="Dirección de Email" required>
                 </div>
@@ -51,6 +61,11 @@
                 </div>
             </form>
         </main>
+        
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <div class="desktop-bottom-logo">AIWKND</div>
+        </nav>
         
         <?php require_once("components/nav.php"); ?>
     </div>
