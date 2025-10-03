@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="public/css/user-view.css">
+    <link rel="stylesheet" href="public/css/account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                    <span class="nav-text">Cuenta</span>
+                </a>
+            </nav>
+        </header>
+
     <div class="profile-page-container">
         <main class="profile-content">
             <div class="profile-avatar-section">
@@ -22,14 +44,14 @@
             <div class="profile-name-section">
                 <label for="profileName" class="profile-label">Nombre del perfil</label>
                 <!-- Aquí cargamos el nombre del usuario desde el localStorage -->
-                <input type="text" id="profileName" class="profile-input" value="" readonly>
+                <input type="text" id="profileName" class="profile-input" value="">
             </div>
 
-            <div class="profile-email-section">
+            <!-- <div class="profile-email-section">
                 <label for="profileEmail" class="profile-label">Correo electrónico</label>
-                <!-- Aquí cargamos el correo del usuario desde el localStorage -->
+                Aquí cargamos el correo del usuario desde el localStorage 
                 <input type="email" id="profileEmail" class="profile-input" value="" readonly>
-            </div>
+            </div> -->
 
             <div class="profile-actions">
                 <button class="submit-button">Cancelar</button>
@@ -40,6 +62,10 @@
             </div>
         </main>
 
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <div class="desktop-bottom-logo">AIWKND</div>
+        </nav>
         
     <?php require_once("components/nav.php"); ?>
     
