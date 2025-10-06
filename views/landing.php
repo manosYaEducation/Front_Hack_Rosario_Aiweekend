@@ -38,14 +38,10 @@
                 </div>
             </div>
             
-            <!-- Create Project Section -->
-            <div class="create-project-section">
-                <a href="project-create" class="create-project-btn">Crear Proyecto</a>
-            </div>
-            
             <!-- Projects List -->
             <div class="projects-list">
                 <section id="projects" class="projects-overview">
+                    <a href="project-create" class="create-project-btn">Crear Proyecto</a>
                     <div class="projects-grid" id="allProjectsGrid">
                         <!-- Projects will be loaded here via JavaScript -->
                     </div>

@@ -1,3 +1,6 @@
+/* Import Raleway font */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+
 /* Reset básico */
 * {
     margin: 0;
@@ -7,7 +10,7 @@
 
 html, body {
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     background: #000000;
     color: white;
     overflow-x: hidden;
@@ -16,6 +19,11 @@ html, body {
 body {
     background: #000000;
     min-height: 100vh;
+}
+
+/* Aplicar Raleway a todos los elementos de texto */
+*, *::before, *::after {
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 .container {
@@ -40,9 +48,9 @@ h3 {
 
 /* Header */
 .header {
-    padding: 15px;
+    padding: 20px 15px;
     background: #000000;
-    border-bottom: 2px solid #00bcd4;
+    border-bottom: 3px solid #9b0993;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -58,7 +66,8 @@ h3 {
 }
 
 .logo {
-    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 1px;
     color: #ffffff;
@@ -75,7 +84,7 @@ h3 {
 .desktop-bottom-nav {
     display: none;
     background: #000000;
-    border-top: 2px solid #00bcd4;
+    border-top: 3px solid #9b0993;
     padding: 15px;
     bottom: 0;
     justify-content: center;
@@ -181,7 +190,7 @@ h3 {
 
 /* Contenido principal */
 .main-content {
-    background: #000000;
+    background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
 }
 
 /* Hero Section */
@@ -194,8 +203,7 @@ h3 {
     background-repeat: no-repeat;
     display: flex;
     align-items: flex-end;
-    height: 200px;
-    margin: 0;
+    height: 220px;
     overflow: hidden;
 }
 
@@ -227,19 +235,20 @@ h3 {
 }
 
 .hero-title {
-    font-size: 25px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.2;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-left: 15px;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* Create Project Section */
 .create-project-section {
     background: linear-gradient(135deg, #1d90a0 0%, #0c2034 40%, #0d0d0d 100%);
-    padding: 25px 20px;
+    padding: 15px 20px;
     border-bottom: 1px solid #333333;
     display: flex;
     justify-content: center;
@@ -253,17 +262,18 @@ h3 {
     align-items: center;
     gap: 10px;
     padding: 30px;
-    background: #000000;
-    border-top: 1px solid #333333;
+    background: linear-gradient(160deg, 68%,#372659 100%);
+    border-top: 1px solid #cebebe75;
     flex-wrap: wrap;
 }
 
 .pagination-button {
-    background: #000000;
+    background: transparent;
     color: #ffffff;
-    border: 2px solid #00bcd4;
+    border: 1px solid #e4ebec;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 100px;
+    margin-top: 20px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -276,8 +286,8 @@ h3 {
 }
 
 .pagination-button:hover:not(:disabled) {
-    background: #00bcd4;
-    color: #000000;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
 }
@@ -285,37 +295,46 @@ h3 {
 .pagination-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: #333333;
-    border-color: #666666;
+    background: transparent;
+    border-color: #ffffff;
 }
 
 .pagination-button.active {
-    background: #00bcd4;
-    color: #000000;
-    border-color: #00bcd4;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: #ffffff;
+    border-color: #ffffff;
     font-weight: 700;
 }
 
 .create-project-btn {
-    background: #000000;
+    font-family: 'Raleway', sans-serif;
+    background: transparent;
     color: #ffffff;
-    padding: 15px 30px;
-    border-radius: 45px;
-    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid white;
+    font-size: 14px;
     font-weight: 600;
+    position: relative; /* o absolute/fixed */
+    top: 15px; 
+    margin-bottom: 15px;
+    margin-left: 25px;
+    width: 154px;
+    height: 39px;
     cursor: pointer;
     transition: all 0.25s ease;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
     text-decoration: none;
-    display: inline-block;
-    min-width: 200px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2);
 }
 
 .create-project-btn:hover {
-    background: #00acc1;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
 }
@@ -323,40 +342,39 @@ h3 {
 /* Projects List */
 .projects-list {
     padding: 0;
-    background: #000000;
+    background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
 }
 
 .project-card {
     display: flex;
     align-items: flex-start;
-    padding: 40px;
-    border-bottom: 1px solid #333333;
-    background: #000000;
+    padding: 25px;
+    border-bottom: 1px solid #f1eded5e;
+    background: transparent;
     transition: background 0.25s ease;
-    gap: 30px;
+    gap: 20px;
 }
 
 .project-icon {
     flex-shrink: 0;
-    width: 50px;
-    height: 50px;
+    width: 115px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .project-icon-letter {
-    width: 200%;
+    width: 100%;
     height: 100%;
     border-radius: 8px;
-    background: linear-gradient(135deg, #00bcd4, #0097a7);
+    background: #ffffff;
     display: flex;
-    margin-top: 40px;
     align-items: center;
     justify-content: center;
-    padding: 40px;
-    color: #ffffff;
-    font-size: 20px;
+    padding: 0;
+    color: #000000;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -367,19 +385,23 @@ h3 {
 }
 
 .project-card:hover {
-    background: #111111;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .project-title {
-    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
     font-weight: 600;
     color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     line-height: 1.3;
 }
 
 /* Clickable title for mobile */
 .clickable-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: auto;
     cursor: pointer;
     transition: color 0.25s ease;
     position: relative;
@@ -394,17 +416,28 @@ h3 {
 }
 
 .project-description {
-    font-size: 13px;
-    color: #999999;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
     line-height: 1.4;
     margin: 0;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 2.8em;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Navegación inferior */
 .bottom-nav {
-    background: #000000;
+    background: black;
     padding: 12px 0 20px;
-    border-top: 2px solid #00bcd4;
+    border-top: 3px solid #9b0993;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -458,6 +491,7 @@ h3 {
 }
 
 .nav-text {
+    font-family: 'Raleway', sans-serif;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.3px;
@@ -468,30 +502,296 @@ h3 {
     display: none;
 }
 
-/* Desktop/PC Compatibility */
-@media (min-width: 768px) {
+/* Tablet breakpoint */
+@media (min-width: 600px) and (max-width: 767px) {
     .container {
         max-width: 100%;
     }
     
+    .projects-list {
+        background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
+        min-height: 100vh;
+        padding: 15px;
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #allProjectsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        max-width: 800px;
+        margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .project-card {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border: 1px solid #333333;
+        border-radius: 12px;
+        background: #111111;
+        transition: all 0.3s ease;
+        gap: 12px;
+        max-width: 100%;
+        margin: 0;
+        width: 100%;
+        min-height: 180px;
+        max-height: 350px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-icon {
+        width: 40px;
+        height: 40px;
+        align-self: center;
+        margin-bottom: 4px;
+    }
+    
+    .project-icon-letter {
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 35px;
+        padding-left: 168px;
+        padding-right: 165px;
+        border-radius: 10px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    
+    .project-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+    
+    .project-description {
+        font-size: 12px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        text-align: left;
+        color: #cccccc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 5.6em;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .btn-ver-mas {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: black;
+        color: #ffffff;
+        border: 1px solid #00bcd4;
+        border-radius: 15px;
+        padding: 0 8px;
+        text-decoration: none;
+        font-size: 8px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 50px;
+        white-space: nowrap;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Medium Tablet breakpoint */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 100%;
+    }
+    
+    .projects-list {
+        background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
+        min-height: 100vh;
+        padding: 20px;
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #allProjectsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+        max-width: 1000px;
+        margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 25px;
+    }
+    
+    .project-card {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        padding: 18px;
+        border: 1px solid #333333;
+        border-radius: 12px;
+        background: #111111;
+        transition: all 0.3s ease;
+        gap: 15px;
+        max-width: 100%;
+        margin: 0;
+        width: 100%;
+        min-height: 200px;
+        max-height: 380px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-icon {
+        width: 45px;
+        height: 45px;
+        align-self: center;
+        margin-bottom: 4px;
+    }
+    
+    .project-icon-letter {
+        font-size: 18px;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        padding-left: 168px;
+        padding-right: 165px;
+        border-radius: 10px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    
+    .project-title {
+        font-size: 15px;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    
+    .create-project-btn {
+        padding: 14px 18px;
+        font-size: 15px;
+        margin: 0px auto 70px auto;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: 10px;
+        bottom: 20px;
+        left: auto;
+        right: auto;
+    }
+
+    .project-description {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        text-align: left;
+        color: #cccccc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 7.6em;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .btn-ver-mas {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        border-radius: 100px;
+        padding: 0 10px;
+        text-decoration: none;
+        font-size: 9px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 55px;
+        white-space: nowrap;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Desktop/PC Compatibility */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 100%;
+    }
+    
+    /* Override mobile gradient for desktop */
+    .main-content {
+        background: #000000;
+    }
+    
+    .projects-list {
+        background: #000000;
+    }
+    
+    .bottom-nav {
+        background: #000000;
+    }
+    
     .header {
-        padding: 15px 40px;
-        border-bottom: 3px solid #00bcd4;
+        padding: clamp(4px, 1vw, 12px) clamp(15px, 3vw, 40px);
+        border-bottom: 3px solid #9b0993;
     }
     
     .logo {
-        font-size: 36px;
+        font-size: clamp(16px, 2.5vw, 32px);
     }
     
     /* Desktop navigation improvements */
     .desktop-nav {
-        gap: 30px;
+        gap: clamp(15px, 3vw, 40px);
     }
     
     .desktop-nav .nav-link,
     .desktop-nav-right .nav-link {
-        padding: 12px 20px;
-        min-width: 100px;
+        padding: clamp(4px, 1vw, 12px) clamp(8px, 2vw, 20px);
+        min-width: clamp(50px, 8vw, 120px);
     }
     
     .desktop-nav .nav-icon {
@@ -499,13 +799,14 @@ h3 {
     }
     
     .desktop-nav-right .nav-icon {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         background: #ffffff;
     }
     
     .desktop-nav .nav-text {
-        font-size: 24px;
+        font-family: 'Raleway', sans-serif;
+        font-size: clamp(12px, 1.8vw, 24px);
         color: #ffffff;
     }
     
@@ -514,60 +815,83 @@ h3 {
     }
     
     .desktop-bottom-logo {
-        font-size: 28px;
+        font-family: 'Raleway', sans-serif;
+        font-size: clamp(14px, 2vw, 28px);
     }
     
     .hero-section {
-        height: 500px;
-        padding: 50px;
+        height: clamp(100px, 15vw, 300px);
+        padding: clamp(10px, 2vw, 30px);
     }
     
     .hero-title {
-        font-size: 48px;
-        margin-bottom: 30px;
+        font-size: clamp(16px, 3vw, 50px);
+        margin-bottom: clamp(8px, 1.5vw, 20px);
         margin-left: 0;
     }
     
     .create-project-section {
-        padding: 40px;
+        padding: clamp(8px, 1.5vw, 20px) clamp(12px, 2vw, 30px);
+        display: flex;
+        justify-content: center;
     }
     
     .create-project-btn {
-        padding: 20px 40px;
-        font-size: 18px;
-        min-width: 250px;
+        padding: clamp(4px, 1vw, 12px) clamp(12px, 2vw, 25px);
+        font-size: clamp(9px, 1.5vw, 18px);
+        min-width: clamp(100px, 15vw, 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
     }
     
     /* Projects Grid Layout for Desktop */
     .projects-list {
-        background: black;
-        padding: 20px;
-        margin-top: 60px;
+        background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
+        min-height: 100vh;
+        padding: clamp(6px, 1vw, 20px);
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     #allProjectsGrid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        max-width: 1400px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(20px, 3vw, 35px);
+        max-width: 1200px;
         margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 clamp(10px, 2vw, 30px);
     }
     
     .project-card {
+        justify-content: center;
         display: flex;
         flex-direction: column;
-        padding: 25px;
+        padding: clamp(12px, 2vw, 20px);
         border: 1px solid #333333;
         border-radius: 12px;
         background: #111111;
         transition: all 0.3s ease;
-        gap: 20px;
-        max-width: none;
+        gap: clamp(10px, 1.5vw, 20px);
+        max-width: 100%;
         margin: 0;
         width: 100%;
+        min-height: clamp(200px, 25vw, 300px);
+        max-height: clamp(300px, 35vw, 450px);
         cursor: pointer;
         position: relative;
-        min-height: 300px;
+        overflow: hidden;
     }
     
     .project-card:hover {
@@ -578,44 +902,54 @@ h3 {
     }
     
     .project-icon {
-        width: 80px;
-        height: 80px;
+        width: 35px;
+        height: 35px;
         align-self: center;
-        margin-bottom: 10px;
+        margin-bottom: 4px;
     }
     
     .project-icon-letter {
-        font-size: 32px;
+        font-size: 14px;
         width: 100%;
         height: 100%;
-        border-radius: 12px;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     
     .project-info {
-        text-align: center;
+        text-align: left;
         margin-left: 0;
+        margin-top: 60px;
         flex: 1;
-        display: flex;
+        display: block;
         flex-direction: column;
-        justify-content: space-between;
-        padding-bottom: 50px; /* Espacio para el botón */
+        justify-content: flex-start;
+        padding-bottom: 20px; 
     }
     
     .project-title {
-        font-size: 20px;
-        margin-bottom: 12px;
-        text-align: center;
+        font-size: 11px;
+        margin-bottom: 2px;
+        text-align: left;
     }
     
     .project-description {
-        font-size: 14px;
-        line-height: 1.5;
-        margin-bottom: 15px;
-        text-align: center;
+        font-size: 12px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        text-align: left;
         color: #cccccc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 3.6em;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .project-meta {
@@ -649,29 +983,29 @@ h3 {
     
     .btn-ver-mas {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
-        background: black;
+        bottom: 6px;
+        right: 6px;
+        background: transparent;
         color: #ffffff;
-        border: 2px solid #00bcd4;
-        border-radius: 45px;
-        padding: 0 16px;
+        border: 1px solid #ffffff;
+        border-radius: 100px;
+        padding: 0 6px;
         text-decoration: none;
-        font-size: 12px;
+        font-size: 7px;
         font-weight: 600;
         text-align: center;
         transition: all 0.3s ease;
         width: auto;
-        min-width: 80px;
+        min-width: 45px;
         white-space: nowrap;
-        height: 10px;
+        height: 22px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     
     .btn-ver-mas:hover {
-        background: linear-gradient(135deg, #00acc1, #00838f);
+        background: linear-gradient(90deg, #ff007a, #7b2ff7);
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
     }
@@ -703,40 +1037,41 @@ h3 {
         padding: 50px;
     }
     
-    /* Responsive grid for smaller desktop screens */
-    @media (max-width: 1200px) {
-        #allProjectsGrid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-    
-    @media (max-width: 900px) {
-        #allProjectsGrid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    /* Responsive grid for desktop screens */
+    #allProjectsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(25px, 3.5vw, 40px);
+        max-width: 1200px;
+        margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 clamp(15px, 3vw, 40px);
     }
     
     /* Pagination responsive for desktop */
     #paginationControls {
-        padding: 30px 40px;
-        margin-top: 80px;
-        gap: 15px;
+        padding: clamp(10px, 2vw, 20px) clamp(15px, 3vw, 30px);
+        margin-top: clamp(20px, 3vw, 40px);
+        gap: clamp(6px, 1vw, 12px);
     }
     
     .pagination-button {
-        padding: 12px 20px;
-        font-size: 16px;
-        min-width: 50px;
+        padding: clamp(4px, 1vw, 10px) clamp(8px, 1.5vw, 15px);
+        font-size: clamp(8px, 1.2vw, 14px);
+        min-width: clamp(25px, 4vw, 45px);
     }
 }
 
 @media (min-width: 1024px) {
     .header {
-        padding: 15px 60px;
+        padding: 12px 40px;
     }
     
     .logo {
-        font-size: 42px;
+        font-size: 32px;
     }
     
     /* Large desktop navigation */
@@ -755,13 +1090,14 @@ h3 {
     }
     
     .desktop-nav-right .nav-icon {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         background: #ffffff;
     }
     
     .desktop-nav .nav-text {
-        font-size: 24px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 20px;
         color: #ffffff;
     }
     
@@ -770,39 +1106,54 @@ h3 {
     }
     
     .desktop-bottom-logo {
-        font-size: 32px;
+        font-size: 26px;
     }
     
     .hero-section {
-        height: 600px;
-        padding: 70px;
+        height: 400px;
+        padding: 40px;
         background-image: url('../images/evento-corporativo.jpg');
     }
     
     .hero-title {
-        font-size: 64px;
-        margin-bottom: 40px;
+        font-size: 70px;
+        margin-bottom: 25px;
     }
     
     .create-project-section {
-        padding: 50px;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
     }
     
     .create-project-btn {
-        padding: 25px 50px;
-        font-size: 20px;
-        min-width: 300px;
+        padding: 15px 30px;
+        font-size: 16px;
+        min-width: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
     }
     
     /* Large Desktop Grid */
     #allProjectsGrid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(30px, 4vw, 50px);
+        max-width: 1400px;
     }
     
     .project-card {
         padding: 30px;
         gap: 25px;
+        margin-top: 30px;
+        width: 382px;
+        height: 450px;
+        overflow: hidden;
     }
     
     .project-icon {
@@ -812,20 +1163,40 @@ h3 {
     
     .project-icon-letter {
         font-size: 36px;
+        padding: 100px;
+        padding-left: 191px;
+        padding-right: 191px;
+        border-radius: 10px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
     }
     
     .project-title {
         font-size: 22px;
+        text-align: left;
     }
     
     .project-description {
-        font-size: 16px;
+        font-size: 17px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 7.6em;
+        margin-top: 17px;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .btn-ver-mas {
         padding: 0 18px;
         font-size: 14px;
         min-width: 90px;
+        margin-bottom: 20px;
+        margin-right: 10px;
         height: 40px;
         display: flex;
         align-items: center;
@@ -858,23 +1229,35 @@ h3 {
     
     .create-project-section {
         padding: 60px;
+        display: flex;
+        justify-content: center;
     }
     
     .create-project-btn {
         padding: 30px 60px;
         font-size: 22px;
         min-width: 350px;
+        margin: 0 auto;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     /* Ultra-wide Desktop Grid */
     #allProjectsGrid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: clamp(35px, 5vw, 60px);
+        max-width: 1600px;
     }
     
     .project-card {
         padding: 35px;
         gap: 30px;
+        overflow: hidden;
     }
     
     .project-icon {
@@ -883,22 +1266,46 @@ h3 {
     }
     
     .project-icon-letter {
+        margin-top: 30px;
         font-size: 40px;
+        padding: 100px;
+        padding-left: 168px;
+        padding-right: 165px;
+        border-radius: 10px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
     }
     
     .project-title {
         font-size: 24px;
+        text-align: left;
     }
     
     .project-description {
         font-size: 18px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 7.6em;
+        margin-top: 17px;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .btn-ver-mas {
         padding: 0 20px;
         font-size: 16px;
+        background-color: transparent;
+        border-radius: 100px;
+        border: 1px solid white;
         min-width: 100px;
         height: 40px;
+        margin-bottom: 15px;
+        margin-right: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -918,11 +1325,11 @@ h3 {
     
     /* Ultra-wide desktop navigation */
     .header {
-        padding: 15px 80px;
+        padding: 15px 60px;
     }
     
     .logo {
-        font-size: 48px;
+        font-size: 36px;
     }
     
     .desktop-nav {
@@ -946,7 +1353,7 @@ h3 {
     }
     
     .desktop-nav .nav-text {
-        font-size: 24px;
+        font-size: 22px;
         color: #ffffff;
     }
     
@@ -955,17 +1362,17 @@ h3 {
     }
     
     .desktop-bottom-logo {
-        font-size: 48px;
+        font-size: 32px;
     }
     
     .hero-section {
-        height: 700px;
-        padding: 80px;
+        height: 703px;
+        padding: 50px;
     }
     
     .hero-title {
-        font-size: 72px;
-        margin-bottom: 50px;
+        font-size: 112px;
+        margin-bottom: 30px;
     }
     
     .hero-subtitle {
@@ -976,7 +1383,14 @@ h3 {
     .create-project-btn {
         padding: 24px 48px;
         font-size: 22px;
+        margin: 70px auto 70px auto;
         min-width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: auto;
+        right: auto;
     }
 }
 
@@ -996,11 +1410,34 @@ h3 {
         margin-bottom: 15px;
     }
     
+    .projects-list {
+        padding: 10px;
+    }
+    
+    #allProjectsGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 10px;
+    }
+    
     .project-card {
         padding: 15px;
         gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        min-height: 160px;
+        max-height: 250px;
+        overflow: hidden;
     }
     
+
     .project-icon {
         width: 45px;
         height: 45px;
@@ -1012,6 +1449,38 @@ h3 {
     
     .project-description {
         font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-height: 2.4em;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .btn-ver-mas {
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        border-radius: 100px;
+        padding: 0 6px;
+        text-decoration: none;
+        font-size: 7px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 40px;
+        white-space: nowrap;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -1037,6 +1506,82 @@ h3 {
     .create-project-btn {
         padding: 10px 20px;
         font-size: 13px;
+    }
+    
+    .projects-list {
+        padding: 8px;
+    }
+    
+    #allProjectsGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+        align-items: stretch;
+        justify-content: center;
+        width: 100%;
+        padding: 0 8px;
+    }
+    
+    .project-card {
+        padding: 12px;
+        gap: 10px;
+        width: 100%;
+        max-width: 100%;
+        min-height: 140px;
+        max-height: 220px;
+        overflow: hidden;
+    }
+    
+    .project-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .project-icon-letter {
+        font-size: 14px;
+    }
+    
+    .project-title {
+        font-size: 14px;
+    }
+    
+    .project-description {
+        font-size: 11px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-height: 2.2em;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .btn-ver-mas {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid white;
+        border-radius: 100px;
+        padding: 0 5px;
+        text-decoration: none;
+        font-size: 6px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 35px;
+        white-space: nowrap;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 

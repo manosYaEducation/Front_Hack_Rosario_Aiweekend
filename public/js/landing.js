@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Obtener la primera letra del título en mayúscula
             const firstLetter = (project.title || 'P').charAt(0).toUpperCase();
             
+            // Limitar la descripción a 65 caracteres
+            const description = project.description || '';
+            const truncatedDescription = description.length > 65 ? description.substring(0, 65) + '...' : description;
+            
              // Detectar si es móvil
              const isMobile = window.innerWidth < 768;
              
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  </div>
                  <div class="project-info">
                      <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(project.title || '')}</h3>
-                     <p>${escapeHtml(project.description || '')}</p>
+                     <p class="project-description">${escapeHtml(truncatedDescription)}</p>
                      ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
                      ${membershipBadge}
                  </div>
