@@ -43,40 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.project-detail-title').textContent = project.title;
 
  projectDetailContent.innerHTML = `
+            <!-- Sección de Miembros -->
+            <div id="membersSection" class="members-section">
+                <div class="members-header">
+                    <h3>Integrantes:</h3>
+                    <div id="membersList" class="members-list">
+                        <p>Cargando miembros...</p>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Action Buttons Section -->
             <div class="project-action-buttons">
                 <div class="project-controls">
                     <button class="submit-button" id="joinButton">Unirse</button>
                     <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
-                    <button class="submit-button" id="backButton">Volver atrás</button>
-                    <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar Proyecto</a>
-                    <button class="submit-button" id="deleteButton" style="background:#ef4444">Eliminar Proyecto</button>
+                    <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar </a>
+                    <button class="submit-button" id="deleteButton" style="background:#ef4444">Eliminar </button>
                 </div>
                 <div id="joinStatus" class="join-status"></div>
             </div>
             
             <!-- Project Details -->
             <div class="project-details">
-                <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
-                <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
-                <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
-                <p><strong>Descripción:</strong> ${project.description}</p>
-            </div>
-            
-            <!-- Sección de Miembros -->
-            <div id="membersSection" class="members-section">
-                <h3>Miembros del Proyecto</h3>
-                <div id="membersList" class="members-list">
-                    <p>Cargando miembros...</p>
-                </div>
+            <!-- <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
+            <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
+            <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p> -->
+            <p><strong></strong> ${project.description}</p>
             </div>
         `;
 
-        // Añadir funcionalidad al botón de volver
-        const backButton = document.getElementById('backButton');
-        backButton.addEventListener('click', () => {
-            window.history.back();
-        });
 
         // Añadir funcionalidad al botón de eliminar
         const deleteButton = document.getElementById('deleteButton');
@@ -295,7 +291,7 @@ setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
                 if (!response.ok) {
                     if (response.status === 404) {
                         console.log('Endpoint de miembros no encontrado - posiblemente no implementado en el backend');
-                        membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">La funcionalidad de miembros no está disponible en este momento.</p>';
+                        membersList.innerHTML = '<p style="color: #6b7280; font-style: italic; text-align: center;">La funcionalidad de miembros no está disponible en este momento.</p>';
                         return;
                     }
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -308,21 +304,21 @@ setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
                     displayProjectMembers(data.members);
                 } else if (data.success && (!data.members || data.members.length === 0)) {
                     // Caso específico: API responde correctamente pero no hay miembros
-                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">No hay miembros en este proyecto.</p>';
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic; text-align: center;">No hay miembros en este proyecto.</p>';
                 } else {
                     console.warn('Respuesta inesperada de la API:', data);
-                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">No se pudieron cargar los miembros del proyecto.</p>';
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic; text-align: center;">No se pudieron cargar los miembros del proyecto.</p>';
                 }
             } catch (error) {
                 console.error('Error cargando miembros:', error);
                 
                 // Distinguir entre diferentes tipos de errores
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    membersList.innerHTML = '<p style="color: #ef4444;">Error de conexión. Verifica tu conexión a internet.</p>';
+                    membersList.innerHTML = '<p style="color: #ef4444; text-align: center;">Error de conexión. Verifica tu conexión a internet.</p>';
                 } else if (error.message.includes('404')) {
-                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic;">La funcionalidad de miembros no está disponible.</p>';
+                    membersList.innerHTML = '<p style="color: #6b7280; font-style: italic; text-align: center;">La funcionalidad de miembros no está disponible.</p>';
                 } else {
-                    membersList.innerHTML = '<p style="color: #ef4444;">No hay miembros en el proyecto.</p>';
+                    membersList.innerHTML = '<p style="color: #ef4444; text-align: center;">No hay miembros en el proyecto.</p>';
                 }
             }
         }
@@ -333,28 +329,37 @@ setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
             if (!membersList) return;
             
             if (members.length === 0) {
-                membersList.innerHTML = '<p>No hay miembros en este proyecto.</p>';
+                membersList.innerHTML = '<p style="text-align: center;">No hay miembros en este proyecto.</p>';
                 return;
             }
             
+            // Crear vista de avatares
             const membersHTML = members.map(member => {
                 const joinDate = member.joined_at ? new Date(member.joined_at).toLocaleDateString('es-ES', { 
                     dateStyle: 'medium' 
                 }) : 'Fecha no disponible';
+                const memberName = escapeHtml(member.name || member.user_name || 'Usuario');
+                const memberEmail = escapeHtml(member.email || '');
+                const memberRole = escapeHtml(member.role || 'Miembro');
+                
+                // Crear iniciales del nombre
+                const initials = memberName.split(' ').map(name => name.charAt(0)).join('').toUpperCase().substring(0, 2);
                 
                 return `
-                    <div class="member-card">
-                        <div class="member-info">
-                            <h4 class="member-name">${escapeHtml(member.name || member.user_name || 'Usuario')}</h4>
-                            <p class="member-email">${escapeHtml(member.email || '')}</p>
-                            <p class="member-role">Rol: ${escapeHtml(member.role || 'Miembro')}</p>
-                            <p class="member-joined">Se unió: ${joinDate}</p>
+                    <div class="member-avatar-container" onclick="showMemberInfo('${memberName}', '${memberEmail}', '${memberRole}', '${joinDate}')">
+                        <div class="member-avatar-large">
+                            <span class="member-initials">${initials}</span>
                         </div>
+                        <div class="member-name-overlay">${memberName}</div>
                     </div>
                 `;
             }).join('');
             
-            membersList.innerHTML = membersHTML;
+            membersList.innerHTML = `
+                <div class="members-avatars-inline">
+                    ${membersHTML}
+                </div>
+            `;
         }
         
         // Función para escapar HTML
@@ -366,4 +371,75 @@ setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#039;');
         }
+
+        // Función global para mostrar información del miembro
+        window.showMemberInfo = function(name, email, role, joinedDate) {
+            // Crear modal si no existe
+            let modal = document.getElementById('memberInfoModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'memberInfoModal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `
+                    <div class="modal-content member-info-modal">
+                        <div class="modal-title">Información del Miembro</div>
+                        <div class="modal-body">
+                            <div class="member-details">
+                                <div class="member-detail-item">
+                                    <strong>Nombre:</strong> ${name}
+                                </div>
+                                <div class="member-detail-item">
+                                    <strong>Email:</strong> ${email}
+                                </div>
+                                <div class="member-detail-item">
+                                    <strong>Rol:</strong> ${role}
+                                </div>
+                                <div class="member-detail-item">
+                                    <strong>Se unió:</strong> ${joinedDate}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <button class="modal-cancel-btn" onclick="closeMemberInfo()">Cerrar</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+            
+            // Actualizar contenido del modal
+            modal.querySelector('.member-details').innerHTML = `
+                <div class="member-detail-item">
+                    <strong>Nombre:</strong> ${name}
+                </div>
+                <div class="member-detail-item">
+                    <strong>Email:</strong> ${email}
+                </div>
+                <div class="member-detail-item">
+                    <strong>Rol:</strong> ${role}
+                </div>
+                <div class="member-detail-item">
+                    <strong>Se unió:</strong> ${joinedDate}
+                </div>
+            `;
+            
+            // Mostrar modal
+            modal.style.display = 'flex';
+        };
+
+        // Función global para cerrar el modal
+        window.closeMemberInfo = function() {
+            const modal = document.getElementById('memberInfoModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Cerrar modal al hacer click fuera de él
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('memberInfoModal');
+            if (modal && event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
 });

@@ -9,7 +9,24 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo">AIWKND</div>
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <!-- Desktop Navigation Right -->
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                </a>
+            </nav>
         </header>
 
         <section id="project-detail" class="form-section">
@@ -22,6 +39,11 @@
         </section>
 
         <?php require_once("components/nav.php"); ?>
+        
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <div class="desktop-bottom-logo">AIWKND</div>
+        </nav>
     </div>
 
     <script src="public/js/session-check.js"></script>
