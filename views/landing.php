@@ -3,30 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos</title>
-    <link rel="stylesheet" href="public/css/user-view.css">
+    <title>AIWKND - Proyectos</title>
+    <link rel="stylesheet" href="public/css/styles.css">
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                    <span class="nav-text">Cuenta</span>
+                </a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Evento AIWKND<br>Rosario 2025</h1>
+                </div>
+            </div>
+            
+            <!-- Projects List -->
+            <div class="projects-list">
+                <section id="projects" class="projects-overview">
+                    <a href="project-create" class="create-project-btn">Crear Proyecto</a>
+                    <div class="projects-grid" id="allProjectsGrid">
+                        <!-- Projects will be loaded here via JavaScript -->
+                    </div>
+                    <div class="pagination-controls" id="paginationControls">
+                        <!-- Pagination buttons will be loaded here via JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <div class="desktop-bottom-logo">AIWKND</div>
+        </nav>
+        
+        <?php require_once("components/nav.php"); ?>
+    </div>
 
-    <section class="projects-section">
-      <div class="projects-container">
-  <h2 class="form-title" style="margin-bottom: 2rem;">EvVENTO AIWKND ROSARIO 2025</h2>
-        <div style="display: flex; justify-content: center; margin: 1.5rem 0 1.5rem 0;">
-          <a href="project-create" class="submit-button" style="text-align: center; text-decoration: none; display: inline-block;">Crear proyecto</a>
-        </div>
-        <section id="projects" class="projects-overview">
-          <div class="container">
-            <div class="projects-grid" id="allProjectsGrid">
-              <!-- Projects will be loaded here via JavaScript -->
-            </div>
-            <div class="pagination-controls" id="paginationControls">
-              <!-- Pagination buttons will be loaded here via JavaScript -->
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-    <?php require_once("components/nav.php"); ?>
     <script src="public/js/session-check.js"></script>
     <script src="public/js/landing.js"></script>
 </body>
