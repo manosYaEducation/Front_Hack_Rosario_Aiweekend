@@ -13,7 +13,7 @@ window.addEventListener("load", function() {
 
     // Llenar los campos del perfil
     document.getElementById("profileName").value = username || '';
-    document.getElementById("profileEmail").value = userEmail || '';
+    //document.getElementById("profileEmail").value = userEmail || '';
 
     // Configurar botón de logout usando la función global
     const logoutButton = document.getElementById("logoutButton");
