@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                      <div class="project-icon-letter">${firstLetter}</div>
                  </div>
                  <div class="project-info">
-                     <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(project.title || '')}</h3>
+                     <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(truncateTitle(project.title || ''))}</h3>
                      <p class="project-description">${escapeHtml(truncatedDescription)}</p>
                      ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
                      ${membershipBadge}
@@ -159,6 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+    }
+
+    function truncateTitle(title) {
+        if (!title) return '';
+        
+        // Si el título no tiene espacios y supera 20 caracteres, lo trunca
+        if (!title.includes(' ') && title.length > 20) {
+            return title.substring(0, 20) + '...';
+        }
+        
+        return title;
     }
 
      // Función para re-renderizar cuando cambie el tamaño de ventana
