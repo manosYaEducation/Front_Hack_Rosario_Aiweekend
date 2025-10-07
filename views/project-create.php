@@ -12,7 +12,7 @@
     <section class="form-section">
         <div class="form-container">
             <h1 class="form-title">Crear proyecto</h1>
-            <form class="capitals-form" id="capitalsForm">
+            <form class="capitals-form" id="capitalsForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Titulo</label>
                     <input type="text" id="title" name="title" placeholder="Ingresa el título del proyecto" required>

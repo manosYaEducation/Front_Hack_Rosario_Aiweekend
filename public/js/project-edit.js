@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const editProjectForm = document.getElementById("editProjectForm");
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get('id');
+  const imageInput = document.getElementById("image");
+  const imagePreview = document.getElementById("imagePreview");
 
   if (!projectId) {
     alert("ID de proyecto no proporcionado.");
@@ -23,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("title").value = data.project.title;
         document.getElementById("description").value = data.project.description;
         document.getElementById("status").value = data.project.status;
+
+        if (data.project.image) {
+          imagePreview.innerHTML = `<img src="data:image/jpeg;base64,${data.project.image}" alt="Project Image" style="max-width: 200px; height: auto;" />`;
+        } else {
+          imagePreview.innerHTML = '<p>No hay imagen actual.</p>';
+        }
       } else {
         alert(data.message || "Error al cargar los datos del proyecto.");
         window.history.back();
@@ -35,6 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   loadProjectData();
+
+  if (imageInput) {
+    imageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          imagePreview.innerHTML = `<img src="${event.target.result}" alt="Image Preview" style="max-width: 200px; height: auto;" />`;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        loadProjectData();
+      }
+    });
+  }
 
   if (editProjectForm) {
     editProjectForm.addEventListener("submit", async function (e) {
@@ -96,13 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
       const status = document.getElementById("status").value;
+      const image = imageInput.files[0] ? 'Imagen seleccionada' : 'Sin nueva imagen';
 
       if (!title || !description) {
         alert("Por favor, completa título y descripción para vista previa.");
         return;
       }
 
-      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nEstado: ${status === 'in_progress' ? 'En progreso' : 'Completado'}`);
+      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nEstado: ${status === 'in_progress' ? 'En progreso' : 'Completado'}\nImagen: ${image}`);
     });
   }
 });

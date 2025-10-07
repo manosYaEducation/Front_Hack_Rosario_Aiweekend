@@ -84,11 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
              // Detectar si es móvil
              const isMobile = window.innerWidth < 768;
-             
+             const imageSrc = project.image ? `data:image/jpeg;base64,${project.image}` : null;
              projectCard.innerHTML = `
                  <div class="project-icon">
-                     <div class="project-icon-letter">${firstLetter}</div>
-                 </div>
+                 
+    ${imageSrc
+        ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
+        : `<div class="project-icon-letter">${firstLetter}</div>`
+    }
+</div>
                  <div class="project-info">
                      <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(project.title || '')}</h3>
                      <p class="project-description">${escapeHtml(truncatedDescription)}</p>
