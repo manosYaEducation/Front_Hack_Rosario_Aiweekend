@@ -43,6 +43,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 73px;
+
 }
 
 .header-left {
@@ -353,7 +355,7 @@ body {
 /* Sección de desconexión */
 .disconnect-section {
     width: 100%;
-    max-width: 350px;
+    max-width: 163px;
     margin-top: 20px;
 }
 
@@ -363,6 +365,10 @@ body {
     border: 1px solid white;
     padding: 14px 24px;
     font-size: 16px;
+    display: flex;
+    height: 41px;
+    align-items: center;
+    justify-content: center;
 }
 
 .disconnect-section .submit-button:hover {
@@ -695,6 +701,7 @@ body {
     
     .header {
         padding: 10px 35px;
+        height: 100px;
     }
     
     .logo {
@@ -789,6 +796,8 @@ body {
     .disconnect-section .submit-button {
         padding: 16px 35px;
         font-size: 16px;
+        height: 55px;
+
     }
 }
 
@@ -800,6 +809,7 @@ body {
     
     .header {
         padding: 12px 50px;
+        height: 100px;
     }
     
     .logo {
@@ -877,6 +887,7 @@ body {
     
     .disconnect-section {
         max-width: 500px;
+        height: 55px;
     }
     
     .profile-input {
