@@ -18,48 +18,31 @@
             <p class="countdown-text"></p>
         </div>
     </div>
-
+    
     <!-- Form Section -->
     <section class="form-section">
         <div class="form-container">
             <h1 class="form-title">Registrarse</h1>
             <form class="capitals-form" id='register-form'>
-                <div class="form-columns">
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <div class="floating-label">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <div class="floating-label">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password2">Confirmar Contraseña</label>
-                            <div class="floating-label">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="password2" name="password2" placeholder="Confirma tu contraseña" required>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="form-actions">
-                            <button type="submit" class="submit-button">Registrarse</button>
-                        </div>
-                    </div>
-                <p class="form-link">
-                    ¿Ya tienes cuenta? <a href="login">Inicia sesión aquí</a>
-                </p>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
                 </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa una contraseña" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirmar Contraseña</label>
+                    <input type="password" id="password2" name="password2" placeholder="Confirma tu contraseña" min="1" required>
+                </div>
+                <button type="submit" class="submit-button">Registrarse</button>
             </form>
+            <p class="form-link">
+                ¿Ya tienes cuenta? <a href="login">Inicia sesión aquí</a>
+            </p>
         </div>
     </section>
-
     <script src="public/js/register.js"></script>
     <?php require_once("components/nav.php"); ?>
 </body>
