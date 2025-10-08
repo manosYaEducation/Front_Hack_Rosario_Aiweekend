@@ -1,5 +1,5 @@
-const API_BASE = 'http://localhost/Hackdash-aiweekend/backend/public/';
-const CURRENT_SLUG = "hola";
+const API_BASE = CONFIG.API_BASE;
+const CURRENT_SLUG = CONFIG.SLUG;
 
 document.addEventListener("DOMContentLoaded", () => {
   const capitalsForm = document.getElementById("capitalsForm");
