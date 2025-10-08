@@ -16,7 +16,7 @@
             <p class="form-description">
                 Por favor, introduce tu correo electrónico para restablecer tu contraseña.
             </p>
-            <form class="capitals-form" id="capitalsForm">
+            <form class="capitals-form" id="forgotPasswordForm">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
@@ -30,7 +30,7 @@
             </form>
         </div>
     </section>
-
+    <script src="public/js/recover-password.js"></script>
     <?php require_once("components/nav.php"); ?>
 </body>
 </html>
