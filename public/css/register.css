@@ -58,6 +58,7 @@ body {
     color: #ffffff;
 }
 
+
 /* Desktop Navigation */
 .desktop-nav {
     display: none;
@@ -171,36 +172,53 @@ body {
     text-align: center;
 }
 
-
-/* Contenido principal */
-.main-content {
+/* Form Section */
+.form-section {
     flex: 1;
     padding: 40px 25px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    min-height: calc(100vh - 120px);
 }
 
-.login-form {
+.form-container {
     width: 100%;
     max-width: 350px;
     margin-top: 50px;
 }
 
-.login-form .page-title {
+.form-title {
     font-size: 24px;
     font-weight: 600;
     color: #ffffff;
     text-align: left;
     margin-bottom: 30px;
-    padding-left: 10px;
+    padding-left: 23px;
+}
+
+.capitals-form {
+    width: 100%;
+    margin-top: 20px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 
-.form-input {
+.form-group label {
+    display: block;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
     width: 100%;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     padding: 14px 18px;
@@ -212,70 +230,90 @@ body {
     transition: all 0.25s ease;
 }
 
-.form-input::placeholder {
+.form-group input::placeholder {
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
 }
 
-.form-input:focus {
+.form-group input:focus {
     outline: none;
-    border-color: #00e5ff;
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+    border-color: #9b0993;
+    box-shadow: 0 0 0 3px rgba(155, 9, 147, 0.15);
 }
 
-.form-input:hover {
-    border-color: #00e5ff;
+.form-group input:hover {
+    border-color: #00bcd4;
 }
 
-/* Forgot password section */
-.forgot-password {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.forgot-text {
+/* Submit button */
+.submit-button {
+    width: auto;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: #ffffff;
+    padding: 12px 32px;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #ffffff00;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-button:hover {
+    background: rgba(0, 188, 212, 0.1);
+    border-color: #00e5ff;
+    transform: translateY(-1px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* Form link section */
+.form-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.form-link {
     color: rgba(255, 255, 255, 0.8);
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-size: 16px;
     margin-right: 5px;
 }
 
-.forgot-link {
+.form-link a {
     color: #ffffff;
-    text-decoration: none;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     transition: color 0.25s ease;
 }
 
-.forgot-link:hover {
+.form-link a:hover {
     color: #00bcd4;
     text-decoration: underline;
 }
 
-/* Movil Apilar el texto olvido contraseña */
+/* Mobile: Stack the form link text and link vertically */
 @media (max-width: 767px) {
-    .forgot-password {
+    .form-link {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
     }
     
-    .forgot-text {
-        margin-right: 0;
-    }
-    
-    /* Movil apilar el texto de registrarse */
-    .register-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .register-text {
+    .form-link {
         margin-right: 0;
     }
 }
@@ -289,6 +327,9 @@ body {
     justify-content: space-around;
     align-items: center;
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
 }
 
 .nav-item {
@@ -351,80 +392,19 @@ body {
     background: #ffffff;
 }
 
-/* Login button */
-.login-btn {
-    width: auto;
-    background: linear-gradient(90deg, #ff007a, #7b2ff7);
-    color: #ffffff;
-    padding: 12px 32px;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: 700;
-    font-weight: bold;
-    cursor: pointer;
-    border: 1px solid #ffffff00;
-    transition: all 0.25s ease;
-    letter-spacing: 0.5px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.login-btn:hover {
-    background: rgba(0, 188, 212, 0.1);
-    border-color: #00e5ff;
-    transform: translateY(-1px);
-}
-
-.login-btn:active {
-    transform: translateY(0);
-}
-
-/* Register link */
-.register-link {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.register-text {
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    font-size: 16px;
-    margin-right: 5px;
-}
-
-.register-link-btn {
-    color: #ffffff;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.25s ease;
-}
-
-.register-link-btn:hover {
-    color: #00bcd4;
-    text-decoration: underline;
-}
-
 /* Responsive para pantallas pequeñas */
 @media (max-width: 375px) {
     .container {
         max-width: 100%;
     }
     
-    .main-content {
+    .form-section {
         padding: 30px 20px;
     }
     
     .header {
         padding: 15px 20px;
-        height: 73px;
     }
-    
     
     .logo {
         font-family: 'Raleway', sans-serif;
@@ -434,50 +414,53 @@ body {
         color: #ffffff;
     }
     
-    .page-title {
-        font-size: 18px;
+    .form-title {
+        font-size: 24px;
     }
     
-    .form-input {
-        padding: 12px 16px;
+    .form-group input {
+        width: 313px;
+        height: 37px;
+        padding: 12px 16px 12px 23px;
         font-size: 14px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder {
         font-size: 13px;
     }
     
     .form-group {
-        margin-bottom: 18px;
+        margin-bottom: 25px;
     }
 }
 
 /* Responsive para pantallas muy pequeñas */
 @media (max-width: 320px) {
-    .main-content {
+    .form-section {
         padding: 25px 15px;
     }
     
     .header {
         padding: 12px 15px;
-        height: 73px;
     }
     
     .logo {
-        font-size: 22px;
+        font-size: 20px;
     }
     
-    .form-input {
-        padding: 10px 14px;
+    .form-group input {
+        width: 313px;
+        height: 37px;
+        padding: 10px 14px 10px 21px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 10px 28px;
         font-size: 12px;
     }
 }
 
-/* Desktop/PC Compatibility */
+/* Desktop/Pantallas anchas */
 @media (min-width: 768px) {
     .container {
         max-width: 100%;
@@ -492,7 +475,7 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        font-size: 24px;
     }
     
     /* Desktop navigation improvements */
@@ -540,12 +523,11 @@ body {
         font-size: 24px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 20px;
     }
     
-    .main-content {
+    .form-section {
         padding: 30px 25px 50px;
         display: flex;
         justify-content: center;
@@ -553,45 +535,42 @@ body {
         min-height: calc(100vh - 120px);
     }
     
-    .login-form {
+    .form-container {
         width: 100%;
         max-width: 350px;
         margin-top: 0;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 20px;
         margin-bottom: 20px;
+        text-align: center;
     }
     
-    .form-input {
+    .form-group input {
+        width: 100%;
         padding: 12px 18px;
         font-size: 14px;
         border-radius: 20px;
         margin-bottom: 15px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder {
         font-size: 13px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 12px 35px;
-        font-size: 16px;
+        font-size: 13px;
         border-radius: 20px;
         margin-top: 20px;
         margin-bottom: 25px;
         min-width: 160px;
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 14px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 13px;
     }
     
     .bottom-nav {
@@ -610,7 +589,7 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     /* Large desktop navigation */
@@ -647,37 +626,38 @@ body {
         font-size: 28px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 24px;
     }
     
-    .main-content {
+    .form-section {
         padding: 40px 35px 60px;
         min-height: calc(100vh - 180px);
     }
     
-    .login-form {
+    .form-container {
         max-width: 400px;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 24px;
         margin-bottom: 25px;
+        text-align: center;
     }
     
-    .form-input {
+    .form-group input {
+        width: 100%;
         padding: 14px 20px;
         font-size: 16px;
         border-radius: 25px;
         margin-bottom: 20px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder {
         font-size: 15px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 14px 45px;
         font-size: 15px;
         border-radius: 25px;
@@ -686,14 +666,9 @@ body {
         min-width: 200px;
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 16px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 15px;
     }
 }
 
@@ -735,7 +710,6 @@ body {
     .desktop-nav .nav-text {
         font-size: 20px;
         color: #ffffff;
-        font-weight: 600;
     }
     
     .desktop-nav-right .nav-text {
@@ -746,37 +720,38 @@ body {
         font-size: 32px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 28px;
     }
     
-    .main-content {
+    .form-section {
         padding: 50px 45px 70px;
         min-height: calc(100vh - 220px);
     }
     
-    .login-form {
+    .form-container {
         max-width: 450px;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 28px;
         margin-bottom: 40px;
+        text-align: center;
     }
     
-    .form-input {
+    .form-group input {
+        width: 100%;
         padding: 16px 24px;
         font-size: 18px;
         border-radius: 30px;
         margin-bottom: 25px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder {
         font-size: 17px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 16px 55px;
         font-size: 17px;
         border-radius: 30px;
@@ -785,14 +760,9 @@ body {
         min-width: 240px;
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 18px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 17px;
     }
 }
 
@@ -811,4 +781,3 @@ body {
         transform: translateX(0);
     }
 }
-
