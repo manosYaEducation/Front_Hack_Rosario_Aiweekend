@@ -27,13 +27,6 @@
                 <div class="form-columns">
                     <div class="form-col">
                         <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <div class="floating-label">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="email">Email</label>
                             <div class="floating-label">
                                 <i class="fas fa-envelope"></i>
@@ -55,40 +48,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="company">Empresa</label>
-                            <div class="floating-label">
-                                <i class="fas fa-building"></i>
-                                <input type="text" id="company" name="company" placeholder="Nombre de tu empresa" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Ciudad</label>
-                            <div class="floating-label">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" id="location" name="location" placeholder="Tu ciudad">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <div class="floating-label">
-                                <i class="fas fa-phone"></i>
-                                <input type="text" id="phone" name="phone" placeholder="Tu número de teléfono">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <textarea id="description" name="description" placeholder="Breve descripción..."></textarea>
-                        </div>
                         <div class="form-actions">
                             <button type="submit" class="submit-button">Registrarse</button>
                         </div>
                     </div>
-                </div>
                 <p class="form-link">
                     ¿Ya tienes cuenta? <a href="login">Inicia sesión aquí</a>
                 </p>
+                </div>
             </form>
         </div>
     </section>
