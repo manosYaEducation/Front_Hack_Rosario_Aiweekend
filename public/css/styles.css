@@ -50,7 +50,7 @@ h3 {
 .header {
     padding: 20px 15px;
     background: #000000;
-    border-bottom: 3px solid #9b0993;
+    border-bottom: 4px solid #9b0993;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -71,6 +71,7 @@ h3 {
     font-weight: 700;
     letter-spacing: 1px;
     color: #ffffff;
+    margin-left: 5px;
 }
 
 /* Desktop Navigation */
@@ -161,7 +162,7 @@ h3 {
         font-size: 24px;
         font-weight: 600;
         letter-spacing: 0.5px;
-        margin-left: 20px;
+        margin-left: 5px;
         color: #ffffff;
     }
     
@@ -317,7 +318,7 @@ h3 {
     font-weight: 600;
     position: relative; /* o absolute/fixed */
     top: 15px; 
-    margin-bottom: 15px;
+    margin-bottom: 35px;
     margin-left: 25px;
     width: 154px;
     height: 39px;
@@ -372,7 +373,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 30px;
     color: #000000;
     font-size: 22px;
     font-weight: bold;
@@ -709,7 +710,7 @@ h3 {
         justify-content: center;
         position: relative;
         top: 10px;
-        bottom: 20px;
+        bottom: 90px;
         left: auto;
         right: auto;
     }
@@ -776,7 +777,8 @@ h3 {
     
     .header {
         padding: clamp(4px, 1vw, 12px) clamp(15px, 3vw, 40px);
-        border-bottom: 3px solid #9b0993;
+        border-bottom: 4px solid #9b0993;
+        height: 100px;
     }
     
     .logo {
@@ -1068,6 +1070,7 @@ h3 {
 @media (min-width: 1024px) {
     .header {
         padding: 12px 40px;
+        height: 100px;
     }
     
     .logo {
@@ -1326,10 +1329,13 @@ h3 {
     /* Ultra-wide desktop navigation */
     .header {
         padding: 15px 60px;
+        height: 100px;
     }
     
     .logo {
         font-size: 36px;
+        position: relative;
+        right: 15px;
     }
     
     .desktop-nav {
@@ -1353,7 +1359,7 @@ h3 {
     }
     
     .desktop-nav .nav-text {
-        font-size: 22px;
+        font-size: 20px;
         color: #ffffff;
     }
     
@@ -1432,6 +1438,7 @@ h3 {
         gap: 12px;
         width: 100%;
         max-width: 100%;
+        margin-top: 45px;
         min-height: 160px;
         max-height: 250px;
         overflow: hidden;
@@ -1481,6 +1488,24 @@ h3 {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    /* Pagination controls for 375px resolution */
+    #paginationControls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 20px 10px;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .pagination-button {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 35px;
+        margin-top: 10px;
     }
 }
 

@@ -52,7 +52,8 @@ body {
 }
 
 .logo {
-    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 1px;
     color: #ffffff;
@@ -207,6 +208,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    margin-top: 30px;
     position: relative;
     border: 3px solid #ffffff;
     transition: all 0.3s ease;
@@ -261,10 +263,12 @@ body {
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-size: 20px;
     color: rgb(255, 255, 255);
-    margin-bottom: 28px;
+    margin-bottom: 15px;
     letter-spacing: 0.5px;
     text-align: center;
     font-weight: 400px;
+    position: relative;
+    bottom: 20px;
     
 }
 
@@ -277,8 +281,10 @@ body {
     border-radius: 25px;
     color: #ffffff;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transition: all 0.25s ease;
+    position: relative;
+    bottom: 10px;
 }
 
 .profile-input:focus {
@@ -329,10 +335,6 @@ body {
     box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
 }
 
-.submit-button:active {
-    transform: translateY(0);
-}
-
 /* Botón Cancelar con fondo transparente */
 .submit-button:first-child {
     background: transparent;
@@ -357,14 +359,14 @@ body {
 
 .disconnect-section .submit-button {
     width: 100%;
-    background: linear-gradient(90deg, #dc3545, #c82333);
+    background: transparent;
+    border: 1px solid white;
     padding: 14px 24px;
-    font-size: 15px;
-    border: none;
+    font-size: 16px;
 }
 
 .disconnect-section .submit-button:hover {
-    background: linear-gradient(90deg, #c82333, #a71e2a);
+    background: #ff0015;
     box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
 }
 
@@ -453,10 +455,11 @@ body {
     
     .header {
         padding: 15px 20px;
+        height: 73px;
     }
     
     .logo {
-        font-size: 22px;
+        font-size: clamp(24px, 2.5vw, 32px);
     }
     
     .profile-avatar {
@@ -468,14 +471,57 @@ body {
         font-size: 40px;
     }
     
+    .edit-icon-overlay {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .edit-icon-overlay i {
+        font-size: 10px;
+    }
+    
     .profile-input {
         padding: 12px 16px;
         font-size: 14px;
+        width: 299px;
+        position: relative;
+        bottom: 15px;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        margin: 0 auto;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+        margin: 0 auto;
     }
     
     .submit-button {
         padding: 10px 20px;
-        font-size: 13px;
+        font-size: 16px;
+        width: 139px;
+        height: 39px;
+        flex: none;
+        position: relative;
+        bottom: 10px;
+    }
+    
+    .disconnect-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    
+    .disconnect-section .submit-button {
+        width: 159px;
+        height: 41px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -487,10 +533,11 @@ body {
     
     .header {
         padding: 12px 15px;
+        height: 73px;
     }
     
     .logo {
-        font-size: 20px;
+        font-size: 22px;
     }
     
     .profile-avatar {
@@ -528,7 +575,7 @@ body {
     }
     
     .logo {
-        font-size: 24px;
+        font-size: 32px;
     }
     
     /* Desktop navigation improvements */
@@ -651,7 +698,7 @@ body {
     }
     
     .logo {
-        font-size: 28px;
+        font-size: 32px;
     }
     
     /* Large desktop navigation */
@@ -756,7 +803,7 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        font-size: 36px;
     }
     
     /* Ultra-wide desktop navigation */

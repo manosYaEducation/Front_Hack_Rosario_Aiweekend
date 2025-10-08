@@ -53,7 +53,7 @@
                     <a href="recover-password" class="forgot-link">Recupera tu contraseña aquí</a>
                 </div>
                 
-                <button type="submit" class="login-btn">ACCEDER</button>
+                <button type="submit" class="login-btn">Acceder</button>
                 
                 <div class="register-link">
                     <span class="register-text">¿No tienes cuenta?</span>

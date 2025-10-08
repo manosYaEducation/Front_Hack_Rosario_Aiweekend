@@ -481,11 +481,30 @@ body {
 }
 
 .submit-button[style*="background:#ef4444"] {
-    background: linear-gradient(90deg, #ef4444, #dc2626) !important;
+    background: transparent !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
 }
 
 .submit-button[style*="background:#ef4444"]:hover {
-    background: linear-gradient(90deg, #dc2626, #b91c1c) !important;
+    background: #ff0000 !important;
+    border-color: #00e5ff !important;
+    color: #ffffff !important;
+}
+
+/* boton abandonar */
+.submit-button[style*="background:#dc2626"], 
+.submit-button[style*="background:#b91c1c"] {
+    background: transparent !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+.submit-button[style*="background:#dc2626"]:hover,
+.submit-button[style*="background:#b91c1c"]:hover {
+    background: #ff0000 !important;
+    border-color: #ff0000 !important;
+    color: #ffffff !important;
 }
 
 /* Project Details */
@@ -545,6 +564,7 @@ body {
     
     .header {
         padding: 15px 20px;
+        height: 73px;
     }
     
     .logo {
@@ -591,6 +611,9 @@ body {
     
     .project-description {
         max-width: 95%;
+        margin-left: 20px;
+        margin-right: auto;
+        text-align: left;
     }
     
     .project-controls {
@@ -603,8 +626,9 @@ body {
     
     .submit-button {
         padding: 0;
-        font-size: 13px;
+        font-size: 16px;
         width: 120px;
+        font-weight: 700;
         height: 39px;
         display: flex;
         align-items: center;
@@ -620,6 +644,7 @@ body {
     
     .header {
         padding: 12px 15px;
+        height: 73px;
     }
     
     .logo {
@@ -732,7 +757,7 @@ body {
     
     .submit-button {
         padding: 0;
-        font-size: 13px;
+        font-size: 16px;
         border-radius: 20px;
         min-width: 160px;
         height: 40px;
@@ -847,7 +872,7 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        font-size: 36px;
     }
     
     /* Ultra-wide desktop navigation */
