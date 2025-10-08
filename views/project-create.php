@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="pitch">Subir pitch</label>
-                    <input type="file" id="pitch" name="pitch">
+                    <input type="text" id="pitch" name="pitch">
                 </div>
                 <div class="form-group">
                     <label for="image">Subir imagen</label>
