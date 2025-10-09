@@ -35,19 +35,19 @@
             <h1 class="form-title">Crear proyecto</h1>
             <form class="capitals-form" id="capitalsForm">
                 <div class="form-group">
-                    <label for="title">Titulo</label>
+                    <label for="title"></label>
                     <input type="text" id="title" name="title" placeholder="Ingresa el título del proyecto" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Descripción</label>
+                    <label for="description"></label>
                     <input type="text" id="description" name="description" placeholder="Ingresa la descripción" required>
                 </div>
                 <div class="form-group">
-                    <label for="pitch">Subir pitch</label>
+                    <label for="pitch"></label>
                     <input type="file" id="pitch" name="pitch">
                 </div>
                 <div class="form-group">
-                    <label for="image">Subir imagen</label>
+                    <label for="image"></label>
                     <input type="file" id="image" name="image">
                 </div>
                 <div>
