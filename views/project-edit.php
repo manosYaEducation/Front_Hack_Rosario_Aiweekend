@@ -11,7 +11,7 @@
     <section class="form-section">
         <div class="form-container">
             <h1 class="form-title">Editar proyecto</h1>
-            <form class="capitals-form" id="editProjectForm">
+            <form class="capitals-form" id="editProjectForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" id="title" name="title" placeholder="Ingresa el título del proyecto" required>
@@ -30,6 +30,12 @@
                         <option value="in_progress">En progreso</option>
                         <option value="completed">Completado</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Imagen del Proyecto</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <div id="imagePreview" style="margin-top: 10px;">
+                    </div>
                 </div>
                 <div>
                     <button type="button" class="submit-button" id="cancelButton">Cancelar</button>
