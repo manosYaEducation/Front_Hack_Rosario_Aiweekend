@@ -12,5 +12,4 @@ return [
     'project-create' => __DIR__ . '/views/project-create.php',
     'project-edit' => __DIR__ . '/views/project-edit.php',
     'not-found' => __DIR__ . '/views/not-found.php',
-    'join-requests-test' => __DIR__ . '/views/join-requests-test.php',
 ];

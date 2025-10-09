@@ -41,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         document.querySelector('.project-detail-title').textContent = project.title;
-
- projectDetailContent.innerHTML = `
+        projectDetailContent.innerHTML = `
             <!-- Sección de Miembros -->
             <div id="membersSection" class="members-section">
                 <div class="members-header">
@@ -58,8 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-controls">
                     <button class="submit-button" id="joinButton">Unirse</button>
                     <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
+                    <button class="submit-button" onclick="getJoinRequests()">Ver Solicitudes</button>
                     <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar </a>
-                </div>
+                </div><div id="requestsContainer"></div>
                 <div id="joinStatus" class="join-status"></div>
             </div>
             
@@ -197,10 +197,10 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
 
             // Actualizar estado y botones
             joinStatus.textContent = action === 'join'
-                ? 'Te uniste al proyecto exitosamente.'
+                ? 'Has enviado una solicitud para unirte al proyecto.'
                 : 'Has abandonado el proyecto exitosamente.';
             joinStatus.style.color = '#10b981'; // Verde para éxito
-            updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+           // updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
 
             // Recargar lista de miembros
             loadProjectMembers(project.id);
@@ -225,9 +225,8 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
         }
     });
 }
-
 // Inicializar botones
-setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember');
+setupProjectButton(joinButton, 'join', leaveButton, 'project/sendJoinRequest');
         }
         
         // Función para cargar miembros del proyecto
@@ -394,3 +393,101 @@ setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember
             }
         });
 });
+
+
+
+async function getJoinRequests() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+    if (!projectId) {
+        showNotification('Por favor, ingresa un ID de proyecto.', 'error');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}project/getJoinRequests?project_id=${projectId}`);
+        const data = await res.json();
+
+        const container = document.getElementById('requestsContainer');
+        container.innerHTML = '<h4>Solicitudes:</h4>';
+
+        if (data.success && Array.isArray(data.requests) && data.requests.length > 0) {
+            data.requests.forEach(req => {
+                const requestDiv = document.createElement('div');
+                requestDiv.style = 'border:1px solid #ccc; padding:10px; margin:5px 0;';
+                requestDiv.innerHTML = `
+                    <strong>ID:</strong> ${req.id}<br/>
+                    <strong>Nombre:</strong> ${req.user_name}<br/>
+                    <strong>Email:</strong> ${req.email}<br/>
+                    <button class="approve-btn" data-id="${req.id}">Aprobar</button>
+                    <button class="reject-btn" data-id="${req.id}" style="background:#dc3545;color:white;">Rechazar</button>
+                `;
+                container.appendChild(requestDiv);
+            });
+
+            // Asignar eventos a los botones
+            document.querySelectorAll('.approve-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const requestId = btn.getAttribute('data-id');
+                    await handleRequestAction(requestId, 'approve');
+                });
+            });
+
+            document.querySelectorAll('.reject-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const requestId = btn.getAttribute('data-id');
+                    await handleRequestAction(requestId, 'reject');
+                });
+            });
+
+        } else {
+            container.innerHTML += '<p>No hay solicitudes pendientes.</p>';
+        }
+    } catch (err) {
+        console.error(err);
+        showNotification('Error al obtener las solicitudes.', 'error');
+    }
+}
+
+async function handleRequestAction(requestId, action) {
+    const endpoint = action === 'approve'
+        ? 'project/approveJoinRequest'
+        : 'project/rejectJoinRequest';
+
+    const formData = new URLSearchParams();
+    formData.append('request_id', requestId);
+
+    try {
+        const res = await fetch(`${API_BASE}${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            showNotification(action === 'approve' ? 'Solicitud aprobada.' : 'Solicitud rechazada.');
+            getJoinRequests(); // Recarga el listado
+        } else {
+            showNotification(data.message || 'Ocurrió un error.', 'error');
+        }
+    } catch (error) {
+        console.error(error);
+        showNotification('Error de conexión.', 'error');
+    }
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.style = `
+        position: fixed; top: 20px; right: 20px; padding: 10px 20px;
+        background: ${type === 'success' ? '#28a745' : '#dc3545'};
+        color: white; border-radius: 5px; z-index: 1000;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}
