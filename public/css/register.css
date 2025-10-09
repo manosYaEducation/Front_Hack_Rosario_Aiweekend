@@ -38,6 +38,7 @@ body {
     border-bottom: 4px solid #9b0993;
     position: sticky;
     top: 0;
+    height: 73px;
     z-index: 100;
     display: flex;
     justify-content: space-between;
@@ -194,7 +195,7 @@ body {
     color: #ffffff;
     text-align: left;
     margin-bottom: 30px;
-    padding-left: 23px;
+    padding-left: 20px;
 }
 
 .capitals-form {
@@ -262,9 +263,14 @@ body {
     letter-spacing: 0.5px;
     margin-top: 30px;
     margin-bottom: 30px;
+    height: 39px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .submit-button:hover {
@@ -404,6 +410,7 @@ body {
     
     .header {
         padding: 15px 20px;
+        height: 73px;
     }
     
     .logo {
@@ -566,6 +573,7 @@ body {
         margin-top: 20px;
         margin-bottom: 25px;
         min-width: 160px;
+        height: 42px;
     }
     
     .form-link,
@@ -664,6 +672,8 @@ body {
         margin-top: 25px;
         margin-bottom: 35px;
         min-width: 200px;
+        height: 49px;
+
     }
     
     .form-link,
@@ -680,6 +690,7 @@ body {
     
     .header {
         padding: 12px 50px;
+        height: 100px;
     }
     
     .logo {
@@ -758,6 +769,7 @@ body {
         margin-top: 30px;
         margin-bottom: 45px;
         min-width: 240px;
+        height: 54px;
     }
     
     .form-link,

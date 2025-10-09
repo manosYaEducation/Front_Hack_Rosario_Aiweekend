@@ -43,6 +43,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 73px;
+
 }
 
 .header-left {
@@ -285,6 +287,7 @@ body {
     transition: all 0.25s ease;
     position: relative;
     bottom: 10px;
+    height: 37px;
 }
 
 .profile-input:focus {
@@ -353,7 +356,7 @@ body {
 /* Sección de desconexión */
 .disconnect-section {
     width: 100%;
-    max-width: 350px;
+    max-width: 163px;
     margin-top: 20px;
 }
 
@@ -363,6 +366,10 @@ body {
     border: 1px solid white;
     padding: 14px 24px;
     font-size: 16px;
+    display: flex;
+    height: 41px;
+    align-items: center;
+    justify-content: center;
 }
 
 .disconnect-section .submit-button:hover {
@@ -662,13 +669,14 @@ body {
     }
     
     .disconnect-section {
-        max-width: 400px;
+        max-width: 191px;
     }
     
     .profile-input {
         padding: 12px 18px;
         font-size: 14px;
         border-radius: 20px;
+        height: 41px;
     }
     
     .submit-button {
@@ -695,6 +703,7 @@ body {
     
     .header {
         padding: 10px 35px;
+        height: 100px;
     }
     
     .logo {
@@ -771,13 +780,14 @@ body {
     }
     
     .disconnect-section {
-        max-width: 450px;
+        max-width: 213px;
     }
     
     .profile-input {
         padding: 14px 20px;
         font-size: 16px;
         border-radius: 25px;
+        height: 48px;
     }
     
     .submit-button {
@@ -789,6 +799,8 @@ body {
     .disconnect-section .submit-button {
         padding: 16px 35px;
         font-size: 16px;
+        height: 48px;
+
     }
 }
 
@@ -800,6 +812,7 @@ body {
     
     .header {
         padding: 12px 50px;
+        height: 100px;
     }
     
     .logo {
@@ -876,13 +889,14 @@ body {
     }
     
     .disconnect-section {
-        max-width: 500px;
+        max-width: 235px;
     }
     
     .profile-input {
         padding: 16px 24px;
         font-size: 18px;
         border-radius: 30px;
+        height: 54px;
     }
     
     .submit-button {
@@ -894,6 +908,7 @@ body {
     .disconnect-section .submit-button {
         padding: 18px 45px;
         font-size: 18px;
+        height: 55px;
     }
 }
 

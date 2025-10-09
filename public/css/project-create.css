@@ -39,10 +39,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    height: 73px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 73px;
+
 }
 
 .header-left {
@@ -172,9 +173,8 @@ body {
     text-align: center;
 }
 
-
-/* Contenido principal */
-.main-content {
+/* Form Section */
+.form-section {
     flex: 1;
     padding: 40px 25px;
     display: flex;
@@ -182,27 +182,45 @@ body {
     justify-content: center;
 }
 
-.login-form {
+.form-container {
     width: 100%;
     max-width: 350px;
     margin-top: 50px;
 }
 
-.login-form .page-title {
+.form-title {
+    font-family: 'Raleway', sans-serif;
     font-size: 24px;
     font-weight: 600;
     color: #ffffff;
     text-align: left;
     margin-bottom: 30px;
-    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.capitals-form {
+    width: 100%;
+    margin-top: 20px;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
-.form-input {
-    width: 100%;
+.form-group label {
+    display: block;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    margin-left: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 313px;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     padding: 14px 18px;
     background: transparent;
@@ -211,72 +229,97 @@ body {
     color: #ffffff;
     font-size: 15px;
     transition: all 0.25s ease;
+    height: 37px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
 }
 
-.form-input::placeholder {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
 }
 
-.form-input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: #00e5ff;
     box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
 }
 
-.form-input:hover {
+.form-group input:hover,
+.form-group textarea:hover {
     border-color: #00e5ff;
 }
 
-/* Forgot password section */
-.forgot-password {
-    text-align: center;
-    margin: 20px 0;
+/* Submit button */
+.submit-button {
+    width: auto;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: #ffffff;
+    padding: 12px 32px;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #ffffff00;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    margin-top: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.forgot-text {
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+.submit-button:hover {
+    background: rgba(0, 188, 212, 0.1);
+    border-color: #00e5ff;
+    transform: translateY(-1px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* Form link section */
+.form-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.form-link {
     color: rgba(255, 255, 255, 0.8);
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-size: 16px;
     margin-right: 5px;
 }
 
-.forgot-link {
+.form-link a {
     color: #ffffff;
-    text-decoration: none;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     transition: color 0.25s ease;
 }
 
-.forgot-link:hover {
+.form-link a:hover {
     color: #00bcd4;
     text-decoration: underline;
 }
 
-/* Movil Apilar el texto olvido contraseña */
+/* Mobile: Stack the form link text and link vertically */
 @media (max-width: 767px) {
-    .forgot-password {
+    .form-link {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
     }
     
-    .forgot-text {
-        margin-right: 0;
-    }
-    
-    /* Movil apilar el texto de registrarse */
-    .register-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .register-text {
+    .form-link {
         margin-right: 0;
     }
 }
@@ -290,6 +333,9 @@ body {
     justify-content: space-around;
     align-items: center;
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
 }
 
 .nav-item {
@@ -352,77 +398,13 @@ body {
     background: #ffffff;
 }
 
-/* Login button */
-.login-btn {
-    width: auto;
-    background: linear-gradient(90deg, #ff007a, #7b2ff7);
-    color: #ffffff;
-    padding: 12px 32px;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: 700;
-    font-weight: bold;
-    cursor: pointer;
-    border: 1px solid #ffffff00;
-    transition: all 0.25s ease;
-    letter-spacing: 0.5px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 39px;
-}
-
-.login-btn:hover {
-    background: rgba(0, 188, 212, 0.1);
-    border-color: #00e5ff;
-    transform: translateY(-1px);
-}
-
-.login-btn:active {
-    transform: translateY(0);
-}
-
-/* Register link */
-.register-link {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.register-text {
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    font-size: 16px;
-    margin-right: 5px;
-}
-
-.register-link-btn {
-    color: #ffffff;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.25s ease;
-}
-
-.register-link-btn:hover {
-    color: #00bcd4;
-    text-decoration: underline;
-}
-
 /* Responsive para pantallas pequeñas */
 @media (max-width: 375px) {
     .container {
         max-width: 100%;
     }
     
-    .main-content {
+    .form-section {
         padding: 30px 20px;
     }
     
@@ -431,25 +413,23 @@ body {
         height: 73px;
     }
     
-    
     .logo {
-        font-family: 'Raleway', sans-serif;
         font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #ffffff;
     }
     
-    .page-title {
-        font-size: 18px;
+    .form-title {
+        font-size: 24px;
     }
     
-    .form-input {
+    .form-group input,
+    .form-group textarea {
         padding: 12px 16px;
         font-size: 14px;
+        margin-top: 40px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
         font-size: 13px;
     }
     
@@ -458,21 +438,9 @@ body {
     }
 }
 
-/* Responsive para resolución 375x852 */
-@media (max-width: 375px) and (max-height: 852px) and (min-height: 800px) {
-    .form-input {
-        width: 313px;
-        height: 37px;
-        padding: 0 18px;
-        box-sizing: border-box;
-        display: block;
-        margin: 0 auto;
-    }
-}
-
 /* Responsive para pantallas muy pequeñas */
 @media (max-width: 320px) {
-    .main-content {
+    .form-section {
         padding: 25px 15px;
     }
     
@@ -485,11 +453,13 @@ body {
         font-size: 22px;
     }
     
-    .form-input {
+    .form-group input,
+    .form-group textarea {
         padding: 10px 14px;
+        margin-top: 40px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 10px 28px;
         font-size: 12px;
     }
@@ -507,7 +477,6 @@ body {
     .header {
         padding: 8px 25px;
         border-bottom: 4px solid #9b0993;
-        height: 100px;
     }
     
     .logo {
@@ -559,60 +528,61 @@ body {
         font-size: 24px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 20px;
     }
     
-    .main-content {
+    .form-section {
         padding: 30px 25px 50px;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: calc(100vh - 120px);
+        margin-top: 50px;
+
     }
     
-    .login-form {
+    .form-container {
         width: 100%;
         max-width: 350px;
         margin-top: 0;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 20px;
         margin-bottom: 20px;
         text-align: center;
+        margin-right: 20px;
     }
     
-    .form-input {
+    .form-group input,
+    .form-group textarea {
         padding: 12px 18px;
         font-size: 14px;
         border-radius: 20px;
         margin-bottom: 15px;
+        height: 45px;
+        width: 350px;
+        margin-top: 40px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
         font-size: 13px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 12px 35px;
         font-size: 16px;
         border-radius: 20px;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-bottom: 25px;
         min-width: 160px;
-        height: 42px;
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 14px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 13px;
     }
     
     .bottom-nav {
@@ -628,7 +598,6 @@ body {
     
     .header {
         padding: 10px 35px;
-        height: 100px;
     }
     
     .logo {
@@ -669,56 +638,54 @@ body {
         font-size: 28px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 24px;
     }
     
-    .main-content {
+    .form-section {
         padding: 40px 35px 60px;
         min-height: calc(100vh - 180px);
     }
     
-    .login-form {
+    .form-container {
         max-width: 400px;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 24px;
         margin-bottom: 25px;
         text-align: center;
+        margin-right: 20px;
     }
     
-    .form-input {
+    .form-group input,
+    .form-group textarea {
         padding: 14px 20px;
         font-size: 16px;
         border-radius: 25px;
         margin-bottom: 20px;
+        height: 48px;
+        width: 400px;
+        margin-top: 40px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
         font-size: 15px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 14px 45px;
         font-size: 15px;
         border-radius: 25px;
-        margin-top: 25px;
+        margin-top: 45px;
         margin-bottom: 35px;
         min-width: 200px;
-        height: 49px;
-
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 16px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 15px;
     }
 }
 
@@ -761,7 +728,6 @@ body {
     .desktop-nav .nav-text {
         font-size: 20px;
         color: #ffffff;
-        font-weight: 600;
     }
     
     .desktop-nav-right .nav-text {
@@ -772,55 +738,54 @@ body {
         font-size: 32px;
     }
     
-    
-    .page-title {
+    .form-title {
         font-size: 28px;
     }
     
-    .main-content {
+    .form-section {
         padding: 50px 45px 70px;
         min-height: calc(100vh - 220px);
     }
     
-    .login-form {
+    .form-container {
         max-width: 450px;
     }
     
-    .login-form .page-title {
+    .form-container .form-title {
         font-size: 28px;
         margin-bottom: 40px;
         text-align: center;
+        margin-right: 20px;
     }
     
-    .form-input {
+    .form-group input,
+    .form-group textarea {
         padding: 16px 24px;
         font-size: 18px;
         border-radius: 30px;
         margin-bottom: 25px;
+        height: 54px;
+        width: 450px;
+        margin-top: 40px;
     }
     
-    .form-input::placeholder {
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
         font-size: 17px;
     }
     
-    .login-btn {
+    .submit-button {
         padding: 16px 55px;
         font-size: 17px;
         border-radius: 30px;
-        margin-top: 30px;
+        margin-top: 50px;
         margin-bottom: 45px;
         min-width: 240px;
-        height: 54px;
     }
     
-    .register-text,
-    .register-link-btn {
+    .form-link,
+    .form-link a {
         font-size: 18px;
-    }
-    
-    .forgot-text,
-    .forgot-link {
-        font-size: 17px;
     }
 }
 
@@ -839,4 +804,3 @@ body {
         transform: translateX(0);
     }
 }
-
