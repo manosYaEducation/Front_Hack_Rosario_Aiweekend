@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (data.success && data.project) {
         document.getElementById("title").value = data.project.title;
         document.getElementById("description").value = data.project.description;
+        document.getElementById("pitch").value = data.project.pitch;
         document.getElementById("status").value = data.project.status;
       } else {
         alert(data.message || "Error al cargar los datos del proyecto.");
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     previewButton.addEventListener("click", () => {
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
+      const pitch = document.getElementById("pitch").value;
       const status = document.getElementById("status").value;
 
       if (!title || !description) {
@@ -102,7 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nEstado: ${status === 'in_progress' ? 'En progreso' : 'Completado'}`);
+      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nPitch: ${pitch}\nEstado: ${status === 'in_progress' ? 'En progreso' : 'Completado'}`);
+      
     });
   }
 });

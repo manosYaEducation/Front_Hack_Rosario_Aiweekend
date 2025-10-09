@@ -43,8 +43,8 @@
                     <input type="text" id="description" name="description" placeholder="Ingresa la descripción" required>
                 </div>
                 <div class="form-group">
-                    <label for="pitch"></label>
-                    <input type="file" id="pitch" name="pitch">
+                    <label for="pitch">Enlace pitch</label>
+                    <input type="text" id="pitch" name="pitch" placeholder="Ingresa el enlace de tu pitch">
                 </div>
                 <div class="form-group">
                     <label for="image"></label>

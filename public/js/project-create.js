@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     previewButton.addEventListener("click", () => {
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
-      const pitch = document.getElementById("pitch").files[0]?.name || "Ningún pitch seleccionado";
+      const pitch = document.getElementById("pitch").value;
       const image = document.getElementById("image").files[0]?.name || "Ninguna imagen seleccionada";
 
       if (!title || !description) {
