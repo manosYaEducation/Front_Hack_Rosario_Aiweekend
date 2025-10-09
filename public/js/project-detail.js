@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="submit-button" id="joinButton">Unirse</button>
                     <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
                     <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar </a>
-                    <button class="submit-button" id="deleteButton" style="background:#ef4444">Eliminar </button>
                 </div>
                 <div id="joinStatus" class="join-status"></div>
             </div>
@@ -72,53 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong></strong> ${project.description}</p>
             </div>
         `;
-
-
-        // Añadir funcionalidad al botón de eliminar
-        const deleteButton = document.getElementById('deleteButton');
-        deleteButton.addEventListener('click', async () => {
-            if (!confirm('¿Estás seguro de que deseas eliminar este proyecto? Esta acción no se puede deshacer.')) {
-                return;
-            }
-
-            const joinStatus = document.getElementById('joinStatus');
-            deleteButton.disabled = true;
-            deleteButton.textContent = 'Eliminando...';
-            joinStatus.textContent = '';
-
-            try {
-                const formData = new FormData();
-                formData.append('id', project.id);
-
-                const response = await fetchWithTimeout(`${API_BASE}project/delete/`, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-                if (!response.ok || !data.success) {
-                    throw new Error(data.message || 'Error al eliminar el proyecto');
-                }
-
-                joinStatus.textContent = 'Proyecto eliminado exitosamente.';
-                joinStatus.style.color = '#10b981';
-                deleteButton.style.display = 'none';
-
-                // Redirigir a la página principal después de 2 segundos
-                setTimeout(() => {
-                    window.location.href = 'index';
-                }, 2000);
-
-            } catch (err) {
-                console.error('Error eliminando proyecto:', err);
-                joinStatus.textContent = err.name === 'AbortError'
-                    ? 'Tiempo de espera agotado.'
-                    : err.message || 'Error al eliminar el proyecto.';
-                joinStatus.style.color = '#ef4444';
-                deleteButton.disabled = false;
-                deleteButton.textContent = 'Eliminar Proyecto';
-            }
-        });
 
         // Unirse o abandonar un proyecto
         const joinButton = document.getElementById('joinButton');
@@ -276,7 +228,6 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
 
 // Inicializar botones
 setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember');
-setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete');
         }
         
         // Función para cargar miembros del proyecto
