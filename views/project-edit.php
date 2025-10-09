@@ -41,7 +41,7 @@
     </section>
 
     <?php require_once("components/nav.php"); ?>
-    
+    <script src="public/js/config.js"></script>
     <script src="public/js/project-edit.js"></script>
 </body>
 </html>

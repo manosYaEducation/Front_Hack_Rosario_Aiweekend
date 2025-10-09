@@ -45,7 +45,7 @@
             <div class="desktop-bottom-logo">AIWKND</div>
         </nav>
     </div>
-
+    <script src="public/js/config.js"></script>
     <script src="public/js/session-check.js"></script>
     <script src="public/js/project-detail.js"></script>
 </body>

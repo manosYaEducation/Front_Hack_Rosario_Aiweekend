@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost/Hackdash-aiweekend/backend/public/';
+const API_BASE = CONFIG.API_BASE;
 
 document.addEventListener('DOMContentLoaded', () => {
     const projectDetailContent = document.getElementById('projectDetailContent');

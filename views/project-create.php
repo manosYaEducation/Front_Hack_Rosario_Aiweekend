@@ -65,7 +65,7 @@
         
         <?php require_once("components/nav.php"); ?>
     </div>
-    
+    <script src="public/js/config.js"></script>
     <script src="public/js/session-check.js"></script>
     <script src="public/js/project-create.js"></script>
 </body>
