@@ -333,9 +333,9 @@ body {
 }
 
 .submit-button:hover {
-    background: linear-gradient(90deg, #ff0056, #6a1fb3);
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
 }
 
 /* Botón Cancelar con fondo transparente */
@@ -568,7 +568,7 @@ body {
 }
 
 /* Desktop/PC Compatibility */
-@media (min-width: 768px) {
+@media (min-width: 628px) {
     .profile-page-container {
         max-width: 100%;
         width: 100%;
@@ -609,6 +609,7 @@ body {
     .desktop-nav .nav-text {
         font-size: 16px;
         color: #ffffff;
+        font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     }
     
     .desktop-nav-right .nav-text {
@@ -734,6 +735,7 @@ body {
     .desktop-nav .nav-text {
         font-size: 18px;
         color: #ffffff;
+        font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     }
     
     .desktop-nav-right .nav-text {
@@ -843,6 +845,7 @@ body {
     .desktop-nav .nav-text {
         font-size: 20px;
         color: #ffffff;
+        font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     }
     
     .desktop-nav-right .nav-text {
@@ -909,6 +912,276 @@ body {
         padding: 18px 45px;
         font-size: 18px;
         height: 55px;
+    }
+}
+
+/* Mostrar navegación móvil por defecto en pantallas menores a 1024px */
+@media (max-width: 1023px) {
+    .bottom-nav {
+        display: flex !important;
+        position: sticky;
+        bottom: 0;
+        z-index: 100;
+    }
+    
+    /* Ocultar navegación desktop */
+    .desktop-nav,
+    .desktop-nav-right {
+        display: none !important;
+    }
+    
+    .desktop-bottom-nav {
+        display: none !important;
+    }
+    
+    /* Mostrar header móvil simplificado */
+    .header {
+        padding: 15px;
+        background: #000000;
+        border-bottom: 4px solid #9b0993;
+        position: sticky;
+        top: 0;
+        height: 73px;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .logo {
+        font-family: 'Raleway', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+    
+    /* Asegurar que el bottom nav sea visible */
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.25s ease;
+        min-width: 60px;
+    }
+    
+    .nav-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 4px;
+        background: currentColor;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        transition: all 0.25s ease;
+    }
+}
+
+/* Desktop/Pantallas anchas - mostrar navegación desktop */
+@media (min-width: 1024px) {
+    .profile-page-container {
+        max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+    }
+    
+    .header {
+        padding: 8px 25px;
+        border-bottom: 4px solid #9b0993;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+    
+    /* Desktop navigation improvements */
+    .desktop-nav {
+        gap: 30px;
+    }
+    
+    .desktop-nav .nav-link,
+    .desktop-nav-right .nav-link {
+        padding: 12px 20px;
+        min-width: 100px;
+    }
+    
+    .desktop-nav .nav-icon {
+        display: none;
+    }
+    
+    .desktop-nav-right .nav-icon {
+        width: 28px;
+        height: 28px;
+        background: #ffffff;
+    }
+    
+    .desktop-nav .nav-text {
+        font-size: 16px;
+        color: #ffffff;
+    }
+    
+    .desktop-nav-right .nav-text {
+        display: none;
+    }
+    
+    /* Show desktop navigation */
+    .desktop-nav,
+    .desktop-nav-right {
+        display: flex !important;
+    }
+    
+    .desktop-bottom-nav {
+        display: flex !important;
+        padding: 50px;
+    }
+    
+    .desktop-bottom-logo {
+        font-size: 24px;
+    }
+    
+    .bottom-nav {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .profile-page-container {
+        max-width: 100%;
+        min-height: 100vh;
+    }
+    
+    .header {
+        padding: 10px 35px;
+        height: 100px;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    /* Large desktop navigation */
+    .desktop-nav {
+        gap: 15px;
+    }
+    
+    .desktop-nav .nav-link,
+    .desktop-nav-right .nav-link {
+        padding: 14px 24px;
+        min-width: 120px;
+    }
+    
+    .desktop-nav .nav-icon {
+        display: none;
+    }
+    
+    .desktop-nav-right .nav-icon {
+        width: 32px;
+        height: 32px;
+        background: #ffffff;
+    }
+    
+    .desktop-nav .nav-text {
+        font-size: 18px;
+        color: #ffffff;
+    }
+    
+    .desktop-nav-right .nav-text {
+        display: none;
+    }
+    
+    .desktop-bottom-logo {
+        font-size: 28px;
+    }
+    
+    .bottom-nav {
+        display: none !important;
+    }
+    
+    /* Show desktop navigation */
+    .desktop-nav,
+    .desktop-nav-right {
+        display: flex !important;
+    }
+    
+    .desktop-bottom-nav {
+        display: flex !important;
+        padding: 50px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .profile-page-container {
+        max-width: 100%;
+        min-height: 100vh;
+    }
+    
+    .header {
+        padding: 12px 50px;
+        height: 100px;
+    }
+    
+    .logo {
+        font-size: 36px;
+    }
+    
+    /* Ultra-wide desktop navigation */
+    .desktop-nav {
+        gap: 20px;
+    }
+    
+    .desktop-nav .nav-link,
+    .desktop-nav-right .nav-link {
+        padding: 16px 28px;
+        min-width: 140px;
+    }
+    
+    .desktop-nav .nav-icon {
+        display: none;
+    }
+    
+    .desktop-nav-right .nav-icon {
+        width: 36px;
+        height: 36px;
+        background: #ffffff;
+    }
+    
+    .desktop-nav .nav-text {
+        font-size: 20px;
+        color: #ffffff;
+    }
+    
+    .desktop-nav-right .nav-text {
+        display: none;
+    }
+    
+    .desktop-bottom-logo {
+        font-size: 32px;
+    }
+    
+    .bottom-nav {
+        display: none !important;
+    }
+    
+    /* Show desktop navigation */
+    .desktop-nav,
+    .desktop-nav-right {
+        display: flex !important;
+    }
+    
+    .desktop-bottom-nav {
+        display: flex !important;
+        padding: 50px;
     }
 }
 

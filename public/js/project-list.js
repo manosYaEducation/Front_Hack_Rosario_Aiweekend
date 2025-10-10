@@ -3,7 +3,6 @@ const CURRENT_SLUG = CONFIG.SLUG;
 
 document.addEventListener('DOMContentLoaded', () => {
     const allProjectsGrid = document.getElementById('allProjectsGrid');
-    const paginationControls = document.getElementById('paginationControls');
     let currentPage = 1;
     const projectsPerPage = 6;
     let cachedProjects = [];
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Obtener datos del usuario
             const userData = window.getUserData();
             if (!userData.userEmail) {
-                allProjectsGrid.innerHTML = '<p style="text-align: center; color: #6b7280; font-style: italic;">Inicia sesión para ver tus proyectos.</p>';
+                allProjectsGrid.innerHTML = '<p style="text-align: center; color: white; font-size: 18px; font-style: italic; font-family: Raleway, sans-serif; font-weight: bold;">Inicia sesión para ver tus proyectos.</p>';
                 return;
             }
 
@@ -92,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPage() {
-        // No usar paginación para proyectos del usuario
         renderProjects(cachedProjects);
     }
 
@@ -109,72 +107,56 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Mostrar los proyectos del usuario obtenidos de la API
-        const userProjectsSection = document.createElement('div');
-        userProjectsSection.className = 'user-projects-section';
-        userProjectsSection.innerHTML = `
-            <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem; font-weight: 700;">Mis Proyectos</h3>
-            <div class="user-projects-grid">
-                ${projects.map(project => createUserProjectCard(project)).join('')}
-            </div>
-        `;
-        allProjectsGrid.appendChild(userProjectsSection);
+        // Renderizar las tarjetas directamente en el grid
+        projects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.innerHTML = createUserProjectCard(project);
+            const cardElement = projectCard.firstElementChild;
+            
+            // Detectar si es móvil y agregar evento click al título
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+                const titleElement = cardElement.querySelector('.clickable-title');
+                if (titleElement) {
+                    titleElement.style.cursor = 'pointer';
+                    titleElement.addEventListener('click', () => {
+                        window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
+                    });
+                }
+            }
+            
+            allProjectsGrid.appendChild(cardElement);
+        });
     }
     
     function createUserProjectCard(project) {
-        const status = project.status === 'completed' ? 'status-completed' : 'status-in-progress';
-        const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
+        // Truncar título y descripción
+        const truncatedTitle = truncateTitle(project.title || '');
+        const description = project.description || '';
+        const truncatedDescription = description.length > 65 ? description.substring(0, 65) + '...' : description;
+        
+        // Obtener la primera letra del título en mayúscula
+        const firstLetter = (project.title || 'P').charAt(0).toUpperCase();
+        
+        // Detectar si es móvil
+        const isMobile = window.innerWidth < 768;
+        const imageSrc = project.image ? `data:image/jpeg;base64,${project.image}` : null;
         
         return `
             <div class="project-card user-project">
-                <h3>${escapeHtml(project.title || '')}</h3>
-                <p>${escapeHtml(project.description || '')}</p>
-                <div class="project-meta">
-                    <span class="status ${status}">${statusText}</span>
+                <div class="project-icon">
+                    ${imageSrc
+                        ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
+                        : `<div class="project-icon-letter">${firstLetter}</div>`
+                    }
                 </div>
-                <a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>
-                <span class="membership-badge">Ya eres miembro</span>
+                <div class="project-info">
+                    <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(truncatedTitle)}</h3>
+                    <p class="project-description">${escapeHtml(truncatedDescription)}</p>
+                    ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
+                </div>
             </div>
         `;
-    }
-
-    function renderPagination(totalPages, page) {
-        paginationControls.innerHTML = '';
-        if (totalPages <= 1) return;
-
-        const prevButton = document.createElement('button');
-        prevButton.className = 'pagination-button';
-        prevButton.disabled = page === 1;
-        prevButton.textContent = 'Anterior';
-        prevButton.addEventListener('click', () => {
-            currentPage = Math.max(1, currentPage - 1);
-            renderPage();
-        });
-        paginationControls.appendChild(prevButton);
-
-        for (let i = 1; i <= totalPages; i++) {
-            const pageButton = document.createElement('button');
-            pageButton.className = 'pagination-button';
-            if (i === page) {
-                pageButton.classList.add('active');
-            }
-            pageButton.textContent = i;
-            pageButton.addEventListener('click', () => {
-                currentPage = i;
-                renderPage();
-            });
-            paginationControls.appendChild(pageButton);
-        }
-
-        const nextButton = document.createElement('button');
-        nextButton.className = 'pagination-button';
-        nextButton.disabled = page === totalPages;
-        nextButton.textContent = 'Siguiente';
-        nextButton.addEventListener('click', () => {
-            currentPage = Math.min(totalPages, currentPage + 1);
-            renderPage();
-        });
-        paginationControls.appendChild(nextButton);
     }
 
     function firstSafe(obj, key) {
@@ -189,7 +171,27 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
     }
+    
+    function truncateTitle(title) {
+        if (!title) return '';
 
+        // Si el título no tiene espacios y supera 20 caracteres, lo trunca
+        if (!title.includes(' ') && title.length > 20) {
+            return title.substring(0, 20) + '...';
+        }
+
+        return title;
+    }
+    
+    // Función para re-renderizar cuando cambie el tamaño de ventana
+    function handleResize() {
+        if (cachedProjects.length > 0) {
+            renderPage();
+        }
+    }
+    
+    // Escuchar cambios de tamaño de ventana
+    window.addEventListener('resize', handleResize);
 
     fetchUserProjects();
 });

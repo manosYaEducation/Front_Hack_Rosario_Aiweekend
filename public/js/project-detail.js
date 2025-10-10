@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectDetailContent = document.getElementById('projectDetailContent');
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('id');
+    let project = null; // Variable para almacenar los datos del proyecto
 
     if (projectId) {
         fetchProjectDetails(projectId);
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (data.success) {
                 if (data.project) {
+                    project = data.project; // Almacenar los datos del proyecto
                     renderProjectDetails(data.project);
                 } else {
                     projectDetailContent.innerHTML = '<p>No se encontraron detalles del proyecto.</p>';
@@ -34,13 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Función para truncar el título solo en móviles
+    function truncateTitleForMobile(title, maxLength = 154) {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile && title && title.length > maxLength) {
+            return title.substring(0, maxLength) + '...';
+        }
+        return title;
+    }
+
     function renderProjectDetails(project) {
         if (!project) {
             console.error("Project data is undefined or null.");
             return;
         }
 
-        document.querySelector('.project-detail-title').textContent = project.title;
+        const truncatedTitle = truncateTitleForMobile(project.title);
+        document.querySelector('.project-detail-title').textContent = truncatedTitle;
 
  projectDetailContent.innerHTML = `
             <!-- Sección de Miembros -->
@@ -393,4 +405,16 @@ setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember
                 modal.style.display = 'none';
             }
         });
+
+        // Función para re-renderizar el título cuando cambie el tamaño de ventana
+        function handleResize() {
+            const titleElement = document.querySelector('.project-detail-title');
+            if (titleElement && project) {
+                const truncatedTitle = truncateTitleForMobile(project.title);
+                titleElement.textContent = truncatedTitle;
+            }
+        }
+
+        // Escuchar cambios de tamaño de ventana
+        window.addEventListener('resize', handleResize);
 });
