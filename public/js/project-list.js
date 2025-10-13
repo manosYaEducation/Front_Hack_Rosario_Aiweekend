@@ -174,12 +174,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function truncateTitle(title) {
         if (!title) return '';
-
-        // Si el título no tiene espacios y supera 20 caracteres, lo trunca
-        if (!title.includes(' ') && title.length > 20) {
-            return title.substring(0, 20) + '...';
+        
+        // Truncamiento más agresivo para títulos muy largos
+        const maxLength = 20; // Reducido para ser más estricto
+        
+        // Forzar truncamiento para cualquier título que supere la longitud máxima
+        if (title.length > maxLength) {
+            const truncated = title.substring(0, maxLength) + '...';
+            console.log(`FORZANDO truncamiento: "${title}" (${title.length} chars) -> "${truncated}"`);
+            return truncated;
         }
-
+        
+        console.log(`Título no truncado: "${title}" (${title.length} chars)`);
         return title;
     }
     

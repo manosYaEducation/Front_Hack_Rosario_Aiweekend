@@ -269,9 +269,13 @@ body {
 
 .project-image {
     width: 100%;
-    height: 100%;
+    height: 160%;
     object-fit: cover;
+    object-position: center;
     border-radius: 8px;
+    position: relative;
+    top: 33px;
+    background: transparent;
 }
 
 .project-info {
@@ -288,6 +292,10 @@ body {
     color: #ffffff;
     margin-bottom: 6px;
     line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 /* Clickable title for mobile */
@@ -773,6 +781,19 @@ body {
         align-self: center;
         margin-bottom: 4px;
     }
+
+    .project-image {
+        width: 100rem;
+        height: 670%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 100px;
+        background: transparent;
+    }
     
     .project-icon-letter {
         font-size: 38px;
@@ -805,7 +826,7 @@ body {
     .project-card h3 {
         font-size: 15px;
         margin-bottom: 6px;
-        text-align: center;
+        text-align: left;
     }
     
     .project-description {
@@ -870,6 +891,19 @@ body {
     .project-icon {
         width: 85px;
         height: 85px;
+    }
+
+    .project-image {
+        width: 410%;
+        height: 340%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 73px;
+        background: transparent;
     }
 
     .project-info {
@@ -976,6 +1010,19 @@ body {
         min-height: 400px;
         height: auto;
         overflow: hidden;
+    }
+
+    .project-image {
+        width: 380%;
+        height: 340%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 73px;
+        background: transparent;
     }
     
     .project-card:hover {
@@ -1136,6 +1183,19 @@ body {
         height: auto;
         overflow: hidden;
     }
+
+    .project-image {
+        width: 340%;
+        height: 340%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 73px;
+        background: transparent;
+    }
     
     .project-icon {
         width: 100px;
@@ -1234,6 +1294,12 @@ body {
         font-weight: 700;
         letter-spacing: 1px;
         color: #ffffff;
+    }
+    
+    /* Asegurar que los títulos de proyectos se alineen a la izquierda en móvil */
+    .project-card h3,
+    .clickable-title {
+        text-align: left !important;
     }
     
     /* Asegurar que el bottom nav sea visible */
