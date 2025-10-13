@@ -48,15 +48,17 @@ h3 {
 
 /* Header */
 .header {
-    padding: 20px 15px;
+    padding: 15px;
     background: #000000;
     border-bottom: 4px solid #9b0993;
     position: sticky;
     top: 0;
     z-index: 100;
     display: flex;
+    z-index: 100;
     justify-content: space-between;
     align-items: center;
+    height: 73px;
 }
 
 .header-left {
@@ -379,6 +381,17 @@ h3 {
     font-weight: bold;
 }
 
+.project-image {
+    width: 100%;
+    height: 160%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    position: relative;
+    top: 33px;
+    background: transparent;
+}
+
 .project-info {
     flex: 1;
     min-width: 0;
@@ -558,6 +571,19 @@ h3 {
         align-self: center;
         margin-bottom: 4px;
     }
+
+    .project-image {
+        width: 100rem;
+        height: 540%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 0;
+        background: transparent;
+    }
     
     .project-icon-letter {
         font-size: 16px;
@@ -570,6 +596,8 @@ h3 {
         padding: 35px;
         padding-left: 168px;
         padding-right: 165px;
+        position: relative;
+        bottom: 6px;
         border-radius: 10px;
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
@@ -677,16 +705,31 @@ h3 {
         align-self: center;
         margin-bottom: 4px;
     }
+
+    .project-image {
+        width: 50rem;
+        height: 340%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 13px;
+        background: transparent;
+    }
     
     .project-icon-letter {
         font-size: 18px;
         width: 100%;
-        height: 100%;
+        height: 120%;
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 40px;
+        position: relative;
+        bottom: 6px;
         padding-left: 168px;
         padding-right: 165px;
         border-radius: 10px;
@@ -1163,6 +1206,19 @@ h3 {
         width: 90px;
         height: 90px;
     }
+
+    .project-image {
+        width: 420%;
+        height: 340%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 60px;
+        background: transparent;
+    }
     
     .project-icon-letter {
         font-size: 36px;
@@ -1266,6 +1322,19 @@ h3 {
     .project-icon {
         width: 100px;
         height: 100px;
+    }
+
+    .project-image {
+        width: 340%;
+        height: 320%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        position: relative;
+        top: 70px;
+        background: transparent;
     }
     
     .project-icon-letter {
@@ -1401,7 +1470,7 @@ h3 {
 }
 
 /* Responsive para pantallas pequeñas */
-@media (max-width: 375px) {
+@media (max-width: 374px) {
     .container {
         max-width: 100%;
     }
