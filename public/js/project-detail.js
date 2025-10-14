@@ -114,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Cargar miembros del proyecto
         loadProjectMembers(project.id);
+        setupProjectButton(joinButton, 'join', leaveButton, 'project/sendJoinRequest');
+        setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete'); // Add this line
 
         // Utility function for fetch with timeout
         async function fetchWithTimeout(url, options, timeout = 10000) {
@@ -213,7 +215,9 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
                 ? 'Has enviado una solicitud para unirte al proyecto.'
                 : 'Has abandonado el proyecto exitosamente.';
             joinStatus.style.color = '#10b981'; // Verde para éxito
-           // updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+            updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
+            checkMembershipAndSetState();
+            loadProjectMembers(project.id);
 
             // Recargar lista de miembros
             loadProjectMembers(project.id);
