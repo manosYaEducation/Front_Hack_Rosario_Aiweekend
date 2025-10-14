@@ -1,5 +1,19 @@
 const API_BASE = CONFIG.API_BASE;
 
+// SOLUCIÓN FRONTEND: Función global para verificar si un usuario es creador de un proyecto
+window.isProjectCreator = function(projectId, userEmail) {
+    const creators = JSON.parse(localStorage.getItem('projectCreators') || '[]');
+    return creators.some(c => c.projectId == projectId && c.email === userEmail);
+};
+
+// SOLUCIÓN FRONTEND: Función global para obtener el rol funcional de un usuario
+window.getUserFunctionalRole = function(projectId, userEmail, backendRole) {
+    if (window.isProjectCreator(projectId, userEmail)) {
+        return 'owner';
+    }
+    return backendRole || 'member';
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const projectDetailContent = document.getElementById('projectDetailContent');
     const urlParams = new URLSearchParams(window.location.search);
@@ -70,8 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-controls">
                     <button class="submit-button" id="joinButton">Unirse</button>
                     <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
-                    <button class="submit-button" onclick="getJoinRequests()">Ver Solicitudes</button>
-                    <a class="submit-button" id="editButton" href="project-edit?id=${project.id}">Editar </a>
+                    <button class="submit-button" id="viewRequestsButton" style="display:none">Ver Solicitudes</button>
+                    <a class="submit-button" id="editButton" style="display:none" href="project-edit?id=${project.id}">Editar </a>
+                    <button class="submit-button" id="deleteButton" style="display:none;background:#b91c1c">Eliminar</button>
                 </div><div id="requestsContainer"></div>
                 <div id="joinStatus" class="join-status"></div>
             </div>
@@ -88,7 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Unirse o abandonar un proyecto
         const joinButton = document.getElementById('joinButton');
         const leaveButton = document.getElementById('leaveButton');
+        const viewRequestsButton = document.getElementById('viewRequestsButton');
+        const editButton = document.getElementById('editButton');
+        const deleteButton = document.getElementById('deleteButton');
         const joinStatus = document.getElementById('joinStatus');
+
+        // Ocultar controles avanzados por defecto (se muestran solo si es owner)
+        if (viewRequestsButton) viewRequestsButton.style.display = 'none';
+        if (editButton) editButton.style.display = 'none';
+        if (deleteButton) deleteButton.style.display = 'none';
 
         async function checkMembershipAndSetState() {
             const userEmail = localStorage.getItem('userEmail');
@@ -106,6 +129,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         joinButton.style.display = 'inline-block';
                         leaveButton.style.display = 'none';
                     }
+                    
+                    // SOLUCIÓN FRONTEND: Verificar rol funcional del usuario
+                    const me = data.members.find(m => m.email === userEmail);
+                    const backendRole = (me && me.role) ? String(me.role).toLowerCase() : '';
+                    const functionalRole = window.getUserFunctionalRole(project.id, userEmail, backendRole);
+                    const isOwner = functionalRole === 'owner';
+                    
+                    console.log('🔍 Verificación de roles:', {
+                        email: userEmail,
+                        backendRole: backendRole,
+                        functionalRole: functionalRole,
+                        isOwner: isOwner,
+                        projectId: project.id
+                    });
+                    
+                    if (viewRequestsButton) viewRequestsButton.style.display = isOwner ? 'inline-block' : 'none';
+                    if (editButton) editButton.style.display = isOwner ? 'inline-block' : 'none';
+                    if (deleteButton) deleteButton.style.display = isOwner ? 'inline-block' : 'none';
                 }
             } catch (_) {}
         }
@@ -116,6 +157,36 @@ document.addEventListener('DOMContentLoaded', () => {
         loadProjectMembers(project.id);
         setupProjectButton(joinButton, 'join', leaveButton, 'project/sendJoinRequest');
         setupProjectButton(leaveButton, 'leave', joinButton, 'member/delete'); // Add this line
+
+        // Ver Solicitudes (solo si es owner; el botón está oculto por defecto)
+        if (viewRequestsButton) {
+            viewRequestsButton.addEventListener('click', () => getJoinRequests());
+        }
+
+        // Eliminar proyecto (visible para todos los usuarios, el backend validará permisos)
+        if (deleteButton) {
+            deleteButton.addEventListener('click', async () => {
+                if (!confirm('¿Seguro que deseas eliminar este proyecto? Esta acción no se puede deshacer.')) {
+                    return;
+                }
+                try {
+                    const fd = new FormData();
+                    fd.append('project_id', project.id);
+                    fd.append('id', project.id); // compatibilidad
+                    const res = await fetch(`${API_BASE}project/delete`, { method: 'POST', body: fd });
+                    const data = await res.json();
+                    if (res.ok && data && data.success) {
+                        alert('Proyecto eliminado.');
+                        window.location.href = 'project-list';
+                    } else {
+                        alert(data.message || 'No se pudo eliminar el proyecto.');
+                    }
+                } catch (err) {
+                    console.error('Error al eliminar proyecto:', err);
+                    alert('Error de conexión al eliminar el proyecto.');
+                }
+            });
+        }
 
         // Utility function for fetch with timeout
         async function fetchWithTimeout(url, options, timeout = 10000) {
@@ -318,7 +389,11 @@ setupProjectButton(joinButton, 'join', leaveButton, 'project/sendJoinRequest');
                 }) : 'Fecha no disponible';
                 const memberName = escapeHtml(member.name || member.user_name || 'Usuario');
                 const memberEmail = escapeHtml(member.email || '');
-                const memberRole = escapeHtml(member.role || 'Miembro');
+                
+                // SOLUCIÓN FRONTEND: Obtener rol funcional
+                const backendRole = member.role || 'Miembro';
+                const functionalRole = window.getUserFunctionalRole(project.id, member.email, backendRole);
+                const memberRole = functionalRole === 'owner' ? 'Owner' : escapeHtml(backendRole);
                 
                 // Crear iniciales del nombre
                 const initials = memberName.split(' ').map(name => name.charAt(0)).join('').toUpperCase().substring(0, 2);
