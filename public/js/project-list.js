@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             projectCard.innerHTML = createUserProjectCard(project);
             const cardElement = projectCard.firstElementChild;
             
-            // Detectar si es móvil y agregar evento click al título
-            const isMobile = window.innerWidth < 768;
+            // Detectar si es móvil o tablet (< 1024px) y agregar evento click al título
+            const isMobile = window.innerWidth < 1024;
             if (isMobile) {
                 const titleElement = cardElement.querySelector('.clickable-title');
                 if (titleElement) {
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Obtener la primera letra del título en mayúscula
         const firstLetter = (project.title || 'P').charAt(0).toUpperCase();
         
-        // Detectar si es móvil
-        const isMobile = window.innerWidth < 768;
+        // Detectar si es móvil o tablet (< 1024px)
+        const isMobile = window.innerWidth < 1024;
         const imageSrc = project.image ? `data:image/jpeg;base64,${project.image}` : null;
         
         return `

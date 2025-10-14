@@ -309,7 +309,7 @@ body {
 }
 
 .clickable-title:hover {
-    color: #00bcd4;
+    color: #d60ccc;
 }
 
 .clickable-title:active {
@@ -770,7 +770,7 @@ body {
     
     .project-card:hover {
         background: #1a1a1a;
-        border-color: #00bcd4;
+        border-color: #ffffff;
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }
@@ -1027,7 +1027,7 @@ body {
     
     .project-card:hover {
         background: #1a1a1a;
-        border-color: #00bcd4;
+        border-color: #ffffff;
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }

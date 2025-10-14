@@ -292,14 +292,13 @@ body {
 
 .profile-input:focus {
     outline: none;
-    border-color: #00e5ff;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+    border-color: #9b0993;
+    box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
 .profile-input:hover {
-    border: 1px solid rgb(255, 255, 255);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: #9b0993;
+    box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
 .profile-input[readonly] {
@@ -346,11 +345,11 @@ body {
 }   
 
 .submit-button:first-child:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #00e5ff;
+    border-color: #ffffff;
     color: #ffffff;
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
 }
 
 /* Sección de desconexión */

@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const description = project.description || '';
             const truncatedDescription = description.length > 65 ? description.substring(0, 65) + '...' : description;
             
-             // Detectar si es móvil
-             const isMobile = window.innerWidth < 768;
+             // Detectar si es móvil o tablet (< 1024px)
+             const isMobile = window.innerWidth < 1024;
              const imageSrc = project.image ? `data:image/jpeg;base64,${project.image}` : null;
              projectCard.innerHTML = `
                  <div class="project-icon">
