@@ -10,7 +10,7 @@
     <div class="container">
         <header class="header">
             <div class="header-left">
-                <div class="logo">AIWKND</div>
+                <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="logo">
                 <nav class="desktop-nav">
                     <a href="index" class="nav-link">
                         <span class="nav-icon"></span>
@@ -67,7 +67,7 @@
         
         <!-- Desktop Bottom Nav -->
         <nav class="desktop-bottom-nav">
-            <div class="desktop-bottom-logo">AIWKND</div>
+            <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="desktop-bottom-logo">
         </nav>
         <script src="public/js/register.js"></script>
         <?php require_once("components/nav.php"); ?>

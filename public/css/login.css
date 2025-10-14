@@ -57,11 +57,12 @@ body {
 }
 
 .logo {
-    font-family: 'Raleway', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
+    height: 35px;
+    width: auto;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 /* Desktop Navigation */
@@ -170,11 +171,10 @@ body {
 }
 
 .desktop-bottom-logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
-    text-align: center;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 
@@ -438,11 +438,9 @@ body {
     
     
     .logo {
-        font-family: 'Raleway', sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #ffffff;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     .page-title {
@@ -487,7 +485,9 @@ body {
     }
     
     .logo {
-        font-size: 22px;
+        height: 35px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     .form-input {
@@ -516,7 +516,9 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -561,7 +563,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 24px;
+        height: clamp(30px, 4vw, 45px);
+        width: auto;
     }
     
     
@@ -637,7 +640,9 @@ body {
     }
     
     .logo {
-        font-size: 32px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Large desktop navigation */
@@ -671,7 +676,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 28px;
+        height: 42px;
+        width: auto;
     }
     
     
@@ -739,7 +745,9 @@ body {
     }
     
     .logo {
-        font-size: 36px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Ultra-wide desktop navigation */
@@ -774,7 +782,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 32px;
+        height: 50px;
+        width: auto;
     }
     
     
@@ -869,11 +878,9 @@ body {
     }
     
     .logo {
-        font-family: 'Raleway', sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #ffffff;
+        height: 35px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Asegurar que el bottom nav sea visible */
@@ -916,7 +923,9 @@ body {
     }
     
     .logo {
-        font-size: 24px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -961,7 +970,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 24px;
+        height: clamp(30px, 4vw, 45px);
+        width: auto;
     }
     
     .bottom-nav {
@@ -981,7 +991,9 @@ body {
     }
     
     .logo {
-        font-size: 28px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Large desktop navigation */
@@ -1015,7 +1027,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 28px;
+        height: 42px;
+        width: auto;
     }
     
     .bottom-nav {
@@ -1046,7 +1059,9 @@ body {
     }
     
     .logo {
-        font-size: 36px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Ultra-wide desktop navigation */
@@ -1080,7 +1095,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 32px;
+        height: 50px;
+        width: auto;
     }
     
     .bottom-nav {

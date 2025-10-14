@@ -57,11 +57,12 @@ body {
 }
 
 .logo {
-    font-size: 24px;
-    margin-left: 6px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
+    height: 35px;
+    width: auto;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 /* Desktop Navigation */
@@ -170,11 +171,10 @@ body {
 }
 
 .desktop-bottom-logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
-    text-align: center;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 /* Contenido principal */
@@ -576,7 +576,9 @@ body {
     }
     
     .logo {
-        font-size: 24px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
         position: relative;
         right: 7px;
     }
@@ -658,7 +660,9 @@ body {
     }
     
     .logo {
-        font-size: 20px;
+        height: 32px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     .project-hero {
@@ -686,7 +690,9 @@ body {
     }
     
     .logo {
-        font-size: 24px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -731,7 +737,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 24px;
+        height: clamp(30px, 4vw, 45px);
+        width: auto;
     }
     
     .form-title,
@@ -793,7 +800,9 @@ body {
     }
     
     .logo {
-        font-size: 28px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Large desktop navigation */
@@ -827,7 +836,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 28px;
+        height: 42px;
+        width: auto;
     }
     
     .form-title,
@@ -917,7 +927,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 32px;
+        height: 50px;
+        width: auto;
     }
     
     .form-title,
@@ -1352,11 +1363,9 @@ body {
     }
     
     .logo {
-        font-family: 'Raleway', sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #ffffff;
+        height: 35px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Asegurar que el bottom nav sea visible */
@@ -1399,7 +1408,9 @@ body {
     }
     
     .logo {
-        font-size: 24px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -1444,7 +1455,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 24px;
+        height: clamp(30px, 4vw, 45px);
+        width: auto;
     }
     
     .bottom-nav {
@@ -1464,7 +1476,9 @@ body {
     }
     
     .logo {
-        font-size: 28px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Large desktop navigation */
@@ -1498,7 +1512,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 28px;
+        height: 42px;
+        width: auto;
     }
     
     .bottom-nav {
@@ -1529,7 +1544,9 @@ body {
     }
     
     .logo {
-        font-size: 36px;
+        height: 40px;
+        width: auto;
+        margin-bottom: 10px;
     }
     
     /* Ultra-wide desktop navigation */
@@ -1563,7 +1580,8 @@ body {
     }
     
     .desktop-bottom-logo {
-        font-size: 32px;
+        height: 50px;
+        width: auto;
     }
     
     .bottom-nav {
