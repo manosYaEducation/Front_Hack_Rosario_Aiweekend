@@ -221,7 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
 function setupProjectButton(button, action, otherButton, apiEndpoint) {
     if (!button) return;
+
     button.addEventListener('click', async () => {
+
         // Verificar autenticación
         if (!window.isAuthenticated || !window.isAuthenticated()) {
             console.log('Usuario no autenticado, mostrando modal');
@@ -242,27 +244,6 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
             joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
             joinStatus.style.color = '#ef4444';
             return;
-        }
-
-        // revisar si ya existe una solicitud para unirse al proyecrto
-        if (action === 'join') {
-            try {
-                const response = await fetch(`${API_BASE}project/getJoinRequests?project_id=${project.id}`);
-                const data = await response.json();
-                if (data.success && Array.isArray(data.requests)) {
-                    const hasPendingRequest = data.requests.some(req => req.email === userEmail);
-                    if (hasPendingRequest) {
-                        joinStatus.textContent = 'Ya tienes una solicitud pendiente para este proyecto.';
-                        joinStatus.style.color = '#ef4444';
-                        return;
-                    }
-                }
-            } catch (err) {
-                console.error('Error checking existing join requests:', err);
-                joinStatus.textContent = 'Error al verificar solicitudes existentes. Inténtalo de nuevo.';
-                joinStatus.style.color = '#ef4444';
-                return;
-            }
         }
 
         // Deshabilitar botón y mostrar estado de carga
@@ -287,11 +268,14 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
                 method: 'POST',
                 body: formData
             });
+
             const data = await res.json();
+
             if (!res.ok) {
                 // Manejar errores HTTP
                 throw new Error(data.message || `Error HTTP: ${res.status}`);
             }
+
             if (!data.success) {
                 // Manejar errores específicos del backend
                 throw new Error(data.message || 'Error desconocido al procesar la solicitud.');
@@ -299,14 +283,16 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
 
             // Actualizar estado y botones
             joinStatus.textContent = action === 'join'
-                ? 'Has enviado una solicitud para unirte al proyecto.'
+                ? 'Te uniste al proyecto exitosamente.'
                 : 'Has abandonado el proyecto exitosamente.';
             joinStatus.style.color = '#10b981'; // Verde para éxito
             updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
-            checkMembershipAndSetState();
+
+            // Recargar lista de miembros
             loadProjectMembers(project.id);
         } catch (err) {
             console.error(`Error al ${action === 'join' ? 'unirse' : 'abandonar'} el proyecto:`, err);
+
             // Mostrar mensaje de error específico
             let errorMessage = 'Error al procesar la solicitud. Inténtalo de nuevo.';
             if (err.name === 'AbortError') {
@@ -314,6 +300,7 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
             } else if (err.message) {
                 errorMessage = err.message;
             }
+
             joinStatus.textContent = errorMessage;
             joinStatus.style.color = '#ef4444';
         } finally {
@@ -325,7 +312,7 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
     });
 }
 // Inicializar botones
-setupProjectButton(joinButton, 'join', leaveButton, 'project/sendJoinRequest');
+setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember');
         }
         
         // Función para cargar miembros del proyecto
