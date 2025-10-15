@@ -114,7 +114,12 @@
 
     // Función global para el modal de login
     window.showLoginModal = function() {
-        console.log('showLoginModal() llamada - creando modal');
+        // Remove any existing modal to prevent duplicates
+        const existingModal = document.querySelector('.modal-overlay');
+        if (existingModal) {
+            document.body.removeChild(existingModal);
+        }
+
         const modalOverlay = document.createElement('div');
         modalOverlay.className = 'modal-overlay';
 
@@ -134,16 +139,25 @@
             </div>
         `;
 
+        
         modalOverlay.appendChild(modalContent);
         document.body.appendChild(modalOverlay);
 
-        document.getElementById('modalCancelBtn').addEventListener('click', () => {
-            document.body.removeChild(modalOverlay);
-        });
+        // Event listeners
+        const cancelBtn = document.getElementById('modalCancelBtn');
+        const loginBtn = document.getElementById('modalLoginBtn');
 
-        document.getElementById('modalLoginBtn').addEventListener('click', () => {
-            window.location.href = 'login';
-        });
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                document.body.removeChild(modalOverlay);
+            });
+        }
+
+        if (loginBtn) {
+            loginBtn.addEventListener('click', () => {
+                window.location.href = 'login';
+            });
+        }
 
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
@@ -151,13 +165,12 @@
             }
         });
 
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') {
+        document.addEventListener('keydown', function handleEscape(e) {
+            if (e.key === 'Escape') {s
                 document.body.removeChild(modalOverlay);
                 document.removeEventListener('keydown', handleEscape);
             }
-        };
-        document.addEventListener('keydown', handleEscape);
+        });
     };
 
 })();
