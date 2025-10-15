@@ -52,8 +52,8 @@
                     <p class="resolution-info">Resoluciones recomendadas de imagen: 640×480, 800×600, 1024×768, 1280×688</p>
                 </div>
                 <div>
-                    <button type="button" class="submit-button" id="cancelButton">Cancelar</button>
                     <button type="submit" class="submit-button">Crear proyecto</button>
+                    <button type="button" class="submit-button" id="cancelButton">Cancelar</button>
                 </div>
             </form>
         </div>
