@@ -260,6 +260,18 @@ body {
     box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
+/* Resolution info */
+.resolution-info {
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    text-align: center;
+    margin: 20px auto 0;
+    max-width: 313px;
+    line-height: 1.4;
+    display: block;
+}
+
 /* Submit button */
 .submit-button {
     width: auto;
@@ -443,6 +455,11 @@ body {
     .form-group {
         margin-bottom: 18px;
     }
+    
+    .resolution-info {
+        font-size: 12px;
+        margin: 15px auto 0;
+    }
 }
 
 /* Responsive para pantallas muy pequeñas */
@@ -587,6 +604,12 @@ body {
         min-width: 160px;
     }
     
+    .resolution-info {
+        font-size: 13px;
+        max-width: 350px;
+        margin: 20px auto 0;
+    }
+    
     .form-link,
     .form-link a {
         font-size: 14px;
@@ -690,6 +713,12 @@ body {
         min-width: 200px;
     }
     
+    .resolution-info {
+        font-size: 14px;
+        max-width: 400px;
+        margin: 20px auto 0;
+    }
+    
     .form-link,
     .form-link a {
         font-size: 16px;
@@ -788,6 +817,12 @@ body {
         margin-top: 50px;
         margin-bottom: 45px;
         min-width: 240px;
+    }
+    
+    .resolution-info {
+        font-size: 15px;
+        max-width: 450px;
+        margin: 20px auto 0;
     }
     
     .form-link,
