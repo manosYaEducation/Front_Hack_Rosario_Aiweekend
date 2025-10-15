@@ -127,7 +127,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         paginationControls.appendChild(prevButton);
 
-        for (let i = 1; i <= totalPages; i++) {
+        // Lógica de truncamiento de páginas
+        // Detectar si es móvil (ancho < 1024px)
+        const isMobile = window.innerWidth < 1024;
+        let startPage, endPage;
+
+        if (isMobile) {
+            // Versión móvil: SIEMPRE mostrar solo 2 páginas
+            if (totalPages <= 2) {
+                // Si hay 2 o menos páginas, mostrar todas
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                // Siempre mostrar la página actual y la siguiente
+                startPage = page;
+                endPage = Math.min(page + 1, totalPages);
+            }
+        } else {
+            // Versión desktop: mostrar hasta 4 páginas
+            const maxVisiblePages = 4;
+            if (totalPages <= maxVisiblePages) {
+                // Si hay 4 o menos páginas, mostrar todas
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                // Calcular qué páginas mostrar basándose en la página actual
+                if (page <= 2) {
+                    // Si estamos en las primeras páginas, mostrar páginas 1-4
+                    startPage = 1;
+                    endPage = maxVisiblePages;
+                } else if (page >= totalPages - 1) {
+                    // Si estamos en las últimas páginas, mostrar las últimas 4
+                    startPage = totalPages - maxVisiblePages + 1;
+                    endPage = totalPages;
+                } else {
+                    // Si estamos en el medio, mostrar la página actual y 3 más (2 a cada lado)
+                    startPage = page - 1;
+                    endPage = page + 2;
+                }
+            }
+        }
+
+        // Mostrar páginas calculadas
+        for (let i = startPage; i <= endPage; i++) {
             const pageButton = document.createElement('button');
             pageButton.className = 'pagination-button';
             if (i === page) {
