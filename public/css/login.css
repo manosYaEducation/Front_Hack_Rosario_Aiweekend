@@ -225,12 +225,14 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #00e5ff;
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+    border-color: #9b0993;
+    box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
 .form-input:hover {
-    border-color: #00e5ff;
+    outline: none;
+    border-color: #9b0993;
+    box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
 /* Forgot password section */
