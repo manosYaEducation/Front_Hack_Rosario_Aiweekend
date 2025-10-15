@@ -68,7 +68,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const truncatedTitle = truncateTitleForMobile(project.title);
         document.querySelector('.project-detail-title').textContent = truncatedTitle;
 
- projectDetailContent.innerHTML = `
+        // Construir bloque de Pitch si existe
+        const pitchEmbed = (() => {
+            const pitch = (project.pitch || '').trim();
+            if (!pitch) return '';
+            // Detectar YouTube y embeber
+            const ytMatch = pitch.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/);
+            if (ytMatch && ytMatch[1]) {
+                const videoId = ytMatch[1];
+                return `
+                <div class="project-section">
+                    <div class="section-title">Pitch</div>
+                    <div class="section-content" style="margin-top:6px; display:flex; justify-content:center;">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>`;
+            }
+            // Si es URL genérica, mostrar enlace
+            const isUrl = /^(https?:)\/\//i.test(pitch);
+            const safeText = escapeHtml(pitch);
+            const linkHtml = isUrl ? `<a href="${safeText}" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size: 16px; font-weight: 500;">${safeText}</a>` : safeText;
+            return `
+            <div class="project-section">
+                <div class="section-title">Pitch</div>
+                <div class="section-content" style="margin-top:6px; text-align:left;">${linkHtml}</div>
+            </div>`;
+        })();
+
+        projectDetailContent.innerHTML = `
             <!-- Sección de Miembros -->
             <div id="membersSection" class="members-section">
                 <div class="members-header">
@@ -97,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
             <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p> -->
             <p><strong></strong> ${project.description}</p>
+            ${pitchEmbed}
             </div>
         `;
 

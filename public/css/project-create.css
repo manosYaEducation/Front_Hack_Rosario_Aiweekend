@@ -293,9 +293,9 @@ body {
 }
 
 .submit-button:hover {
-    background: rgba(0, 188, 212, 0.1);
-    border-color: #00e5ff;
-    transform: translateY(-1px);
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
 }
 
 .submit-button:active {
