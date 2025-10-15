@@ -10,7 +10,7 @@
     <div class="container">
         <header class="header">
             <div class="header-left">
-                <div class="logo">AIWKND</div>
+                <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="logo">
                 <!-- Desktop Navigation -->
                 <nav class="desktop-nav">
                     <a href="index" class="nav-link">
@@ -42,7 +42,7 @@
         
         <!-- Desktop Bottom Nav -->
         <nav class="desktop-bottom-nav">
-            <div class="desktop-bottom-logo">AIWKND</div>
+            <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="desktop-bottom-logo">
         </nav>
     </div>
     <script src="public/js/config.js"></script>
