@@ -183,14 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
      // Función para re-renderizar cuando cambie el tamaño de ventana
-     function handleResize() {
-         if (cachedProjects.length > 0) {
-             renderPage();
-         }
-     }
-     
+    function handleResize() {
+        if (cachedProjects.length > 0) {
+            renderPage();
+        }
+    }
+
      // Escuchar cambios de tamaño de ventana
-     window.addEventListener('resize', handleResize);
-     
-     fetchDashboardsAndProjects();
- });
+    window.addEventListener('resize', handleResize);
+    
+    fetchDashboardsAndProjects();
+});

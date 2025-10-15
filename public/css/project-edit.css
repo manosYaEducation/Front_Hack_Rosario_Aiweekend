@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    background: linear-gradient(160deg, #480a9a 0%, #8c1477 42%, #5a2068 68%, #372659 100%);
+}
+
+/* Centrado total */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Sección principal */
+    .form-section {
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+}
+
+/* Contenedor */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+/* Título */
+.form-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Formulario */
+.capitals-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Campos */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.9rem;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff4fd8;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* === ESTILO ESPECIAL PARA EL SELECT === */
+
+/* Color del texto visible (cuando ya se seleccionó algo) */
+select {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Color del texto dentro del menú desplegable */
+select option {
+    color: black;
+}
+
+/* Color gris para la opción por defecto */
+select option[disabled][selected] {
+    color: #888;
+}
+
+/* Grupo de botones */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Botones */
+.btn {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    border: none;
+    padding: 12px 28px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1 1 auto;
+    min-width: 120px;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn.cancel {
+background: linear-gradient(90deg, #ff007a, #ff4fd8);
+}
+
+.btn.preview {
+background: linear-gradient(90deg, #8c2fff, #4a91ff);
+}
+
+.btn.save {
+background: linear-gradient(90deg, #ff4fd8, #7b2ff7);
+}
+
+/* --- 📱 Responsive --- */
+@media (max-width: 600px) {
+.form-section {
+    max-width: 90%;
+    padding: 1.5rem;
+}
+
+.form-title {
+    font-size: 1.4rem;
+}
+
+.button-group {
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn {
+    width: 100%;
+    border-radius: 15px;
+}
+}
+
+/* Header */
+.header {
+    padding: 15px;
+    background: #000000;
+    border-bottom: 4px solid #9b0993;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 73px;
+
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
