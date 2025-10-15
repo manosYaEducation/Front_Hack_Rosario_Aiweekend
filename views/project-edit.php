@@ -4,49 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar proyecto</title>
-    <link rel="stylesheet" href="public/css/user-view.css">
+    <link rel="stylesheet" href="public/css/project-edit.css">
 </head>
 <body>
-    <!-- Form Section -->
-    <section class="form-section">
-        <div class="form-container">
-            <h1 class="form-title">Editar proyecto</h1>
-            <form class="capitals-form" id="editProjectForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="title">Título</label>
-                    <input type="text" id="title" name="title" placeholder="Ingresa el título del proyecto" required>
-                </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <input type="text" id="description" name="description" placeholder="Ingresa la descripción" required>
-                </div>
-                <div class="form-group">
-                    <label for="pitch">Enlace pitch</label>
-                    <input type="text" id="pitch" name="pitch" placeholder="Ingresa el enlace de tu pitch">
-                </div>
-                <div class="form-group">
-                    <label for="status">Estado</label>
-                    <select id="status" name="status" required>
-                        <option value="in_progress">En progreso</option>
-                        <option value="completed">Completado</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="image">Imagen del Proyecto</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                    <div id="imagePreview" style="margin-top: 10px;">
-                    </div>
-                </div>
-                <div>
-                    <button type="button" class="submit-button" id="cancelButton">Cancelar</button>
-                    <button type="button" class="submit-button" id="previewButton">Vista previa</button>
-                    <button type="submit" class="submit-button">Guardar cambios</button>
-                </div>
-            </form>
-        </div>
-    </section>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">AIWKND</div>
+                <nav class="desktop-nav">
+            </div>
 
-    <?php require_once("components/nav.php"); ?>
+        </header>
+
+        <!-- Formulario -->
+        <section class="form-section">
+            <div class="form-container">
+                <h1 class="form-title">Editar proyecto</h1>
+                <form class="capitals-form" id="editProjectForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">Título</label>
+                        <input type="text" id="title" name="title" placeholder="Ingresa el título del proyecto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <input type="text" id="description" name="description" placeholder="Ingresa la descripción" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pitch">Enlace pitch</label>
+                        <input type="text" id="pitch" name="pitch" placeholder="Ingresa el enlace de tu pitch">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Estado</label>
+                        <select id="status" name="status" required>
+                            <option value="in_progress">En progreso</option>
+                            <option value="completed">Completado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Imagen del Proyecto</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <div id="imagePreview" style="margin-top: 10px;"></div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn cancel" id="cancelButton">Cancelar</button>
+                        <button type="button" class="btn preview" id="previewButton">Vista previa</button>
+                        <button type="submit" class="btn save">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Navegación inferior -->
+
+    </div>
+
     <script src="public/js/config.js"></script>
     <script src="public/js/project-edit.js"></script>
 </body>
