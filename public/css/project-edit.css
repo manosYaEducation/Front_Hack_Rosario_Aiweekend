@@ -146,6 +146,10 @@ background: linear-gradient(90deg, #8c2fff, #4a91ff);
 background: linear-gradient(90deg, #ff4fd8, #7b2ff7);
 }
 
+.btn.crop {
+background: linear-gradient(90deg, #4a91ff, #8c2fff);
+}
+
 /* --- 📱 Responsive --- */
 @media (max-width: 600px) {
 .form-section {
