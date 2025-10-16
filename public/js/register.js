@@ -45,12 +45,33 @@ document.getElementById('register-form').addEventListener('submit', async functi
         }, 2000);
         return;
     }
+    
+    
+    // Expresión regular: al menos una mayúscula y un carácter especial
+const regexSeguridad = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,20}$/;
+    
+    // Verificar longitud y seguridad
+if (!regexSeguridad.test(password)) {
+    loadingSpinner.style.display = 'none';
+    errorIcon.style.display = 'block';
+    loadingText.textContent =
+        'La contraseña debe tener entre 8 y 20 caracteres, al menos una mayúscula y un carácter especial.';
+    countdownText.textContent = '';
+    setTimeout(() => {
+        loadingOverlay.style.display = 'none';
+    }, 2500);
+    return;
+}
+    
+    
+    
+    
 
     // Crear objeto de datos con valores por defecto
     const formData = {
         email: document.getElementById('email').value,
         password: password,
-        name: document.getElementById('email').value,      
+        name: document.getElementById('nombre').value,      
         company: 'N/A',                  
         location: 'No especificado',
         phone: '0000000000',

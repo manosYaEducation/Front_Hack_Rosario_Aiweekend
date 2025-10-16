@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer contraseña</title>
     <link rel="stylesheet" href="public/css/recover-password.css">
-    <script src="public/js/recover-password.js"></script>
+  
 </head>
 <body>
 

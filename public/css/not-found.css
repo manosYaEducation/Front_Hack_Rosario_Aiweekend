@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Reset b√°sico */
+/* Reset b®¢sico */
 * {
     margin: 0;
     padding: 0;
@@ -88,7 +88,7 @@ body {
     border-color: #00e5ff;
 }
 
-/* Animaci√≥n de carga */
+/* Animaci®Æn de carga */
 .container {
     animation: slideIn 0.4s ease-out;
 }
@@ -128,4 +128,5 @@ body {
     margin-top: 10rem;
     text-align: center;
 }
+
 

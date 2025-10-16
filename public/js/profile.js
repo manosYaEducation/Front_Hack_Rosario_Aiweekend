@@ -4,6 +4,8 @@ window.addEventListener("load", function() {
     if (!window.isAuthenticated()) {
         window.location.href = 'login';
         return;
+    }else {
+        document.body.style.display = "block";
     }
 
     // Obtener datos del usuario usando las funciones globales
@@ -22,4 +24,16 @@ window.addEventListener("load", function() {
             window.logout();
         });
     }
+    
+     // Configurar botón de logout usando la función global
+    const createProjectButton = document.getElementById("createProjectButton");
+    if (createProjectButton) {
+        createProjectButton.addEventListener("click", function() {
+             window.location.href = 'project-create';
+              return;
+        });
+    }
+    
+    
+    
 });

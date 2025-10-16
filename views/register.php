@@ -39,6 +39,12 @@
                         <label for="email"></label>
                         <input type="email" id="email" name="email" placeholder="Direccion de Email" required>
                     </div>
+                    
+                    
+                       <div class="form-group">
+                        <label for="nombre"></label>
+                        <input type="nombre" id="nombre" name="nombre" placeholder="Nombre Weekener" required>
+                    </div>
                     <div class="form-group">
                         <label for="password"></label>
                         <input type="password" id="password" name="password" placeholder="Contraseña" min="1" required>

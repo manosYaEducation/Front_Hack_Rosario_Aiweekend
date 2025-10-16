@@ -34,7 +34,7 @@
             <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-content">
-                    <h1 class="hero-title">Evento AIWKND<br>Rosario 2025</h1>
+                    <h1 class="hero-title">Evento AIWKND<br>Mendoza 2025</h1>
                 </div>
             </div>
             

@@ -9,13 +9,13 @@
 <body>
     <div class="container">
         <!-- Header -->
-        <!--<header class="header">
+        <header class="header">
             <div class="header-left">
                 <div class="logo">AIWKND</div>
                 <nav class="desktop-nav">
             </div>
 
-        </header> -->
+        </header>
 
         <!-- Formulario -->
         <section class="form-section">

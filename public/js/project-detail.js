@@ -111,7 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-controls">
                     <button class="submit-button" id="joinButton">Unirse</button>
                     <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
-                    <a class="submit-button-edit" id="editButton" style="display:none" href="project-edit?id=${project.id}">Editar </a>
+                    
+                    <a class="submit-button" id="editButton" style="display:none" href="project-edit?id=${project.id}">Editar </a>
+                    
                     <button class="submit-button" id="deleteButton" style="display:none;background:#b91c1c">Eliminar</button>
                 </div><div id="requestsContainer"></div>
                 <div id="joinStatus" class="join-status"></div>

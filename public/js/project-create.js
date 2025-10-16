@@ -1,7 +1,19 @@
 const API_BASE = CONFIG.API_BASE;
 const CURRENT_SLUG = CONFIG.SLUG;
 
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
+    
+    
+      // Verificar autenticaci贸n usando las funciones globales
+    if (!window.isAuthenticated()) {
+        window.location.href = 'login';
+        return;
+    }
+    
+    
   const capitalsForm = document.getElementById("capitalsForm");
 
   if (capitalsForm) {

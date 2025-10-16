@@ -88,23 +88,24 @@ document.addEventListener('DOMContentLoaded', () => {
              projectCard.innerHTML = `
                  <div class="project-icon">
                  
-     ${imageSrc
-         ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
-         : `<div class="project-icon-letter">${firstLetter}</div>`
-     }
+    ${imageSrc
+        ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
+        : `<div class="project-icon-letter">${firstLetter}</div>`
+    }
 </div>
                  <div class="project-info">
-                     <h3>${escapeHtml(truncateTitle(project.title || ''))}</h3>
+                     <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(truncateTitle(project.title || ''))}</h3>
                      <p class="project-description">${escapeHtml(truncatedDescription)}</p>
                      ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
                      ${membershipBadge}
                  </div>
              `;
              
-             // Agregar evento click a toda la tarjeta en móvil
+             // Agregar evento click al título en móvil
              if (isMobile) {
-                 projectCard.style.cursor = 'pointer';
-                 projectCard.addEventListener('click', () => {
+                 const titleElement = projectCard.querySelector('.clickable-title');
+                 titleElement.style.cursor = 'pointer';
+                 titleElement.addEventListener('click', () => {
                      window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
                  });
              }
@@ -126,49 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         paginationControls.appendChild(prevButton);
 
-        // Lógica de truncamiento de páginas
-        // Detectar si es móvil (ancho < 1024px)
-        const isMobile = window.innerWidth < 1024;
-        let startPage, endPage;
-
-        if (isMobile) {
-            // Versión móvil: SIEMPRE mostrar solo 2 páginas
-            if (totalPages <= 2) {
-                // Si hay 2 o menos páginas, mostrar todas
-                startPage = 1;
-                endPage = totalPages;
-            } else {
-                // Siempre mostrar la página actual y la siguiente
-                startPage = page;
-                endPage = Math.min(page + 1, totalPages);
-            }
-        } else {
-            // Versión desktop: mostrar hasta 4 páginas
-            const maxVisiblePages = 4;
-            if (totalPages <= maxVisiblePages) {
-                // Si hay 4 o menos páginas, mostrar todas
-                startPage = 1;
-                endPage = totalPages;
-            } else {
-                // Calcular qué páginas mostrar basándose en la página actual
-                if (page <= 2) {
-                    // Si estamos en las primeras páginas, mostrar páginas 1-4
-                    startPage = 1;
-                    endPage = maxVisiblePages;
-                } else if (page >= totalPages - 1) {
-                    // Si estamos en las últimas páginas, mostrar las últimas 4
-                    startPage = totalPages - maxVisiblePages + 1;
-                    endPage = totalPages;
-                } else {
-                    // Si estamos en el medio, mostrar la página actual y 3 más (2 a cada lado)
-                    startPage = page - 1;
-                    endPage = page + 2;
-                }
-            }
-        }
-
-        // Mostrar páginas calculadas
-        for (let i = startPage; i <= endPage; i++) {
+        for (let i = 1; i <= totalPages; i++) {
             const pageButton = document.createElement('button');
             pageButton.className = 'pagination-button';
             if (i === page) {

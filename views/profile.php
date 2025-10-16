@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="public/css/account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body style="display: none;">
         <header class="header">
             <div class="header-left">
                 <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="logo">
@@ -54,8 +54,10 @@
             </div> -->
 
             <div class="profile-actions">
-                <button class="submit-button">Cancelar</button>
-                <button class="submit-button">Guardar</button>
+                <!--<button class="submit-button">Cancelar</button>-->
+                <!--<button class="submit-button">Guardar</button>-->
+          <button class="submit-button" id="createProjectButton">Crear Proyecto</button>
+        
             </div>
             <div class="disconnect-section">
                 <button class="submit-button" id="logoutButton">Desconectar</button>

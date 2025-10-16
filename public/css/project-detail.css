@@ -482,34 +482,7 @@ body {
     height: 39px;
 }
 
-
 .submit-button:hover {
-    background: linear-gradient(90deg, #ff007a, #7b2ff7);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-}
-
-.submit-button-edit {
-    background: linear-gradient(90deg, #ff007a, #7b2ff7);
-    color: #ffffff;
-    border: 1px solid #ffffff00;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-align: center;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    width: 120px;
-    height: 39px;
-    line-height: normal;
-}
-
-.submit-button-edit:hover {
     background: linear-gradient(90deg, #ff007a, #7b2ff7);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
@@ -570,11 +543,10 @@ body {
 }
 
 .section-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
     color: #ffffff;
-    margin-top: 20px;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
 }
 
 .section-content {
