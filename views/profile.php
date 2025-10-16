@@ -34,17 +34,14 @@
         <main class="profile-content">
             <div class="profile-avatar-section">
                 <div class="profile-avatar">
-                    <i class="fas fa-user"></i>
-                    <div class="edit-icon-overlay">
-                        <i class="fas fa-pen"></i>
-                    </div>
+                    <img src="public/images/weekeners.png" alt="Weekeners" class="profile-avatar-img">
                 </div>
             </div>
 
             <div class="profile-name-section">
                 <label for="profileName" class="profile-label">Nombre del perfil</label>
                 <!-- Aquí cargamos el nombre del usuario desde el localStorage -->
-                <input type="text" id="profileName" class="profile-input" value="">
+                <input type="text" id="profileName" class="profile-input" value="" readonly>
             </div>
 
             <!-- <div class="profile-email-section">
