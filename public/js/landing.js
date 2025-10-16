@@ -88,24 +88,23 @@ document.addEventListener('DOMContentLoaded', () => {
              projectCard.innerHTML = `
                  <div class="project-icon">
                  
-    ${imageSrc
-        ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
-        : `<div class="project-icon-letter">${firstLetter}</div>`
-    }
+     ${imageSrc
+         ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
+         : `<div class="project-icon-letter">${firstLetter}</div>`
+     }
 </div>
                  <div class="project-info">
-                     <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(truncateTitle(project.title || ''))}</h3>
+                     <h3>${escapeHtml(truncateTitle(project.title || ''))}</h3>
                      <p class="project-description">${escapeHtml(truncatedDescription)}</p>
                      ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
                      ${membershipBadge}
                  </div>
              `;
              
-             // Agregar evento click al título en móvil
+             // Agregar evento click a toda la tarjeta en móvil
              if (isMobile) {
-                 const titleElement = projectCard.querySelector('.clickable-title');
-                 titleElement.style.cursor = 'pointer';
-                 titleElement.addEventListener('click', () => {
+                 projectCard.style.cursor = 'pointer';
+                 projectCard.addEventListener('click', () => {
                      window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
                  });
              }
