@@ -4,9 +4,11 @@ const CURRENT_SLUG = CONFIG.SLUG;
 document.addEventListener('DOMContentLoaded', () => {
     const allProjectsGrid = document.getElementById('allProjectsGrid');
     const paginationControls = document.getElementById('paginationControls');
+    const searchInput = document.getElementById('searchProjectsInput');
     let currentPage = 1;
     const projectsPerPage = 8;
     let cachedProjects = [];
+    let filteredProjects = [];
 
     async function fetchDashboardsAndProjects() {
         try {
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             cachedProjects = projectsData.data;
+            filteredProjects = cachedProjects;
             currentPage = 1;
             renderPage();
         } catch (error) {
@@ -48,10 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPage() {
-        const totalPages = Math.max(1, Math.ceil(cachedProjects.length / projectsPerPage));
+        const source = filteredProjects && Array.isArray(filteredProjects) ? filteredProjects : cachedProjects;
+        const totalPages = Math.max(1, Math.ceil(source.length / projectsPerPage));
         const start = (currentPage - 1) * projectsPerPage;
         const end = start + projectsPerPage;
-        const pageItems = cachedProjects.slice(start, end);
+        const pageItems = source.slice(start, end);
         renderProjects(pageItems);
         renderPagination(totalPages, currentPage);
     }
@@ -193,6 +197,36 @@ document.addEventListener('DOMContentLoaded', () => {
         paginationControls.appendChild(nextButton);
     }
 
+    function normalizeString(value) {
+        return String(value || '')
+            .normalize('NFKD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    }
+
+    function applySearchFilter(query) {
+        const normalizedQuery = normalizeString(query);
+        if (!normalizedQuery) {
+            filteredProjects = cachedProjects.slice();
+        } else {
+            filteredProjects = cachedProjects.filter(p => {
+                const title = normalizeString(p.title || '');
+                return title.includes(normalizedQuery);
+            });
+        }
+        currentPage = 1;
+        renderPage();
+    }
+
+    function debounce(fn, delay) {
+        let t;
+        return function(...args) {
+            clearTimeout(t);
+            t = setTimeout(() => fn.apply(this, args), delay);
+        };
+    }
+
     function firstSafe(obj, key) {
         return obj && obj[key] ? obj[key] : '';
     }
@@ -232,6 +266,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
      // Escuchar cambios de tamaño de ventana
     window.addEventListener('resize', handleResize);
+
+    if (searchInput) {
+        const debouncedSearch = debounce((e) => applySearchFilter(e.target.value), 250);
+        searchInput.addEventListener('input', debouncedSearch);
+    }
     
     fetchDashboardsAndProjects();
 });

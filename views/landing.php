@@ -42,6 +42,9 @@
             <div class="projects-list">
                 <section id="projects" class="projects-overview">
                     <a href="project-create" class="create-project-btn">Crear Proyecto</a>
+                    <div class="projects-search" id="projectsSearch">
+                        <input type="text" id="searchProjectsInput" placeholder="Buscar proyectos por título" aria-label="Buscar proyectos por título">
+                    </div>
                     <div class="projects-grid" id="allProjectsGrid">
                         <!-- Projects will be loaded here via JavaScript -->
                     </div>
