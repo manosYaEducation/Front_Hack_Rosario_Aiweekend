@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Error 404 - Página no encontrada</title>
-  <link rel="stylesheet" href="public/css/user-view.css">
+  <link rel="stylesheet" href="public/css/not-found.css">
 </head>
 <body>
   <!-- Error 404 Section -->
