@@ -50,9 +50,9 @@
                     <label for="image"></label>
                     <input type="file" id="image" name="image" accept="image/*">
                     <p class="resolution-info">Resoluciones recomendadas de imagen: 640×480, 800×600, 1024×768, 1280×688</p>
-                    <div id="imagePreview" style="display: none; margin-top: 10px;">
-                        <img id="previewImg" style="max-width: 200px; max-height: 150px; border: 1px solid #ccc;">
-                        <button type="button" id="cropImageBtn" style="display: block; margin-top: 5px;">Recortar Imagen</button>
+                    <div id="imagePreview" style="display: none; margin-top: 10px; text-align: center;">
+                        <img id="previewImg" style="max-width: 200px; max-height: 150px; border: 1px solid #ccc; border-radius: 8px;">
+                        <button type="button" id="cropImageBtn" class="crop-button">Recortar Imagen</button>
                     </div>
                 </div>
                 <div>
