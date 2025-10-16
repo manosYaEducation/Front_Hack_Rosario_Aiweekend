@@ -570,10 +570,11 @@ body {
 }
 
 .section-title {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: bold;
     color: #ffffff;
-    margin-bottom: 12px;
+    margin-top: 20px;
+    margin-bottom: 4px;
 }
 
 .section-content {
