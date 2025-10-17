@@ -316,6 +316,25 @@ body {
     transform: scale(0.98);
 }
 
+/* Clickable project card for mobile */
+@media (max-width: 1023px) {
+    .project-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .project-card:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+    }
+    
+    .project-card:active {
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
 .project-description {
     font-family: 'Raleway', sans-serif;
     font-size: 14px;
