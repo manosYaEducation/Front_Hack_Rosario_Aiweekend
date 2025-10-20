@@ -113,16 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
             projectCard.innerHTML = createUserProjectCard(project);
             const cardElement = projectCard.firstElementChild;
             
-            // Detectar si es móvil o tablet (< 1024px) y agregar evento click al título
+            // Detectar si es móvil o tablet (< 1024px) y agregar evento click a toda la tarjeta
             const isMobile = window.innerWidth < 1024;
             if (isMobile) {
-                const titleElement = cardElement.querySelector('.clickable-title');
-                if (titleElement) {
-                    titleElement.style.cursor = 'pointer';
-                    titleElement.addEventListener('click', () => {
-                        window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
-                    });
-                }
+                cardElement.style.cursor = 'pointer';
+                cardElement.addEventListener('click', () => {
+                    window.location.href = `project-detail?id=${encodeURIComponent(project.id)}`;
+                });
             }
             
             allProjectsGrid.appendChild(cardElement);
@@ -151,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 </div>
                 <div class="project-info">
-                    <h3 class="${isMobile ? 'clickable-title' : ''}">${escapeHtml(truncatedTitle)}</h3>
+                    <h3>${escapeHtml(truncatedTitle)}</h3>
                     <p class="project-description">${escapeHtml(truncatedDescription)}</p>
                     ${!isMobile ? `<a href="project-detail?id=${encodeURIComponent(project.id)}" class="btn-ver-mas">Ver más</a>` : ''}
                 </div>
