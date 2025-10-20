@@ -223,14 +223,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const res = await fetch(`${API_BASE}project/delete`, { method: 'POST', body: fd });
                     const data = await res.json();
                     if (res.ok && data && data.success) {
-                        alert('Proyecto eliminado.');
-                        window.location.href = 'project-list';
+                        showNotification('Proyecto eliminado exitosamente.', 'success');
+                        // Redirigir después de un breve delay para que se vea la notificación
+                        setTimeout(() => {
+                            window.location.href = 'project-list';
+                        }, 1500);
                     } else {
-                        alert(data.message || 'No se pudo eliminar el proyecto.');
+                        showNotification(data.message || 'No se pudo eliminar el proyecto.', 'error');
                     }
                 } catch (err) {
                     console.error('Error al eliminar proyecto:', err);
-                    alert('Error de conexión al eliminar el proyecto.');
+                    showNotification('Error de conexión al eliminar el proyecto.', 'error');
                 } finally {
                     // Cerrar modal
                     if (deleteModal) {
@@ -651,12 +654,7 @@ async function handleRequestAction(requestId, action) {
 
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
-    notification.style = `
-        position: fixed; top: 20px; right: 20px; padding: 10px 20px;
-        background: ${type === 'success' ? '#28a745' : '#dc3545'};
-        color: white; border-radius: 5px; z-index: 1000;
-    `;
+    notification.className = `notification ${type}`;
     notification.textContent = message;
     document.body.appendChild(notification);
-    setTimeout(() => notification.remove(), 3000);
 }
