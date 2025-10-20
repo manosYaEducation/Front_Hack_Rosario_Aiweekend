@@ -1149,6 +1149,96 @@ body {
     }
 }
 
+/* Modal de confirmación de logout */
+.logout-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.logout-modal-content {
+    background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid white;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideInModal 0.3s ease;
+}
+
+.logout-modal-title {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.logout-modal-message {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.logout-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.logout-modal-cancel-btn {
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    border: 1px solid #fdfdfd;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.logout-modal-cancel-btn:hover {
+    background: linear-gradient(90deg, #ff0000);
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
+}
+
+.logout-modal-confirm-btn {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.logout-modal-confirm-btn:hover {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
 /* Animación de carga */
 .profile-page-container {
     animation: slideIn 0.4s ease-out;
@@ -1162,5 +1252,21 @@ body {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInModal {
+    from { 
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

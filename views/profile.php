@@ -63,6 +63,22 @@
         <nav class="desktop-bottom-nav">
             <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="desktop-bottom-logo">
         </nav>
+
+        <!-- Modal de confirmación de logout -->
+        <div id="logoutModal" class="logout-modal-overlay" style="display: none;">
+            <div class="logout-modal-content">
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 class="logout-modal-title">¿Estás seguro?</h3>
+                    <p class="logout-modal-message">
+                        Perderás el acceso a tus proyectos.
+                    </p>
+                </div>
+                <div class="logout-modal-buttons">
+                    <button id="logoutCancelBtn" class="logout-modal-cancel-btn">Cancelar</button>
+                    <button id="logoutConfirmBtn" class="logout-modal-confirm-btn">Salir</button>
+                </div>
+            </div>
+        </div>
         
     <?php require_once("components/nav.php"); ?>
     
