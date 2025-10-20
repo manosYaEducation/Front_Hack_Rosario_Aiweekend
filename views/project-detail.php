@@ -44,6 +44,22 @@
         <nav class="desktop-bottom-nav">
             <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="desktop-bottom-logo">
         </nav>
+
+        <!-- Modal de confirmación de eliminación de proyecto -->
+        <div id="deleteModal" class="delete-modal-overlay" style="display: none;">
+            <div class="delete-modal-content">
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 class="delete-modal-title">¿Estas Seguro?</h3>
+                    <p class="delete-modal-message">
+                        Se eliminará permanentemente el proyecto y todos sus datos.
+                    </p>
+                </div>
+                <div class="delete-modal-buttons">
+                    <button id="deleteCancelBtn" class="delete-modal-cancel-btn">Cancelar</button>
+                    <button id="deleteConfirmBtn" class="delete-modal-confirm-btn">Eliminar</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="public/js/config.js"></script>
     <script src="public/js/session-check.js"></script>

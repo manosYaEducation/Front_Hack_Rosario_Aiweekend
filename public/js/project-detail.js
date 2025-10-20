@@ -192,10 +192,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Eliminar proyecto (visible para todos los usuarios, el backend validará permisos)
         if (deleteButton) {
-            deleteButton.addEventListener('click', async () => {
-                if (!confirm('¿Seguro que deseas eliminar este proyecto? Esta acción no se puede deshacer.')) {
-                    return;
+            deleteButton.addEventListener('click', () => {
+                // Mostrar modal de confirmación
+                const deleteModal = document.getElementById('deleteModal');
+                if (deleteModal) {
+                    deleteModal.style.display = 'flex';
                 }
+            });
+        }
+
+        // Configurar botones del modal de eliminación
+        const deleteModal = document.getElementById('deleteModal');
+        const deleteCancelBtn = document.getElementById('deleteCancelBtn');
+        const deleteConfirmBtn = document.getElementById('deleteConfirmBtn');
+
+        if (deleteCancelBtn) {
+            deleteCancelBtn.addEventListener('click', () => {
+                if (deleteModal) {
+                    deleteModal.style.display = 'none';
+                }
+            });
+        }
+
+        if (deleteConfirmBtn) {
+            deleteConfirmBtn.addEventListener('click', async () => {
                 try {
                     const fd = new FormData();
                     fd.append('project_id', project.id);
@@ -211,9 +231,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (err) {
                     console.error('Error al eliminar proyecto:', err);
                     alert('Error de conexión al eliminar el proyecto.');
+                } finally {
+                    // Cerrar modal
+                    if (deleteModal) {
+                        deleteModal.style.display = 'none';
+                    }
                 }
             });
         }
+
+        // Cerrar modal al hacer clic fuera de él
+        if (deleteModal) {
+            deleteModal.addEventListener('click', (e) => {
+                if (e.target === deleteModal) {
+                    deleteModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && deleteModal && deleteModal.style.display === 'flex') {
+                deleteModal.style.display = 'none';
+            }
+        });
 
         // Utility function for fetch with timeout
         async function fetchWithTimeout(url, options, timeout = 10000) {

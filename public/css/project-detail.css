@@ -1351,6 +1351,96 @@ body {
     margin-right: 8px;
 }
 
+/* Modal de confirmación de eliminación de proyecto */
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.delete-modal-content {
+    background: linear-gradient(160deg,#480a9a 0%,#8c1477 42%,#5a2068 68%,#372659 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid white;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideInModal 0.3s ease;
+}
+
+.delete-modal-title {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.delete-modal-message {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.delete-modal-cancel-btn {
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    border: 1px solid #fdfdfd;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.delete-modal-cancel-btn:hover {
+    background: linear-gradient(90deg, #ff0000);
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
+}
+
+.delete-modal-confirm-btn {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.delete-modal-confirm-btn:hover {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
 /* Mostrar navegación móvil por defecto en pantallas menores a 1024px */
 @media (max-width: 1023px) {
     .bottom-nav {
