@@ -269,7 +269,7 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
         // Validar credenciales del usuario
         if (!userEmail || !userName) {
             joinStatus.textContent = 'Por favor, inicia sesión para unirte a un proyecto.';
-            joinStatus.style.color = '#ef4444';
+            joinStatus.style.color = '#white';
             return;
         }
 
@@ -312,7 +312,7 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
             joinStatus.textContent = action === 'join'
                 ? 'Te uniste al proyecto exitosamente.'
                 : 'Has abandonado el proyecto exitosamente.';
-            joinStatus.style.color = '#10b981'; // Verde para éxito
+            joinStatus.style.color = '#white'; // Verde para éxito
             updateButtonStates(otherButton, button, action === 'join' ? 'Abandonar' : 'Unirse', false);
 
             // Recargar lista de miembros
@@ -329,7 +329,7 @@ function setupProjectButton(button, action, otherButton, apiEndpoint) {
             }
 
             joinStatus.textContent = errorMessage;
-            joinStatus.style.color = '#ef4444';
+            joinStatus.style.color = '#white';
         } finally {
             // Restaurar estado del botón si sigue visible
             if (button.style.display !== 'none') {
@@ -377,11 +377,11 @@ setupProjectButton(joinButton, 'join', leaveButton, 'project/createProjectMember
                 
                 // Distinguir entre diferentes tipos de errores
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    membersList.innerHTML = '<p style="color: #ef4444; text-align: center;">Error de conexión. Verifica tu conexión a internet.</p>';
+                    membersList.innerHTML = '<p style="color: #white; text-align: center;">Error de conexión. Verifica tu conexión a internet.</p>';
                 } else if (error.message.includes('404')) {
                     membersList.innerHTML = '<p style="color: #6b7280; font-style: italic; text-align: center;">La funcionalidad de miembros no está disponible.</p>';
                 } else {
-                    membersList.innerHTML = '<p style="color: #ef4444; text-align: center;">No hay miembros en el proyecto.</p>';
+                    membersList.innerHTML = '<p style="color: #white; text-align: center; margin-bottom: 15px;">No hay miembros en el proyecto.</p>';
                 }
             }
         }
