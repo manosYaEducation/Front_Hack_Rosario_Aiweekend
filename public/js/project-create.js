@@ -119,6 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           alert("¡Proyecto creado exitosamente!");
           this.reset();
+          // Redirigir al landing después de crear el proyecto
+          window.location.href = 'index';
         } else {
           alert(data.message || "Error al crear el proyecto.");
         }
