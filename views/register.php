@@ -41,11 +41,11 @@
                     </div>
                     <div class="form-group">
                         <label for="password"></label>
-                        <input type="password" id="password" name="password" placeholder="Contraseña" min="1" required>
+                        <input type="password" id="password" name="password" placeholder="Contraseña" min="1" maxlength="40" required>
                     </div>
                     <div class="form-group">
                         <label for="password2"></label>
-                        <input type="password" id="password2" name="password2" placeholder="Confirmar contraseña" min="1" required>
+                        <input type="password" id="password2" name="password2" placeholder="Confirmar contraseña" min="1" maxlength="40" required>
                     </div>
                     <button type="submit" class="submit-button">Crear Cuenta</button>
                 </form>
