@@ -1133,3 +1133,55 @@ body {
     }
 }
 
+/* Estilos para notificaciones */
+.notification {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    color: white;
+    border-radius: 15px;
+    z-index: 10001;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: slideInNotification 0.3s ease;
+    max-width: 400px;
+    min-width: 250px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.notification.success {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+}
+
+.notification.error {
+    background: linear-gradient(90deg, #ff0019, #fd1900);
+}
+
+@keyframes slideInNotification {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes slideOutNotification {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+

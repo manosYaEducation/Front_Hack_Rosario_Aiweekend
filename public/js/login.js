@@ -45,10 +45,10 @@ function mostrarMensajeLogin(mensaje) {
   if (mensajeDiv) {
     mensajeDiv.textContent = mensaje;
     mensajeDiv.style.display = "block";
-    // Oculta el mensaje después de 4 segundos
+    // Oculta el mensaje 
     setTimeout(() => {
       mensajeDiv.style.display = "none";
-    }, 4000);
+    }, 1500);
   }
 }
 
@@ -74,7 +74,7 @@ loginF.addEventListener("submit", async (event) => {
   const mantenerSesion = document.querySelector("#mantenerSesion").checked;
 
   if (!username || !password) {
-    alert("Por favor ingresa ambos campos: usuario y contraseña.");
+    showNotification("Por favor ingresa ambos campos: usuario y contraseña.", 'error');
     return;
   }
 
@@ -153,10 +153,13 @@ loginF.addEventListener("submit", async (event) => {
         }
       }
 
-      window.location.href = "profile";
+      showNotification("¡Inicio de sesión exitoso!", 'success');
+      setTimeout(() => {
+        window.location.href = "profile";
+      }, 1500);
       
     } else {
-      alert("Usuario o contraseña incorrectos.");
+      showNotification("Usuario o contraseña incorrectos.", 'error');
 
       // Agrega intento fallido y si es igual o supera los intentos empieza el timer
       intentosFallidos++;
@@ -170,7 +173,7 @@ loginF.addEventListener("submit", async (event) => {
     }
   } catch (error) {
     console.error("Error completo:", error);
-    alert("Hubo un error al procesar tu solicitud. Inténtalo nuevamente.");
+    showNotification("Haz intentado demasiadas veces. Inténtalo de nuevo mas tarde.", 'error');
   }
 });
 
@@ -185,3 +188,22 @@ togglePassword.addEventListener("click", () => {
   togglePassword.classList.toggle("bi-eye");
   togglePassword.classList.toggle("bi-eye-slash");
 });
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Auto-dismiss after 4 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOutNotification 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }
+    }, 4000);
+}
