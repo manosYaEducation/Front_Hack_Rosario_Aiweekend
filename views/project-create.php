@@ -40,7 +40,10 @@
                 </div>
                 <div class="form-group">
                     <label for="description"></label>
-                    <input type="text" id="description" name="description" placeholder="Ingresa la descripción" required>
+                    <textarea id="description" name="description" placeholder="Ingresa la descripción del proyecto. Puedes usar formato estructurado con viñetas (•) y secciones (Descripción:, Valor diferencial:)" required rows="12"></textarea>
+                    <div class="formatting-help">
+                        <small> Usa "•" o "-" para viñetas, y ":" para títulos de sección, ejemplo: "Descripción:"</small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="pitch"></label>

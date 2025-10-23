@@ -260,6 +260,13 @@ body {
     box-shadow: 0 2px 8px rgba(0, 187, 212, 0.342);
 }
 
+/* Estilos específicos para textarea */
+.form-group textarea {
+    min-height: 180px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
 /* Resolution info */
 .resolution-info {
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -1136,3 +1143,12 @@ body {
         transform: translateX(0);
     }
 }
+
+/* Estilos para la ayuda de formateo */
+.formatting-help {
+    margin-top: 5px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+

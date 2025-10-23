@@ -1,6 +1,7 @@
 const API_BASE = CONFIG.API_BASE;
 const CURRENT_SLUG = CONFIG.SLUG;
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const capitalsForm = document.getElementById("capitalsForm");
 
@@ -140,24 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelButton.addEventListener("click", () => {
       capitalsForm.reset();
       window.history.back();
-    });
-  }
-
-  // Botón vista previa
-  const previewButton = document.getElementById("previewButton");
-  if (previewButton) {
-    previewButton.addEventListener("click", () => {
-      const title = document.getElementById("title").value;
-      const description = document.getElementById("description").value;
-      const pitch = document.getElementById("pitch").value;
-      const image = document.getElementById("image").files[0]?.name || "Ninguna imagen seleccionada";
-
-      if (!title || !description) {
-        alert("Por favor, completa título y descripción para vista previa.");
-        return;
-      }
-
-      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nPitch: ${pitch}\nImagen: ${image}`);
     });
   }
 });
