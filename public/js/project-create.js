@@ -117,16 +117,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           })();
 
-          alert("¡Proyecto creado exitosamente!");
+          showNotification("¡Proyecto creado exitosamente!", 'success');
           this.reset();
           // Redirigir al landing después de crear el proyecto
-          window.location.href = 'index';
+          setTimeout(() => {
+            window.location.href = 'index';
+          }, 1500);
         } else {
-          alert(data.message || "Error al crear el proyecto.");
+          showNotification(data.message || "Error al crear el proyecto.", 'error');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert("Error de conexión. Inténtalo de nuevo.");
+        showNotification("Error de conexión. Inténtalo de nuevo.", 'error');
       } finally {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
@@ -143,21 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Botón vista previa
-  const previewButton = document.getElementById("previewButton");
-  if (previewButton) {
-    previewButton.addEventListener("click", () => {
-      const title = document.getElementById("title").value;
-      const description = document.getElementById("description").value;
-      const pitch = document.getElementById("pitch").value;
-      const image = document.getElementById("image").files[0]?.name || "Ninguna imagen seleccionada";
-
-      if (!title || !description) {
-        alert("Por favor, completa título y descripción para vista previa.");
-        return;
-      }
-
-      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nPitch: ${pitch}\nImagen: ${image}`);
-    });
-  }
 });
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+}
