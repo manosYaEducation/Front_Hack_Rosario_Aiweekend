@@ -118,16 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           })();
 
-          alert("¡Proyecto creado exitosamente!");
+          showNotification("¡Proyecto creado exitosamente!", 'success');
           this.reset();
           // Redirigir al landing después de crear el proyecto
-          window.location.href = 'index';
+          setTimeout(() => {
+            window.location.href = 'index';
+          }, 1500);
         } else {
-          alert(data.message || "Error al crear el proyecto.");
+          showNotification(data.message || "Error al crear el proyecto.", 'error');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert("Error de conexión. Inténtalo de nuevo.");
+        showNotification("Error de conexión. Inténtalo de nuevo.", 'error');
       } finally {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
@@ -143,4 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
       window.history.back();
     });
   }
+
 });
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+}
