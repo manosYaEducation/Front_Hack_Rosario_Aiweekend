@@ -1640,7 +1640,7 @@ body {
     transform: translate(-50%, -50%);
     padding: 20px 30px;
     color: white;
-    border-radius: 15px;
+    border-radius: 30px;
     z-index: 10001;
     font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-weight: 600;
