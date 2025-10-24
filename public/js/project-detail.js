@@ -95,6 +95,101 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
         })();
 
+        // Función para formato a la descripción del proyecto
+        const formatProjectDescription = (description) => {
+            if (!description) return '';
+            
+            // Dividir la descripción en líneas
+            const lines = description.split('\n').filter(line => line.trim());
+            
+            let formattedHTML = '';
+            let currentSection = '';
+            let bulletPoints = [];
+            let isFirstLine = true;
+            let hasProcessedInitialBullets = false;
+            
+            let i = 0;
+            while (i < lines.length) {
+                const line = lines[i].trim();
+                
+                // La primera línea siempre es el título
+                if (isFirstLine) {
+                    formattedHTML += `<div class="project-title-numbered">${line}</div>`;
+                    isFirstLine = false;
+                    i++;
+                    continue;
+                }
+                
+                // Si es una viñeta y no hemos procesado las viñetas iniciales aún
+                if (/^[•\-]\s/.test(line) && !hasProcessedInitialBullets) {
+                    bulletPoints.push(line.replace(/^[•\-]\s/, ''));
+                    i++;
+                    continue;
+                }
+                
+                // Si ya no es una viñeta, procesar las viñetas iniciales acumuladas
+                if (bulletPoints.length > 0 && !hasProcessedInitialBullets) {
+                    formattedHTML += '<ul class="project-bullet-points">';
+                    bulletPoints.forEach(point => {
+                        formattedHTML += `<li>${point}</li>`;
+                    });
+                    formattedHTML += '</ul>';
+                    bulletPoints = [];
+                    hasProcessedInitialBullets = true;
+                }
+                
+                // Detectar secciones (Descripción:, Valor diferencial:, etc.)
+                if (line.endsWith(':')) {
+                    currentSection = line;
+                    formattedHTML += `<div class="project-section-title">${currentSection}</div>`;
+                }
+                // Si es una viñeta dentro de una sección o después de secciones
+                else if (/^[•\-]\s/.test(line)) {
+                    // Si no hay viñetas acumuladas, empezar una nueva lista
+                    if (bulletPoints.length === 0) {
+                        formattedHTML += '<ul class="project-bullet-points">';
+                    }
+                    bulletPoints.push(line.replace(/^[•\-]\s/, ''));
+                }
+                // Contenido de sección
+                else if (currentSection && line) {
+                    // Si hay viñetas pendientes, procesarlas antes del contenido
+                    if (bulletPoints.length > 0) {
+                        bulletPoints.forEach(point => {
+                            formattedHTML += `<li>${point}</li>`;
+                        });
+                        formattedHTML += '</ul>';
+                        bulletPoints = [];
+                    }
+                    formattedHTML += `<div class="project-section-content">${line}</div>`;
+                }
+                // Texto general
+                else if (line) {
+                    // Si hay viñetas pendientes, procesarlas antes del texto general
+                    if (bulletPoints.length > 0) {
+                        bulletPoints.forEach(point => {
+                            formattedHTML += `<li>${point}</li>`;
+                        });
+                        formattedHTML += '</ul>';
+                        bulletPoints = [];
+                    }
+                    formattedHTML += `<div class="project-general-text">${line}</div>`;
+                }
+                
+                i++;
+            }
+            
+            // Si quedan viñetas sin procesar al final
+            if (bulletPoints.length > 0) {
+                bulletPoints.forEach(point => {
+                    formattedHTML += `<li>${point}</li>`;
+                });
+                formattedHTML += '</ul>';
+            }
+            
+            return formattedHTML;
+        };
+
         projectDetailContent.innerHTML = `
             <!-- Sección de Miembros -->
             <div id="membersSection" class="members-section">
@@ -119,11 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <!-- Project Details -->
             <div class="project-details">
-            <!-- <p><strong>Estado:</strong> ${project.status === 'completed' ? 'Completado' : 'En Progreso'}</p>
-            <p><strong>Fecha de Creación:</strong> ${new Date(project.created_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p>
-            <p><strong>Última Actualización:</strong> ${new Date(project.updated_at).toLocaleDateString('es-ES', { dateStyle: 'medium' })}</p> -->
-            <p><strong></strong> ${project.description}</p>
-            ${pitchEmbed}
+                <div class="project-description-formatted">
+                    ${formatProjectDescription(project.description)}
+                </div>
+                ${pitchEmbed}
             </div>
         `;
 

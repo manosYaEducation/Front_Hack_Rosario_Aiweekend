@@ -1,5 +1,100 @@
 const API_BASE = CONFIG.API_BASE;
 
+// Función para formato a la descripción del proyecto (igual que en project-detail.js)
+function formatProjectDescription(description) {
+    if (!description) return '';
+    
+    // Dividir la descripción en líneas
+    const lines = description.split('\n').filter(line => line.trim());
+    
+    let formattedHTML = '';
+    let currentSection = '';
+    let bulletPoints = [];
+    let isFirstLine = true;
+    let hasProcessedInitialBullets = false;
+    
+    let i = 0;
+    while (i < lines.length) {
+        const line = lines[i].trim();
+        
+        // La primera línea siempre es el título
+        if (isFirstLine) {
+            formattedHTML += `<div class="project-title-numbered">${line}</div>`;
+            isFirstLine = false;
+            i++;
+            continue;
+        }
+        
+        // Si es una viñeta y no hemos procesado las viñetas iniciales aún
+        if (/^[•\-]\s/.test(line) && !hasProcessedInitialBullets) {
+            bulletPoints.push(line.replace(/^[•\-]\s/, ''));
+            i++;
+            continue;
+        }
+        
+        // Si ya no es una viñeta, procesar las viñetas iniciales acumuladas
+        if (bulletPoints.length > 0 && !hasProcessedInitialBullets) {
+            formattedHTML += '<ul class="project-bullet-points">';
+            bulletPoints.forEach(point => {
+                formattedHTML += `<li>${point}</li>`;
+            });
+            formattedHTML += '</ul>';
+            bulletPoints = [];
+            hasProcessedInitialBullets = true;
+        }
+        
+        // Detectar secciones (Descripción:, Valor diferencial:, etc.)
+        if (line.endsWith(':')) {
+            currentSection = line;
+            formattedHTML += `<div class="project-section-title">${currentSection}</div>`;
+        }
+        // Si es una viñeta dentro de una sección o después de secciones
+        else if (/^[•\-]\s/.test(line)) {
+            // Si no hay viñetas acumuladas, empezar una nueva lista
+            if (bulletPoints.length === 0) {
+                formattedHTML += '<ul class="project-bullet-points">';
+            }
+            bulletPoints.push(line.replace(/^[•\-]\s/, ''));
+        }
+        // Contenido de sección
+        else if (currentSection && line) {
+            // Si hay viñetas pendientes, procesarlas antes del contenido
+            if (bulletPoints.length > 0) {
+                bulletPoints.forEach(point => {
+                    formattedHTML += `<li>${point}</li>`;
+                });
+                formattedHTML += '</ul>';
+                bulletPoints = [];
+            }
+            formattedHTML += `<div class="project-section-content">${line}</div>`;
+        }
+        // Texto general
+        else if (line) {
+            // Si hay viñetas pendientes, procesarlas antes del texto general
+            if (bulletPoints.length > 0) {
+                bulletPoints.forEach(point => {
+                    formattedHTML += `<li>${point}</li>`;
+                });
+                formattedHTML += '</ul>';
+                bulletPoints = [];
+            }
+            formattedHTML += `<div class="project-general-text">${line}</div>`;
+        }
+        
+        i++;
+    }
+    
+    // Si quedan viñetas sin procesar al final
+    if (bulletPoints.length > 0) {
+        bulletPoints.forEach(point => {
+            formattedHTML += `<li>${point}</li>`;
+        });
+        formattedHTML += '</ul>';
+    }
+    
+    return formattedHTML;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const editProjectForm = document.getElementById("editProjectForm");
   const urlParams = new URLSearchParams(window.location.search);
@@ -127,7 +222,37 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Por favor, completa título y descripción para vista previa.");
         return;
       }
-      alert(`Vista previa del proyecto:\n\nTítulo: ${title}\nDescripción: ${description}\nPitch: ${pitch}\nEstado: ${status === 'in_progress' ? 'En progreso' : 'Completado'}\nImagen: ${image}`);
+      
+      // Crear modal de vista previa 
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal-content preview-modal">
+          <div class="modal-title">Vista previa del proyecto</div>
+          <div class="modal-body">
+            <div class="preview-section">
+              <strong>Título:</strong> ${title}
+            </div>
+            <div class="preview-section">
+              <strong>Descripción:</strong>
+              <div class="project-description-formatted">
+                ${formatProjectDescription(description)}
+              </div>
+            </div>
+            <div class="preview-section">
+              <strong>Pitch:</strong> ${pitch || 'No especificado'}
+            </div>
+            <div class="preview-section">
+              <strong>Imagen:</strong> ${image}
+            </div>
+          </div>
+          <div class="modal-buttons">
+            <button class="modal-cancel-btn" onclick="this.closest('.modal-overlay').remove()">Cerrar</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
     });
   }
 });
