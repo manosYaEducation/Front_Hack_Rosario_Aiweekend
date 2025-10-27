@@ -65,6 +65,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: 30px;
+    flex: 1;
 }
 
 .logo {
@@ -81,6 +82,8 @@ h3 {
     display: none;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 /* Desktop Bottom Nav */
@@ -134,7 +137,7 @@ h3 {
 .desktop-nav .nav-link:hover,
 .desktop-nav-right .nav-link:hover {
     color: #00bcd4;
-    background: rgba(0, 188, 212, 0.1);
+    background: rgba(0, 187, 212, 0);
     transform: translateY(-2px);
 }
 
@@ -160,7 +163,7 @@ h3 {
 }
 
     .desktop-nav .nav-text {
-        font-size: 24px;
+        font-size: 19px;
         font-weight: 600;
         letter-spacing: 0.5px;
         margin-left: 5px;
@@ -941,7 +944,7 @@ h3 {
     
     .desktop-nav .nav-text {
         font-family: 'Raleway', sans-serif;
-        font-size: clamp(12px, 1.8vw, 24px);
+        font-size: 19px;
         color: #ffffff;
     }
     
@@ -1203,7 +1206,7 @@ h3 {
 @media (min-width: 1024px) {
     .header {
         padding: 12px 40px;
-        height: 100px;
+        height: 80px;
     }
     
     .logo {
@@ -1235,7 +1238,7 @@ h3 {
     
     .desktop-nav .nav-text {
         font-family: 'Raleway', sans-serif;
-        font-size: 20px;
+        font-size: 19px;
         color: #ffffff;
     }
     
@@ -1491,7 +1494,7 @@ h3 {
     /* Ultra-wide desktop navigation */
     .header {
         padding: 15px 60px;
-        height: 100px;
+        height: 80px;
     }
     
     .logo {
@@ -1524,7 +1527,7 @@ h3 {
     }
     
     .desktop-nav .nav-text {
-        font-size: 20px;
+        font-size: 19px;
         color: #ffffff;
     }
     
