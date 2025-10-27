@@ -120,12 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("title").value = data.project.title;
         document.getElementById("description").value = data.project.description;
         document.getElementById("pitch").value = data.project.pitch;
-        document.getElementById("status").value = data.project.status;
 
         if (data.project.image) {
           imagePreview.innerHTML = `<img src="data:image/jpeg;base64,${data.project.image}" alt="Project Image" style="max-width: 200px; height: auto;" />`;
         } else {
-          imagePreview.innerHTML = '<p>No hay imagen actual.</p>';
+          imagePreview.innerHTML = '<p></p>';
         }
       } else {
         alert(data.message || "Error al cargar los datos del proyecto.");
@@ -215,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
       const pitch = document.getElementById("pitch").value;
-      const status = document.getElementById("status").value;
       const image = imageInput.files[0] ? 'Imagen seleccionada' : 'Sin nueva imagen';
 
       if (!title || !description) {
