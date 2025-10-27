@@ -55,6 +55,7 @@ body {
     display: flex;
     align-items: center;
     gap: 30px;
+    flex: 1;
 }
 
 .logo {
@@ -71,6 +72,8 @@ body {
     display: none;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 .desktop-nav-right {
@@ -106,7 +109,7 @@ body {
 .desktop-nav .nav-link:hover,
 .desktop-nav-right .nav-link:hover {
     color: #00bcd4;
-    background: rgba(0, 188, 212, 0.1);
+    background: rgba(0, 187, 212, 0);
     transform: translateY(-2px);
 }
 
@@ -131,13 +134,13 @@ body {
     transition: all 0.25s ease;
 }
 
-.desktop-nav .nav-text {
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-left: 20px;
-    color: #ffffff;
-}
+    .desktop-nav .nav-text {
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin-left: 5px;
+        color: #ffffff;
+    }
 
 .desktop-nav-right .nav-text {
     display: none;
@@ -469,7 +472,10 @@ body {
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     .form-title {
@@ -546,7 +552,10 @@ body {
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -677,7 +686,10 @@ body {
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Large desktop navigation */
@@ -696,13 +708,14 @@ body {
     }
     
     .desktop-nav-right .nav-icon {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         background: #ffffff;
     }
     
     .desktop-nav .nav-text {
-        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 19px;
         color: #ffffff;
     }
     
@@ -780,14 +793,17 @@ body {
     }
     
     .header {
-        padding: 12px 50px;
-        height: 100px;
+        padding: 15px 60px;
+        height: 80px;
     }
     
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Ultra-wide desktop navigation */
@@ -812,7 +828,7 @@ body {
     }
     
     .desktop-nav .nav-text {
-        font-size: 20px;
+        font-size: 19px;
         color: #ffffff;
     }
     
@@ -970,7 +986,10 @@ body {
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Desktop navigation improvements */
@@ -1031,14 +1050,17 @@ body {
     }
     
     .header {
-        padding: 10px 35px;
-        height: 100px;
+        padding: 12px 40px;
+        height: 80px;
     }
     
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Large desktop navigation */
@@ -1057,13 +1079,14 @@ body {
     }
     
     .desktop-nav-right .nav-icon {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         background: #ffffff;
     }
     
     .desktop-nav .nav-text {
-        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 19px;
         color: #ffffff;
     }
     
@@ -1099,14 +1122,17 @@ body {
     }
     
     .header {
-        padding: 12px 50px;
-        height: 100px;
+        padding: 15px 60px;
+        height: 80px;
     }
     
     .logo {
         height: 40px;
         width: auto;
+        position: relative;
+        right: 15px;
         margin-bottom: 10px;
+        margin-left: 10px;
     }
     
     /* Ultra-wide desktop navigation */
@@ -1131,7 +1157,7 @@ body {
     }
     
     .desktop-nav .nav-text {
-        font-size: 20px;
+        font-size: 19px;
         color: #ffffff;
     }
     
