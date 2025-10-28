@@ -455,7 +455,35 @@ h3 {
     color: #000000;
     font-size: 22px;
     font-weight: bold;
-    transition: transform 0.3s ease;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.project-icon-letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-icon-letter[style*="background-image"] {
+    color: transparent;
+    background: transparent;
+    font-size: 0;
+}
+
+.project-icon-letter[style*="background-image"]::before {
+    opacity: 0;
 }
 
 .project-image {

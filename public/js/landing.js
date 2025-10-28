@@ -89,13 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
              // Detectar si es móvil o tablet (< 1024px)
              const isMobile = window.innerWidth < 1024;
              const imageSrc = project.image ? `data:image/jpeg;base64,${project.image}` : null;
+             const backgroundStyle = imageSrc ? `background-image: url('${imageSrc}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : '';
              projectCard.innerHTML = `
                  <div class="project-icon">
-                 
-     ${imageSrc
-         ? `<img src="${imageSrc}" alt="Imagen del proyecto" class="project-image" />`
-         : `<div class="project-icon-letter">${firstLetter}</div>`
-     }
+                 <div class="project-icon-letter" style="${backgroundStyle}">${firstLetter}</div>
 </div>
                  <div class="project-info">
                      <h3>${escapeHtml(truncateTitle(project.title || ''))}</h3>
