@@ -184,7 +184,7 @@ body {
 .projects-title {
     font-family: 'Raleway', sans-serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     color: #ffffff;
     text-align: center;
     padding: 30px 20px 20px;
@@ -268,6 +268,36 @@ body {
     color: #000000;
     font-size: 22px;
     font-weight: bold;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.project-icon-letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-icon-letter[style*="background-image"] {
+    color: transparent;
+    background: transparent;
+    font-size: 0;
+}
+
+.project-icon-letter[style*="background-image"]::before {
+    opacity: 0;
 }
 
 .project-image {
@@ -279,6 +309,7 @@ body {
     position: relative;
     top: 33px;
     background: transparent;
+    transition: transform 0.3s ease;
 }
 
 .project-info {
@@ -341,7 +372,8 @@ body {
 .project-description {
     font-family: 'Raleway', sans-serif;
     font-size: 14px;
-    color: #ffffff;
+    color: #c0c7c7;
+    font-weight: bold;
     line-height: 1.4;
     margin: 0;
     margin-top: 10px;
@@ -375,6 +407,13 @@ body {
     background: linear-gradient(90deg, #ff007a, #7b2ff7);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+}
+
+/* Fix hover para botones centrados en desktop */
+@media (min-width: 1024px) {
+    .btn-ver-mas:hover {
+        transform: translateX(-50%) translateY(-4px);
+    }
 }
 
 /* Pagination Controls */
@@ -586,11 +625,11 @@ body {
     }
     
     .project-card h3 {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .project-description {
-        font-size: 12px;
+        font-size: 14px;
         -webkit-line-clamp: 2;
         line-clamp: 2;
         max-height: 2.4em;
@@ -652,7 +691,7 @@ body {
     }
     
     .project-description {
-        font-size: 11px;
+        font-size: 14px;
         max-height: 2.2em;
     }
     
@@ -800,6 +839,16 @@ body {
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }
     
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover .project-icon-letter,
+    .project-card:hover .project-image {
+        transform: scale(1.1);
+    }
+    
     .project-icon {
         width: 45px;
         height: 45px;
@@ -855,7 +904,7 @@ body {
     }
     
     .project-description {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.4;
         margin-bottom: 12px;
         text-align: left;
@@ -1055,9 +1104,19 @@ body {
     
     .project-card:hover {
         background: #1a1a1a;
-        border-color: #ffffff;
+        border-color: #ffffff00;
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
+    }
+    
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover .project-icon-letter,
+    .project-card:hover .project-image {
+        transform: scale(1.1);
     }
     
     .project-icon {
@@ -1090,26 +1149,78 @@ body {
     }
     
     .project-card h3 {
-        font-size: 18.72px;
+        font-size: 11px;
+        margin-bottom: 2px;
         text-align: left;
     }
     
     .project-description {
-        font-size: 17px;
+        font-size: 14px;
         text-align: left;
+        color: #9ca0a0;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 3.6em;
+        margin-bottom: 12px;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Large Desktop Grid */
+    #allProjectsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(30px, 4vw, 50px);
+        max-width: 1400px;
+    }
+    
+    .project-card {
+        padding: 30px;
+        gap: 25px;
+        margin-top: 30px;
+        width: 382px;
+        height: 450px;
+        overflow: hidden;
+    }
+    
+    .project-card h3 {
+        font-size: 20px;
+        text-align: left;
+    }
+    
+    .project-description {
+        font-size: 15px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        color: #9ca0a0;
+        font-weight: bold;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
         max-height: 7.6em;
         margin-top: 17px;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .btn-ver-mas {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 0 18px;
         font-size: 14px;
         min-width: 90px;
-        margin-bottom: 20px;
-        margin-right: 10px;
         height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .pagination-button {
@@ -1247,21 +1358,43 @@ body {
         border-bottom-left-radius: 0px;
     }
     
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover .project-icon-letter,
+    .project-card:hover .project-image {
+        transform: scale(1.1);
+    }
+    
     .project-card h3 {
-        font-size: 18.72px;
+        font-size: 20px;
         text-align: left;
     }
     
     .project-description {
-        font-size: 18px;
+        font-size: 15px;
         text-align: left;
+        color: #9ca0a0;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
+        -webkit-box-orient: vertical;
         max-height: 7.6em;
         margin-top: 17px;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .btn-ver-mas {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 0 20px;
         font-size: 16px;
         background-color: transparent;
@@ -1269,8 +1402,9 @@ body {
         border: 1px solid white;
         min-width: 100px;
         height: 40px;
-        margin-bottom: 15px;
-        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .pagination-button {
