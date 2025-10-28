@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer contraseña</title>
     <link rel="stylesheet" href="public/css/recover-password.css">
-    <script src="public/js/recover-password.js"></script>
 </head>
 <body>
-
-    <!-- Form Section -->
-    <section class="form-section">
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="logo">
+                <nav class="desktop-nav">
+                    <a href="index" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Inicio</span>
+                    </a>
+                    <a href="project-list" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Proyectos</span>
+                    </a>
+                </nav>
+            </div>
+            <nav class="desktop-nav-right">
+                <a href="profile" class="nav-link">
+                    <span class="nav-icon"></span>
+                    <span class="nav-text">Cuenta</span>
+                </a>
+            </nav>
+        </header>
+        
+        <section class="form-section">
         <div class="form-container">
             <h1 class="form-title">Restablecer contraseña</h1>
             <p class="form-description">
@@ -18,19 +38,26 @@
             </p>
             <form class="capitals-form" id="forgotPasswordForm">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+                    <label for="email"></label>
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
                 </div>
-                <button type="submit" class="submit-button">Enviar formulario</button>
-                <div style="display: flex; justify-content: center; margin: 40px 0 0 0;">
-                <div style="display: flex; justify-content: center; margin: 24px 0 0 0;">
-                <a href="login" class="submit-button" style="text-align: center; text-decoration: none; display: inline-block;">Volver</a>
-            </div>
-            </div>
+                <div>
+                    <button type="submit" class="submit-button">Enviar formulario</button>
+                    <button type="button" class="submit-button" id="cancelButton">Volver</button>
+                </div>
             </form>
         </div>
     </section>
+
+        <!-- Desktop Bottom Nav -->
+        <nav class="desktop-bottom-nav">
+            <img src="public/images/AIWKND-negro-solo.png" alt="AIWKND" class="desktop-bottom-logo">
+        </nav>
+        
+        <?php require_once("components/nav.php"); ?>
+    </div>
+    <script src="public/js/config.js"></script>
+    <script src="public/js/session-check.js"></script>
     <script src="public/js/recover-password.js"></script>
-    <?php require_once("components/nav.php"); ?>
 </body>
 </html>

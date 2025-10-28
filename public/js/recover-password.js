@@ -66,4 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }
+
+    // Botón cancelar/volver
+    const cancelButton = document.getElementById("cancelButton");
+    if (cancelButton) {
+      cancelButton.addEventListener("click", () => {
+        window.location.href = "login";
+      });
+    }
   });
