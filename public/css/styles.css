@@ -321,8 +321,7 @@ h3 {
     font-weight: 600;
     position: relative; /* o absolute/fixed */
     top: 15px; 
-    margin-bottom: 35px;
-    margin-left: 25px;
+    margin: 0 auto 35px auto;
     width: 154px;
     height: 39px;
     cursor: pointer;
@@ -1580,7 +1579,7 @@ h3 {
     }
     
     .create-project-btn {
-        padding: 24px 48px;
+        padding: 26px 48px;
         font-size: 22px;
         margin: 70px auto 70px auto;
         min-width: 300px;
