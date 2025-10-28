@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         projectDetailContent.innerHTML = `
-            <!-- Sección de Miembros -->
+            <!-- Sección de Miembros con Botones -->
             <div id="membersSection" class="members-section">
                 <div class="members-header">
                     <h3>Integrantes:</h3>
@@ -199,17 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>Cargando miembros...</p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Action Buttons Section -->
-            <div class="project-action-buttons">
-                <div class="project-controls">
-                    <button class="submit-button" id="joinButton">Unirse</button>
-                    <button class="submit-button" id="leaveButton" style="display:none;background:#ef4444">Abandonar</button>
-                    <a class="submit-button-edit" id="editButton" style="display:none" href="project-edit?id=${project.id}">Editar </a>
-                    <button class="submit-button" id="deleteButton" style="display:none;background:#b91c1c">Eliminar</button>
-                </div><div id="requestsContainer"></div>
-                <div id="joinStatus" class="join-status"></div>
+                <div class="project-action-buttons">
+                    <div class="project-controls">
+                        <button class="submit-button" id="joinButton">Unirse</button>
+                        <button class="submit-button" id="leaveButton" style="display:none">Abandonar</button>
+                        <button class="submit-button" id="editButton" style="display:none">Editar</button>
+                        <button class="submit-button" id="deleteButton" style="display:none">Eliminar</button>
+                    </div>
+                    <div id="requestsContainer"></div>
+                    <div id="joinStatus" class="join-status"></div>
+                </div>
             </div>
             
             <!-- Project Details -->
@@ -292,6 +291,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (deleteModal) {
                     deleteModal.style.display = 'flex';
                 }
+            });
+        }
+
+        // Editar proyecto
+        if (editButton) {
+            editButton.addEventListener('click', () => {
+                window.location.href = `project-edit?id=${project.id}`;
             });
         }
 
