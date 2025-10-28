@@ -471,7 +471,7 @@ h3 {
 .project-info {
     flex: 1;
     min-width: 0;
-    margin-left: 10px;
+    margin-left: 7px;
 }
 
 .project-card:hover {
@@ -506,7 +506,8 @@ h3 {
 .project-description {
     font-family: 'Raleway', sans-serif;
     font-size: 14px;
-    color: #ffffff;
+    color: #c0c7c7;
+    font-weight: bold;
     line-height: 1.4;
     margin: 0;
     margin-top: 10px;
@@ -695,11 +696,12 @@ h3 {
     }
     
     .project-description {
-        font-size: 12px;
+        font-size: 10px;
         line-height: 1.4;
         margin-bottom: 10px;
         text-align: left;
-        color: #cccccc;
+        color: #9ca0a0;
+        font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -855,11 +857,12 @@ h3 {
     }
 
     .project-description {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.4;
         margin-bottom: 12px;
         text-align: left;
-        color: #cccccc;
+        color: #9ca0a0;
+        font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -1069,8 +1072,8 @@ h3 {
     
     .project-info {
         text-align: left;
-        margin-left: 0;
         margin-top: 60px;
+        width: 250px;
         flex: 1;
         display: block;
         flex-direction: column;
@@ -1085,10 +1088,12 @@ h3 {
     }
     
     .project-description {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.4;
         margin-bottom: 12px;
         text-align: left;
+        color: #9ca0a0;
+        font-weight: bold;
         color: #cccccc;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1155,7 +1160,7 @@ h3 {
     
     .btn-ver-mas:hover {
         background: linear-gradient(90deg, #ff007a, #7b2ff7);
-        transform: translateY(-2px);
+        transform: translateX(-50%) translateY(-4px);
         box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
     }
     
@@ -1343,11 +1348,13 @@ h3 {
     }
     
     .project-description {
-        font-size: 17px;
+        font-size: 15px;
         text-align: left;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
+        color: #9ca0a0;
+        font-weight: bold;
         -webkit-line-clamp: 3;
         line-clamp: 3;
         -webkit-box-orient: vertical;
@@ -1358,11 +1365,13 @@ h3 {
     }
     
     .btn-ver-mas {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 0 18px;
         font-size: 14px;
         min-width: 90px;
-        margin-bottom: 20px;
-        margin-right: 10px;
         height: 40px;
         display: flex;
         align-items: center;
@@ -1461,8 +1470,9 @@ h3 {
     }
     
     .project-description {
-        font-size: 18px;
+        font-size: 15px;
         text-align: left;
+        color: #9ca0a0;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -1470,12 +1480,17 @@ h3 {
         line-clamp: 3;
         -webkit-box-orient: vertical;
         max-height: 7.6em;
+        font-weight: bold;
         margin-top: 17px;
         word-wrap: break-word;
         hyphens: auto;
     }
     
     .btn-ver-mas {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 0 20px;
         font-size: 16px;
         background-color: transparent;
@@ -1483,8 +1498,6 @@ h3 {
         border: 1px solid white;
         min-width: 100px;
         height: 40px;
-        margin-bottom: 15px;
-        margin-right: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1636,6 +1649,8 @@ h3 {
     
     .project-description {
         font-size: 12px;
+        color: #9ca0a0;
+        font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -1757,6 +1772,8 @@ h3 {
     .project-description {
         font-size: 11px;
         overflow: hidden;
+        color: #9ca0a0;
+        font-weight: bold;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -1769,7 +1786,7 @@ h3 {
     
     .btn-ver-mas {
         position: absolute;
-        bottom: 5px;
+        bottom: 10px;
         right: 5px;
         background: transparent;
         color: #ffffff;
