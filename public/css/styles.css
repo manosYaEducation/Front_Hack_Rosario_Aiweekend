@@ -459,6 +459,7 @@ h3 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     z-index: 1;
+    transition: transform 0.5s ease;
 }
 
 .project-icon-letter::before {
@@ -495,7 +496,7 @@ h3 {
     position: relative;
     top: 33px;
     background: transparent;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .project-info {
@@ -675,10 +676,14 @@ h3 {
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }
     
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.5s ease;
+    }
+    
     .project-card:hover .project-icon-letter,
     .project-card:hover .project-image {
         transform: scale(1.1);
-        transition: transform 0.3s ease;
     }
     
     .project-icon {
@@ -821,10 +826,14 @@ h3 {
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }
     
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.5s ease;
+    }
+    
     .project-card:hover .project-icon-letter,
     .project-card:hover .project-image {
         transform: scale(1.1);
-        transition: transform 0.3s ease;
     }
     
     .project-icon {
@@ -1077,10 +1086,14 @@ h3 {
         box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
     }
     
+    .project-icon-letter,
+    .project-image {
+        transition: transform 0.5s ease;
+    }
+    
     .project-card:hover .project-icon-letter,
     .project-card:hover .project-image {
         transform: scale(1.1);
-        transition: transform 0.3s ease;
     }
     
     .project-icon {
