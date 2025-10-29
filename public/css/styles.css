@@ -502,7 +502,7 @@ h3 {
 .project-info {
     flex: 1;
     min-width: 0;
-    margin-left: 7px;
+    margin-left: -7px;
 }
 
 .project-card:hover {
