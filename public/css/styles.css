@@ -250,6 +250,17 @@ h3 {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
+.community-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
 /* Create Project Section */
 .create-project-section {
     background: linear-gradient(135deg, #1d90a0 0%, #0c2034 40%, #0d0d0d 100%);
@@ -272,6 +283,7 @@ h3 {
     flex-wrap: wrap;
     max-width: 100%;
     overflow: hidden;
+    border-bottom: 1px solid #cebebe75;
 }
 
 .pagination-button {
@@ -637,6 +649,12 @@ h3 {
         align-items: center;
     }
     
+    .jornada-video-wrapper {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: calc(100% + 30px);
+    }
+    
     #allProjectsGrid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -781,6 +799,12 @@ h3 {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    
+    .jornada-video-wrapper {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
     }
     
     #allProjectsGrid {
@@ -1037,6 +1061,12 @@ h3 {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    
+    .jornada-video-wrapper {
+        margin-left: calc(-1 * clamp(6px, 1vw, 20px));
+        margin-right: calc(-1 * clamp(6px, 1vw, 20px));
+        width: calc(100% + 2 * clamp(6px, 1vw, 20px));
     }
     
     #allProjectsGrid {
@@ -1535,7 +1565,7 @@ h3 {
     
     /* Pagination responsive for ultra-wide desktop */
     #paginationControls {
-        padding: 50px 80px;
+        padding: 50px 40px 80px;
         gap: 25px;
     }
     
@@ -1732,6 +1762,23 @@ h3 {
         min-width: 35px;
         margin-top: 10px;
     }
+    
+    /* Ensure text stays inline on small screens */
+    .presentation-timeline li {
+        font-size: 16px;
+        line-height: 1.3;
+        white-space: normal;
+        overflow: visible;
+        flex-wrap: wrap;
+        gap: 6px;
+        word-break: keep-all;
+    }
+    
+    .presentation-timeline li strong {
+        display: inline;
+        white-space: normal;
+        font-size: 16px;
+    }
 }
 
 /* Responsive para pantallas muy pequeñas */
@@ -1835,6 +1882,553 @@ h3 {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    /* Ensure text stays inline on very small screens */
+    .presentation-timeline li {
+        font-size: 15px;
+        line-height: 1.3;
+        white-space: normal;
+        overflow: visible;
+        flex-wrap: wrap;
+        gap: 6px;
+        word-break: keep-all;
+    }
+    
+    .presentation-timeline li strong {
+        display: inline;
+        white-space: normal;
+        font-size: 15px;
+    }
+}
+
+/* Hackathon Content Section */
+.hackathon-content-section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.hackathon-main-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hackathon-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.hackathon-intro,
+.hackathon-philosophy {
+    margin-bottom: 35px;
+}
+
+.hackathon-intro p,
+.hackathon-philosophy p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 0;
+    text-align: left;
+    color: #ffffff !important;
+}
+
+.section-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: left;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.hackathon-presentation {
+    background: linear-gradient(135deg, rgba(123, 47, 247, 0.2) 0%, rgba(255, 0, 122, 0.15) 100%);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 35px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.presentation-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.presentation-timeline li {
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ffffff;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.presentation-timeline li:last-child {
+    margin-bottom: 0;
+}
+
+.presentation-timeline .icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.presentation-timeline strong {
+    color: #fd04f1;
+    font-weight: 600;
+    margin-left: -7px;
+}
+
+.hackathon-remember {
+    background: linear-gradient(135deg, rgba(255, 0, 122, 0.15) 0%, rgba(123, 47, 247, 0.2) 100%);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+.remember-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.remember-list li {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #e8e8e8;
+    margin-bottom: 18px;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.remember-list li:last-child {
+    margin-bottom: 0;
+}
+
+.remember-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.remember-text {
+    flex: 1;
+    color: #ffffff;
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+.hackathon-content-section p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+/* Jornada Section */
+.jornada-section {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.jornada-section p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #e0e0e0;
+    text-align: left;
+}
+
+/* Jornada Video Wrapper - Fondo borroso */
+.jornada-video-wrapper {
+    position: relative;
+    padding: 40px 0;
+    margin: 40px -20px;
+    overflow: hidden;
+    width: calc(100% + 40px);
+}
+
+.jornada-video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(72, 10, 154, 0.8) 0%, rgba(140, 20, 119, 0.8) 42%, rgba(90, 32, 104, 0.8) 68%, rgba(55, 38, 89, 0.8) 100%);
+    background-size: cover;
+    filter: blur(20px);
+    transform: scale(1.1);
+    z-index: 0;
+}
+
+.jornada-video-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+/* Jornada Video Container - Layout de dos columnas */
+.jornada-video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 100%;
+    margin: 0;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+}
+
+.jornada-text-content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.jornada-text-content p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #ffffff;
+    text-align: left;
+    margin: 0;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(123, 47, 247, 0.15) 0%, rgba(255, 0, 122, 0.1) 100%);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Destacar nombres de personas y empresas */
+.jornada-text-content p strong,
+.jornada-text-content p b {
+    color: #e94fee;
+    font-weight: 500;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
+}
+
+/* Estilo para las comillas si existen */
+.jornada-text-content p em {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.jornada-video-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jornada-video-content iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para videos verticales - reduce el ancho del contenedor */
+.jornada-video-content.vertical-video iframe {
+    max-width: 320px;
+    height: 568px;
+}
+
+.jornada-video-content.vertical-video {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Video Section */
+.video-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.video-section iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive video wrapper */
+@media (max-width: 768px) {
+    .video-section iframe {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-width: 100%;
+    }
+    
+    .jornada-video-content iframe {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+    
+    .jornada-video-content.vertical-video iframe {
+        height: auto;
+        aspect-ratio: 9 / 16;
+        max-width: 100%;
+    }
+    
+    .jornada-video-wrapper {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: calc(100% + 30px);
+    }
+    
+    /* Botones de comunidad más pequeños en móvil */
+    .community-buttons .community-btn {
+        min-width: 200px !important;
+        height: 42px !important;
+        font-size: 14px !important;
+        padding: 6px 14px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .community-buttons {
+        gap: 25px !important;
+        padding: 20px 15px !important;
+    }
+    
+    /* Fix mobile text wrapping for presentation timeline */
+    .presentation-timeline li {
+        line-height: 1.4;
+        white-space: normal;
+        overflow: visible;
+        flex-wrap: wrap;
+        word-break: keep-all;
+    }
+    
+    .presentation-timeline li strong {
+        display: inline;
+        white-space: normal;
+    }
+}
+
+/* Community Buttons */
+.community-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 30px 20px;
+    margin: 20px 0;
+}
+
+.community-btn {
+    font-family: 'Raleway', sans-serif;
+    background: transparent;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid white;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2);
+    margin: 0;
+    position: static;
+    min-width: 300px;
+    height: 57px;
+}
+
+.community-btn:hover {
+    background: linear-gradient(90deg, #ff007a, #7b2ff7);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+}
+
+/* Program Description */
+.program-description {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin: 30px 20px;
+    line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .hackathon-content-section {
+        padding: 60px 40px;
+    }
+    
+    .hackathon-main-title {
+        font-size: 36px;
+    }
+    
+    .hackathon-subtitle {
+        font-size: 24px;
+    }
+    
+    .hackathon-intro p,
+    .hackathon-philosophy p {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .presentation-timeline li {
+        font-size: 18px;
+    }
+    
+    .remember-list li {
+        font-size: 17px;
+    }
+    
+    .hackathon-content-section p {
+        font-size: 18px;
+    }
+    
+    .jornada-section {
+        padding: 40px 40px;
+    }
+    
+    .jornada-section p {
+        font-size: 18px;
+    }
+    
+    .jornada-video-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+        padding: 60px 40px;
+        max-width: 100%;
+    }
+    
+    .jornada-video-content.vertical-video {
+        max-width: 360px;
+        flex-shrink: 0;
+    }
+    
+    .jornada-video-content.vertical-video iframe {
+        max-width: 360px;
+        height: 640px;
+    }
+    
+    .jornada-text-content {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-right: 60px;
+    }
+    
+    .jornada-text-content p {
+        font-size: 19px;
+        line-height: 2;
+        padding: 40px;
+    }
+    
+    .video-section iframe {
+        width: 100%;
+        max-width: 1200px;
+        height: 750px;
+    }
+    
+    .program-description {
+        font-size: 20px;
+        padding: 30px 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hackathon-content-section {
+        padding: 80px 60px;
+    }
+    
+    .hackathon-main-title {
+        font-size: 44px;
+    }
+    
+    .hackathon-subtitle {
+        font-size: 28px;
+    }
+    
+    .hackathon-intro p,
+    .hackathon-philosophy p {
+        font-size: 19px;
+    }
+    
+    .section-title {
+        font-size: 26px;
+    }
+    
+    .presentation-timeline li {
+        font-size: 19px;
+    }
+    
+    .remember-list li {
+        font-size: 18px;
+    }
+    
+    .community-buttons {
+        gap: 40px;
+    }
+    
+    .community-buttons .community-btn {
+        min-width: 300px;
     }
 }
 
